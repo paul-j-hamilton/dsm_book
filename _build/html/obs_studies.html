@@ -1,0 +1,860 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4.1. Observational Studies &#8212; Data Science for Managers</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4.2. Randomized Experiments" href="rand_experiments.html" />
+    <link rel="prev" title="4. Causal Inference" href="causal_inf.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science for Managers</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Data Science for Managers!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="roadmap.html">
+   Course Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assignments.html">
+   Assignment Sheets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="access.html">
+   Access to Materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="platforms.html">
+   Coding Platforms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R Bootcamp
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="rbasics.html">
+   R Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="r_as_a_calculator.html">
+     R as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="assignment.html">
+     Assignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rbasics_quiz1.html">
+     <strong>
+      Quiz #1
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="atomic_vectors.html">
+     Atomic Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rbasics_quiz2.html">
+     <strong>
+      Quiz #2
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="dataframes.html">
+   Data Frames
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="r_packages.html">
+     R Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reading_in_data.html">
+     Reading in Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_frame_basics.html">
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="df_basics_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fixing_variable_types.html">
+     Fixing Variable Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sorting_data.html">
+     Sorting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_rows.html">
+     Filtering Rows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="selecting_columns.html">
+     Selecting Columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="df_manipulation_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="df_manipulation_quiz.html">
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bootcamp_finish_message.html">
+   Welcome to the Course!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploratory Data Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="eda.html">
+   1. Exploring Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary_stats.html">
+     1.1. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="visualization.html">
+     1.2. Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eda_quiz.html">
+     1.3.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eda_case.html">
+     1.4.
+     <strong>
+      Case Study:
+     </strong>
+     Sabermetrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ggplot.html">
+     1.5. Visualization with ggplot (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="eda_tidyverse.html">
+   2. Data Wrangling with the tidyverse
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pipe_operator.html">
+     2.1. The Pipe Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summarise.html">
+     2.2. Summarising Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dds.html">
+     2.3.
+     <strong>
+      Case Study:
+     </strong>
+     California Department of Developmental Services (DDS)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Inference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="stat_inference.html">
+   3. Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="samps_pops.html">
+     3.1. Samples &amp; Populations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conf_int.html">
+     3.2. Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hyp_testing.html">
+     3.3. Hypothesis Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="causal_inf.html">
+   4. Causal Inference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.1. Observational Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rand_experiments.html">
+     4.2. Randomized Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="causal_exercise.html">
+     4.3.
+     <strong>
+      Exercise:
+     </strong>
+     Causal Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="power.html">
+     4.4. Power
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="linear_regression.html">
+   5. Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="correlation.html">
+     5.1. Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="simple_reg.html">
+     5.2. Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="understanding_reg.html">
+     5.3. Understanding Our Regression Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multiple_linear_regression.html">
+     5.4. Multiple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dummy.html">
+     5.5. Dummy Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformations.html">
+     5.6. Transformations (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="interactions.html">
+     5.7. Interactions (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prediction &amp; Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml_intro.html">
+   6. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="logistic_reg.html">
+   7. Logistic Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="why_not_lin.html">
+     7.1. Why Not Linear Regression?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="simple_log_reg.html">
+     7.2. Simple Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multiple_log_reg.html">
+     7.3. Multiple Logistic Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="knn.html">
+   8. k-Nearest Neighbors (kNN)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bias_variance.html">
+     8.4. The Bias-Variance Tradeoff
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="model_eval.html">
+   9. Model Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_partition.html">
+     9.1. Partitioning Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="performance_metrics.html">
+     9.2. Performance Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="dt_rf.html">
+   10. Tree Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="decision_trees.html">
+     10.1. Decision Trees
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="random_forest.html">
+     10.2. Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xgboost.html">
+     10.3. XGBoost (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="neural_nets.html">
+   11. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unsupervised.html">
+   12. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlp.html">
+   13. Natural Language Processing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/obs_studies.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/obs_studies.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fobs_studies.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/obs_studies.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="observational-studies">
+<h1><span class="section-number">4.1. </span>Observational Studies<a class="headerlink" href="#observational-studies" title="Permalink to this headline">¶</a></h1>
+<p>The vast majority of statistics courses begin and end with the premise that correlation is not causation. But they rarely explain why we can not directly assume that correlation is not causation.</p>
+<p>Let’s consider a simple example. Imagine you are working as a data scientist for Musicfi, a firm that offers on-demand music streaming services. To keep things simple, let’s assume the firm has two account types: a free account and a premium account. Musicfi’s main measure of customer engagement is the total streaming minutes that measure how many minutes each customer spent on the service per day. As a data scientist, you want to understand your customers, so you decide to perform a simple analysis that compares the total streaming minutes across the two account types. To put this in causal terms:</p>
+<ul class="simple">
+<li><p>Our treatment is having a premium account</p></li>
+<li><p>Our control is having a free account</p></li>
+<li><p>Our outcome is total streaming minutes</p></li>
+</ul>
+<p>Suppose we have a random sample of 500 customers, stored in a data frame called <code class="docutils literal notranslate"><span class="pre">musicfi</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">musicfi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>Age</th><th scope=col>AccountType</th><th scope=col>StreamingMinutes</th></tr></thead>
+<tbody>
+	<tr><td>33     </td><td>Premium</td><td>63     </td></tr>
+	<tr><td>38     </td><td>Premium</td><td>61     </td></tr>
+	<tr><td>24     </td><td>Free   </td><td>82     </td></tr>
+	<tr><td>28     </td><td>Premium</td><td>72     </td></tr>
+	<tr><td>61     </td><td>Premium</td><td>38     </td></tr>
+	<tr><td>33     </td><td>Free   </td><td>71     </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>First, let’s create a side-by-side boxplot that compares the <code class="docutils literal notranslate"><span class="pre">StreamingMinutes</span></code> of free and premium customers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">boxplot</span><span class="p">(</span><span class="n">musicfi</span><span class="o">$</span><span class="n">StreamingMinutes</span> <span class="o">~</span> <span class="n">musicfi</span><span class="o">$</span><span class="n">AccountType</span><span class="p">,</span> 
+        <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Streaming Minutes&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Treatment&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/obs_studies_4_0.png" src="_images/obs_studies_4_0.png" />
+</div>
+</div>
+<p>From the figure, we can see that the customers with premium accounts had lower total streaming minutes than customers with free accounts! The average in the premium group was 71 minutes compared to 80 minutes in the free group, meaning that (on average) customers with a premium account listened to less music! We can use a t-test to check if this observed difference is statistically significant:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">musicfi</span><span class="o">$</span><span class="n">StreamingMinutes</span> <span class="o">~</span> <span class="n">musicfi</span><span class="o">$</span><span class="n">AccountType</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
+
+data:  musicfi$StreamingMinutes by musicfi$AccountType
+t = 11.774, df = 444.24, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  7.52599 10.54174
+sample estimates:
+   mean in group Free mean in group Premium 
+             80.42205              71.38819 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Suppose we take the above results at face value. In that case, we might incorrectly conclude that having a premium account reduces customer engagement. But this seems unlikely! Our general understanding suggests that buying a premium account should have the opposite effect. So what’s going on? Well, we are likely falling victim to what is often called <strong>selection bias</strong>. Selection bias occurs when the treatment group is systematically different from the control group before the treatment has occurred, making it hard to disentangle differences due to the treatment from those due to the systematic difference between the two groups.</p>
+<p>Mathematically, we can model selection bias as a third variable—often called a confounding variable—associated with both a unit’s propensity to receive the treatment and that unit’s outcome. In our Musicfi example, this variable could be the age of the customer: younger customers tend to listen to more music and are less likely to purchase a premium account. Therefore, the age variable is a confounding variable as it limits our ability to draw causal inferences.</p>
+<p>To see this, we can compare how age is related to total streaming minutes and the account type. First, let’s create a scatter plot of age and streaming minutes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">musicfi</span><span class="o">$</span><span class="n">Age</span><span class="p">,</span> <span class="n">musicfi</span><span class="o">$</span><span class="n">StreamingMinutes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/obs_studies_8_0.png" src="_images/obs_studies_8_0.png" />
+</div>
+</div>
+<p>If we wanted to adjust for the age variable (assuming it is observed), we could run a linear regression with both <code class="docutils literal notranslate"><span class="pre">AccountType</span></code> and <code class="docutils literal notranslate"><span class="pre">Age</span></code> as independent variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">StreamingMinutes</span> <span class="o">~</span> <span class="n">AccountType</span> <span class="o">+</span> <span class="n">Age</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">musicfi</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = StreamingMinutes ~ AccountType + Age, data = musicfi)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.1032 -2.2259  0.0901  2.0055  8.6514 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        100.57573    0.41028 245.138  &lt; 2e-16 ***
+AccountTypePremium   1.51568    0.33928   4.467 9.82e-06 ***
+Age                 -1.06136    0.01904 -55.736  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 3.144 on 497 degrees of freedom
+Multiple R-squared:  0.8927,	Adjusted R-squared:  0.8923 
+F-statistic:  2068 on 2 and 497 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this output, we see that the coefficient on <code class="docutils literal notranslate"><span class="pre">AccountType</span></code> is positive! This means that after controlling for age, premium users actually listen to <em>more</em> music, on average. Including <code class="docutils literal notranslate"><span class="pre">Age</span></code> in the regression removes its confounding effect on the relationship between <code class="docutils literal notranslate"><span class="pre">AccountType</span></code> and <code class="docutils literal notranslate"><span class="pre">StreamingMinutes</span></code>.</p>
+<p>However, even after controlling for age, can we be confident in interpreting this as a causal outcome? The answer is still most likely no. That is because there may exist more confounding variables that are not a part of our data set; these are known as <strong>unobserved confounders</strong>. Even if there were no unobserved confounders, there are much more robust methods for analyzing observational studies than linear regression.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="causal_inf.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Causal Inference</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="rand_experiments.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4.2. </span>Randomized Experiments</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSM Faculty<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

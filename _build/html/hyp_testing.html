@@ -1,0 +1,1701 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.3. Hypothesis Testing &#8212; Data Science for Managers</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Causal Inference" href="causal_inf.html" />
+    <link rel="prev" title="3.2. Confidence Intervals" href="conf_int.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science for Managers</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Data Science for Managers!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="roadmap.html">
+   Course Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assignments.html">
+   Assignment Sheets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="access.html">
+   Access to Materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="platforms.html">
+   Coding Platforms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R Bootcamp
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="rbasics.html">
+   R Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="r_as_a_calculator.html">
+     R as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="assignment.html">
+     Assignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rbasics_quiz1.html">
+     <strong>
+      Quiz #1
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="atomic_vectors.html">
+     Atomic Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rbasics_quiz2.html">
+     <strong>
+      Quiz #2
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="dataframes.html">
+   Data Frames
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="r_packages.html">
+     R Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reading_in_data.html">
+     Reading in Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_frame_basics.html">
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="df_basics_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fixing_variable_types.html">
+     Fixing Variable Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sorting_data.html">
+     Sorting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_rows.html">
+     Filtering Rows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="selecting_columns.html">
+     Selecting Columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="df_manipulation_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="df_manipulation_quiz.html">
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bootcamp_finish_message.html">
+   Welcome to the Course!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploratory Data Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="eda.html">
+   1. Exploring Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary_stats.html">
+     1.1. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="visualization.html">
+     1.2. Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eda_quiz.html">
+     1.3.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eda_case.html">
+     1.4.
+     <strong>
+      Case Study:
+     </strong>
+     Sabermetrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ggplot.html">
+     1.5. Visualization with ggplot (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="eda_tidyverse.html">
+   2. Data Wrangling with the tidyverse
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pipe_operator.html">
+     2.1. The Pipe Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summarise.html">
+     2.2. Summarising Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dds.html">
+     2.3.
+     <strong>
+      Case Study:
+     </strong>
+     California Department of Developmental Services (DDS)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Inference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="stat_inference.html">
+   3. Statistical Inference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="samps_pops.html">
+     3.1. Samples &amp; Populations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conf_int.html">
+     3.2. Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.3. Hypothesis Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="causal_inf.html">
+   4. Causal Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="obs_studies.html">
+     4.1. Observational Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rand_experiments.html">
+     4.2. Randomized Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="causal_exercise.html">
+     4.3.
+     <strong>
+      Exercise:
+     </strong>
+     Causal Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="power.html">
+     4.4. Power
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="linear_regression.html">
+   5. Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="correlation.html">
+     5.1. Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="simple_reg.html">
+     5.2. Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="understanding_reg.html">
+     5.3. Understanding Our Regression Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multiple_linear_regression.html">
+     5.4. Multiple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dummy.html">
+     5.5. Dummy Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformations.html">
+     5.6. Transformations (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="interactions.html">
+     5.7. Interactions (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prediction &amp; Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml_intro.html">
+   6. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="logistic_reg.html">
+   7. Logistic Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="why_not_lin.html">
+     7.1. Why Not Linear Regression?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="simple_log_reg.html">
+     7.2. Simple Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multiple_log_reg.html">
+     7.3. Multiple Logistic Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="knn.html">
+   8. k-Nearest Neighbors (kNN)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bias_variance.html">
+     8.4. The Bias-Variance Tradeoff
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="model_eval.html">
+   9. Model Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_partition.html">
+     9.1. Partitioning Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="performance_metrics.html">
+     9.2. Performance Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="dt_rf.html">
+   10. Tree Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="decision_trees.html">
+     10.1. Decision Trees
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="random_forest.html">
+     10.2. Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xgboost.html">
+     10.3. XGBoost (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="neural_nets.html">
+   11. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unsupervised.html">
+   12. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlp.html">
+   13. Natural Language Processing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/hyp_testing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/hyp_testing.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fhyp_testing.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/hyp_testing.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formulating-hypotheses">
+   3.3.1. Formulating Hypotheses
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-logic-of-hypothesis-testing">
+   3.3.2. The Logic of Hypothesis Testing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-p-value">
+     3.3.2.1. The P-Value
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#some-p-value-cautions">
+       3.3.2.1.1. Some P-Value Cautions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#type-i-and-type-ii-errors">
+     3.3.2.2. Type I and Type II Errors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-the-appropriate-test">
+     3.3.2.3. Choosing the Appropriate Test
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#one-sample-hypothesis-testing">
+   3.3.3. One-Sample Hypothesis Testing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-means">
+     3.3.3.1. Testing Means
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-proportions">
+     3.3.3.2. Testing Proportions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-sample-hypothesis-testing">
+   3.3.4. Two-Sample Hypothesis Testing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3.3.4.1. Testing Means
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#independent-samples">
+       3.3.4.1.1. Independent Samples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dependent-samples">
+       3.3.4.1.2. Dependent Samples
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     3.3.4.2. Testing Proportions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypothesis-testing-with-more-than-two-samples">
+   3.3.5. Hypothesis Testing with More Than Two Samples
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-means-anova">
+     3.3.5.1. Testing Means (ANOVA)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-proportions-chi-square">
+     3.3.5.2. Testing Proportions (Chi-Square)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="hypothesis-testing">
+<h1><span class="section-number">3.3. </span>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h1>
+<p>An important component of inference is <strong>hypothesis testing</strong>, which allows us to analyze the evidence provided by the sample to assess some claim about the population.</p>
+<ul class="simple">
+<li><p>A <strong>one-sample hypothesis test</strong> compares a single population parameter to a specified value. For example, you may wonder whether your local barista pours a full twelve ounces of coffee in each cup. By drawing a sample of the cups poured by your barista, you could use a one-sample hypothesis test to answer this question.</p></li>
+<li><p>A <strong>two-sample hypothesis test</strong> assesses the equality of parameters from two different populations. For example, you may wonder whether the barista near your home and the barista near your work pour similar amounts on average, or if one pours more than the other. By drawing a sample of the cups poured by each barista, you could use a two-sample hypothesis test to answer this question.</p></li>
+</ul>
+<div class="section" id="formulating-hypotheses">
+<h2><span class="section-number">3.3.1. </span>Formulating Hypotheses<a class="headerlink" href="#formulating-hypotheses" title="Permalink to this headline">¶</a></h2>
+<p>Hypothesis testing consists of setting up two hypotheses, called the <strong>null hypothesis</strong> (<span class="math notranslate nohighlight">\(H_{o}\)</span>) and the <strong>alternative hypothesis</strong> (<span class="math notranslate nohighlight">\(H_{a}\)</span>). It is important to note that these hypotheses must be formulated <em>before</em> any data are observed. In the one-sample case, the null hypothesis specifies a specific value of the population parameter of interest. In the one-sample barista example above, the null hypothesis would be that on average, the barista pours twelve ounces of coffee. In the two-sample case, the null hypothesis specifies that the two parameters of interest are equal. In the two-sample barista example above, the null hypothesis would be that on average, the two baristas pour the same amount of coffee.</p>
+<p>The alternative hypothesis in the one-sample case expresses how the population parameter may differ from the value specified in the null. In some cases, we simply hope to test whether the population parameter is <em>not equal</em> to the value specified in the null; this is referred to as a <strong>two-sided</strong> test because we will reject the null hypothesis if the finding from the sample is sufficiently greater than or less than the specified value. In other cases, we hope to test whether the population parameter is <em>greater than</em> (or <em>less than</em>) the value specified in the null; these are referred to as <strong>right-sided</strong> (and <strong>left-sided</strong>) tests, respectively. For example, in the one-sample barista example the alternative is that the true average amount poured is not equal to twelve ounces, so we would run a two-sided test. If we wanted to specifically test whether our barista pours <em>more than</em> twelve ounces, we would run a right-sided test.</p>
+<p>For the two-sample case, a two-sided alternative hypothesis would state that the two population parameters are not equal. The right-sided alternative hypothesis would state that the population one parameter is greater than the population two parameter, and the left-sided alternative hypothesis would state the opposite. In the two-sample two-sided barista example, the alternative is that the two baristas do not pour the same amount, on average. If we wanted to test whether the home barista poured more than the work barista, we would run a right-sided test (or a left-sided test, depending on which barista we arbitrarily assign as 1).</p>
+</div>
+<div class="section" id="the-logic-of-hypothesis-testing">
+<h2><span class="section-number">3.3.2. </span>The Logic of Hypothesis Testing<a class="headerlink" href="#the-logic-of-hypothesis-testing" title="Permalink to this headline">¶</a></h2>
+<p>In a hypothesis test, we start by assuming the null hypothesis is true. We then gather our evidence (data from a sample). Based on the evidence we can draw only one of two inferences:</p>
+<ul class="simple">
+<li><p><strong>reject</strong> the null hypothesis <span class="math notranslate nohighlight">\(H_{o}\)</span>, or</p></li>
+<li><p><strong>fail to reject</strong> the null hypothesis <span class="math notranslate nohighlight">\(H_{o}\)</span></p></li>
+</ul>
+<p>If the data indicate we should “reject <span class="math notranslate nohighlight">\(H_{o}\)</span>,” we can say that it is likely that <span class="math notranslate nohighlight">\(H_{a}\)</span> is true. If instead the data indicate we should “fail to reject <span class="math notranslate nohighlight">\(H_{o}\)</span>”, we conclude that our sample did not provide sufficient evidence to support <span class="math notranslate nohighlight">\(H_{a}\)</span>. Note that based on sample data, we can never <em>accept</em> the null hypothesis. We can only conclude that we have insufficient evidence to reject it. This distinction is subtle but important.</p>
+<p>The language of hypothesis tests is a bit arcane, so it can be useful to look at a concrete analog.  In the U.S. jury system, the defendant is assumed innocent unless proven otherwise.  That is, the null hypothesis is that the defendant is innocent.  Based on trial evidence, a jury can only</p>
+<ul class="simple">
+<li><p>reject the null hypothesis that the defendant is innocent (that is, find that the defendant is guilty) or</p></li>
+<li><p>fail to reject the null hypothesis that the defendant is innocent (that is, the defendant is acquitted).</p></li>
+</ul>
+<p>The jury cannot conclude that the defendant is innocent (that is, that the null hypothesis is true), only that there is insufficient evidence to demonstrate that the defendant is guilty.</p>
+<p>Formulating the null and alternative hypotheses is a challenging part of hypothesis testing. One begins by identifying an assertion about a population parameter and then translating the assertion into symbols. We give some examples of this process below.</p>
+<p><strong>Problem:</strong> Suppose that an airline company claims that the average weight of checked baggage is less than 15 pounds. To support the claim, the airline company conducts a random sample of 150 passengers and finds that the average weight of checked baggage is 14.2 pounds, with a standard deviation of 6.5 pounds. Do these data indicate that the average weight of checked baggage is less than 15 pounds? State the null and alternative hypotheses for this problem. Note that <span class="math notranslate nohighlight">\(\mu\)</span> is the symbol for the population mean.</p>
+<p><strong>Solution:</strong> The first sentence contains an assertion about the population parameter: “the average weight of checked baggage is less than 15 pounds.” Because this is the assertion we wish to support with evidence, we write the alternative hypothesis (<span class="math notranslate nohighlight">\(H_{a}\)</span>) as <span class="math notranslate nohighlight">\(\mu &lt; 15\)</span> . This then implies that our null (<span class="math notranslate nohighlight">\(H_{o}\)</span>) is <span class="math notranslate nohighlight">\(\mu = 15\)</span>.</p>
+<p><strong>Problem:</strong> Consumer Reports wants to compare the average lifetime for two brands of incandescent light bulbs. Specifically, it would like to test whether there is a difference between the average lifetime of bulbs made by each of the two companies. State the null and alternative hypotheses for this problem.</p>
+<p><strong>Solution:</strong> In symbols, let <span class="math notranslate nohighlight">\(\mu_{1}\)</span> represent the average lifetime of bulbs of Company 1 and <span class="math notranslate nohighlight">\(\mu_{2}\)</span> represent the average lifetime of bulbs of Company 2. Consumer Reports wonders whether there is evidence to suggest that the mean lifetime is different for the two companies, so the alternative hypothesis (<span class="math notranslate nohighlight">\(H_{a}\)</span>) would be that <span class="math notranslate nohighlight">\(\mu_{1} \ne \mu_{2}\)</span>. Our null (<span class="math notranslate nohighlight">\(H_{o}\)</span>) is then <span class="math notranslate nohighlight">\(\mu_{1} = \mu_{2}\)</span>.</p>
+<div class="section" id="the-p-value">
+<h3><span class="section-number">3.3.2.1. </span>The P-Value<a class="headerlink" href="#the-p-value" title="Permalink to this headline">¶</a></h3>
+<p>The question remains of how to decide, based on our sample data, whether to reject or fail to reject the null hypothesis. This is done using probability theory by calculating what is called a <strong>probability value</strong>, or <strong>p-value</strong> for short. The p-value is always between 0 and 1 and indicates how consistent our observed  sample is with the given null hypothesis.  The higher the p-value, the more consistent our sample is with <span class="math notranslate nohighlight">\(H_{o}\)</span>; the lower the p-value, the more consistent our sample is with <span class="math notranslate nohighlight">\(H_{a}\)</span>. (Technically, the p-value tells us, if the null hypothesis is true, what the likelihood is that we would obtain a sample that is “as extreme” as the sample we gathered. Thus, a high p-value indicates that it is quite likely we would obtain a sample as extreme as ours if the null hypothesis is true, a low p-value indicates that it is unlikely we would obtain a sample like ours if the null hypothesis is true.)</p>
+<p>We designate a threshold value for a p-value called a <strong>significance level</strong>, typically denoted <strong><span class="math notranslate nohighlight">\(\alpha\)</span></strong>. The convention is to set <span class="math notranslate nohighlight">\(\alpha\)</span> = 0.05, but more generally, the choice of <span class="math notranslate nohighlight">\(\alpha\)</span> depends upon the problem context (<em>e.g.</em>, a test comparing a new drug to an existing drug might  use a very small <span class="math notranslate nohighlight">\(\alpha\)</span>, whereas a test of a minor change might use a larger <span class="math notranslate nohighlight">\(\alpha\)</span>).</p>
+<p>Calculating the p-value is an involved mathematical exercise; for our purposes, we will simply read it from the R output. We formally use the p-value to interpret the test results as follows:</p>
+<ul class="simple">
+<li><p>If p-value <span class="math notranslate nohighlight">\(\le \alpha\)</span> we reject the null hypothesis and say our result is statistically significant.</p></li>
+<li><p>If p-value <span class="math notranslate nohighlight">\(&gt; \alpha\)</span> we fail to reject the null hypothesis and say our result is not statistically significant.</p></li>
+</ul>
+<p>In what sense are we using the word <em>significant</em>? Webster’s Dictionary gives two interpretations of significance: “(1) having or signifying meaning; or (2) important or momentous.” In statistical work, significance does not necessarily imply momentous importance. For us, “significant” at the <span class="math notranslate nohighlight">\(\alpha\)</span> level has a special meaning. It is the likelihood (or “risk”) that we reject the null hypothesis when it is in fact true.</p>
+<div class="section" id="some-p-value-cautions">
+<h4><span class="section-number">3.3.2.1.1. </span>Some P-Value Cautions<a class="headerlink" href="#some-p-value-cautions" title="Permalink to this headline">¶</a></h4>
+<p>The American Statistical Association issued an advisory article in 2019 urging caution in how p-values are used [&#64;PVal-cautions]. In fact, many users of statistics interpret p-values incorrectly. The p-value is not the probability that the null hypothesis is true. That would actually be a very useful value to have, but unfortunately we usually don’t have the ability to find it.</p>
+<p>The p-value is a conditional probability that says “assuming the null hypothesis is true, how likely is it that we would draw a sample as unusual (<em>i.e.</em>, “extreme”) as ours?” It does not say, “given our data, what’s the chance our null hypothesis is true”, which is a source of confusion for many people. The safest way to think about a p-value is as a measure of consistency. Given my observed sample data, is it consistent with my null hypothesis view of the world? If not, then I will reject that null view of the world and conclude that the alternative view is likely the correct one.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The p-value is not the probability that the null hypothesis is true.</p>
+</div>
+</div>
+</div>
+<div class="section" id="type-i-and-type-ii-errors">
+<h3><span class="section-number">3.3.2.2. </span>Type I and Type II Errors<a class="headerlink" href="#type-i-and-type-ii-errors" title="Permalink to this headline">¶</a></h3>
+<p>The point of a hypothesis test is to make the correct decision about <span class="math notranslate nohighlight">\(H_o\)</span>. Unfortunately, hypothesis testing is not a simple matter of being right or wrong. A test of hypothesis is based on sample data and probability, so there is always a chance that an error has been made. In fact, there are two primary errors one can make:</p>
+<ul class="simple">
+<li><p>A <strong>Type I error</strong> is made if we reject <span class="math notranslate nohighlight">\(H_o\)</span> when in fact <span class="math notranslate nohighlight">\(H_o\)</span> is true.</p></li>
+<li><p>A <strong>Type II error</strong> is made if we fail to reject <span class="math notranslate nohighlight">\(H_o\)</span> when in fact <span class="math notranslate nohighlight">\(H_a\)</span> is true.</p></li>
+</ul>
+<p>The hypothesis test is calibrated so that the probability of making a Type I error equals <span class="math notranslate nohighlight">\(\alpha\)</span>. If we choose a significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) of 0.05, this means there is a 5% chance that our hypothesis test will mistakenly reject <span class="math notranslate nohighlight">\(H_o\)</span>, given that <span class="math notranslate nohighlight">\(H_o\)</span> is actually true.</p>
+<p>The probability of making a Type II error is denoted <span class="math notranslate nohighlight">\(\beta\)</span>. For a fixed sample size, the probability of making a Type I error (<span class="math notranslate nohighlight">\(\alpha\)</span>) and the probability of making a Type II error (<span class="math notranslate nohighlight">\(\beta\)</span>) are inversely related; as <span class="math notranslate nohighlight">\(\alpha\)</span> is increased, <span class="math notranslate nohighlight">\(\beta\)</span> is decreased, and vice versa. Therefore, <span class="math notranslate nohighlight">\(\alpha\)</span> cannot be arbitrarily small, since <span class="math notranslate nohighlight">\(\beta\)</span> likely will then become large.</p>
+<p>As we can see, the process of hypothesis testing allows you to control the risk of a Type I error
+because you set the value for <span class="math notranslate nohighlight">\(\alpha\)</span>. However, (ordinarily) you do not have the same control over <span class="math notranslate nohighlight">\(\beta\)</span>, or the probability of failing to reject a null hypothesis that is actually false. For this reason, it is best to avoid making Type II errors. Therefore, rather than “accepting” <span class="math notranslate nohighlight">\(H_o\)</span> when the sample data fail to provide sufficient evidence to overturn <span class="math notranslate nohighlight">\(H_o\)</span>, we instead say we “fail to reject” <span class="math notranslate nohighlight">\(H_o\)</span>.</p>
+</div>
+<div class="section" id="choosing-the-appropriate-test">
+<h3><span class="section-number">3.3.2.3. </span>Choosing the Appropriate Test<a class="headerlink" href="#choosing-the-appropriate-test" title="Permalink to this headline">¶</a></h3>
+<p>The process we have described so far is common to all forms of hypothesis testing. We always start by defining null and alternative hypotheses, then calculate a p-value from those hypotheses using sample data. However, the statistical test we use to calculate the p-value depends on the type of data we are working with. In R, the appropriate command depends on:</p>
+<ul class="simple">
+<li><p>Whether you are conducting a one-sample, two-sample, or more-than-two-sample test</p></li>
+<li><p>Whether you are comparing means or proportions</p></li>
+</ul>
+<p>The remaining sections demonstrate how to conduct the appropriate test in R for each one of these scenarios.</p>
+</div>
+</div>
+<div class="section" id="one-sample-hypothesis-testing">
+<h2><span class="section-number">3.3.3. </span>One-Sample Hypothesis Testing<a class="headerlink" href="#one-sample-hypothesis-testing" title="Permalink to this headline">¶</a></h2>
+<p>We use a one-sample hypothesis test when we want to compare a population parameter to a specified value. The following are all examples of scenarios where a one-sample hypothesis test would be appropriate:</p>
+<ul class="simple">
+<li><p>An automobile manufacturer received a shipment of light bulbs from a supplier, and would like to verify that less than 2% of the bulbs are defective.</p>
+<ul>
+<li><p>Is the true proportion (<span class="math notranslate nohighlight">\(p\)</span>) less than 0.02?</p></li>
+</ul>
+</li>
+<li><p>We would like to determine whether the majority of the electorate support the Democratic candidate for president.</p>
+<ul>
+<li><p>Does the true proportion (<span class="math notranslate nohighlight">\(p\)</span>)  exceed 0.50?</p></li>
+</ul>
+</li>
+<li><p>A food processing plant received a truckload of chickens from a local farmer, and needs to verify that the average chicken weighs at least two pounds.</p>
+<ul>
+<li><p>Does the true mean (<span class="math notranslate nohighlight">\(\mu\)</span>)  exceed 2 lbs?</p></li>
+</ul>
+</li>
+<li><p>A software company wants to determine whether its users interact with the homepage for at least ten seconds, on average.</p>
+<ul>
+<li><p>Does the true mean (<span class="math notranslate nohighlight">\(\mu\)</span>) exceed 10 seconds?</p></li>
+</ul>
+</li>
+</ul>
+<p>The first two examples concerned questions about population proportions (<span class="math notranslate nohighlight">\(p\)</span>), whereas the second two questions concern population means (<span class="math notranslate nohighlight">\(\mu\)</span>).</p>
+<div class="section" id="testing-means">
+<h3><span class="section-number">3.3.3.1. </span>Testing Means<a class="headerlink" href="#testing-means" title="Permalink to this headline">¶</a></h3>
+<p>To illustrate a one-sample test of means, let’s return to our <code class="docutils literal notranslate"><span class="pre">employees</span></code> data set. Suppose that the HR department of the company is thinking about re-calibrating the employee performance scale, which is currently measured from one to ten. If the scale were calibrated properly the average score would be around five, but the team suspects there might be some “rating inflation” occurring. To investigate this, they would like to test whether the average employee <code class="docutils literal notranslate"><span class="pre">Rating</span></code> is greater than five. Under this scenario, the null and alternative hypotheses are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_o\)</span>: The true average rating of all employees at the company is five.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mu = 5\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(H_a\)</span>: The true average rating of all employees at the company is <em>greater than</em> five.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mu &gt; 5\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Recall that <code class="docutils literal notranslate"><span class="pre">employees</span></code> is a data frame with a random sample of 1,000 employees from the company. Using this sample data, we can apply <code class="docutils literal notranslate"><span class="pre">t.test()</span></code> to calculate the appropriate p-value for the hypothesis test:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">t.test(x,</span> <span class="pre">mu</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">alternative</span> <span class="pre">=</span> <span class="pre">&quot;two.sided&quot;)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: An atomic vector with the sample values.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">mu</span></code>: The value of the population mean under the null hypothesis. By default, it is assumed that under the null, <span class="math notranslate nohighlight">\(\mu = 0\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alternative</span></code>: Whether one wants to conduct a two-sided, right-sided, or left-sided test. Under a right-sided test the alternative hypothesis states that the true population parameter is <em>greater than</em> the value specified in the null, so <code class="docutils literal notranslate"><span class="pre">alternative</span></code> should equal <code class="docutils literal notranslate"><span class="pre">&quot;greater&quot;</span></code> for a right-sided test. Following the same logic, <code class="docutils literal notranslate"><span class="pre">alternative</span></code> should equal <code class="docutils literal notranslate"><span class="pre">&quot;less&quot;</span></code> for a left-sided test.</p></li>
+</ul>
+</li>
+</ul>
+<p>Our null hypothesis states that <span class="math notranslate nohighlight">\(\mu\)</span> equals five, so we set the <code class="docutils literal notranslate"><span class="pre">mu</span></code> parameter equal to five in the function call. Additionally, because our alternative hypothesis states that the population mean is <em>greater than</em> the value specified in the null, we are conducting a right-sided test and must set the <code class="docutils literal notranslate"><span class="pre">alternative</span></code> parameter equal to <code class="docutils literal notranslate"><span class="pre">&quot;greater&quot;</span></code>.</p>
+</div>
+<p>This p-value is quite small, so we reject the null hypothesis and conclude it is likely that the average employee rating at the company is greater than 5.</p>
+</div>
+<div class="section" id="testing-proportions">
+<h3><span class="section-number">3.3.3.2. </span>Testing Proportions<a class="headerlink" href="#testing-proportions" title="Permalink to this headline">¶</a></h3>
+<p>To illustrate a one-sample test of proportions, let’s focus on the second example from Section &#64;ref(one-sample-hypothesis-testing). Suppose we would like to determine whether the majority of the electorate supports the Democratic candidate for president. Our null and alternative hypotheses would then be:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_o\)</span>: The true population proportion of voters who support the Democratic candidate <em>equals</em> fifty percent.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(p = 0.5\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(H_a\)</span>: The true population proportion of voters who support the Democratic candidate <em>exceeds</em> fifty percent.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(p &gt; 0.5\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Now imagine that we randomly polled 1,000 people, and 540 said that they supported the Democratic candidate.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">binom.test()</span></code> in R to calculate the appropriate p-value from this sample data:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">binom.test(x,</span> <span class="pre">n,</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">0.5,</span> <span class="pre">alternative</span> <span class="pre">=</span> <span class="pre">&quot;two.sided&quot;)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The number of “successes” in the sample.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: The total sample size.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span></code>: The value of the population proportion under the null hypothesis. By default, it is assumed that under the null, <span class="math notranslate nohighlight">\(p = 0.50\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alternative</span></code>: Whether one wants to conduct a two-sided, right-sided, or left-sided test. Under a right-sided test the alternative hypothesis states that the true population parameter is <em>greater than</em> the value specified in the null, so <code class="docutils literal notranslate"><span class="pre">alternative</span></code> should equal <code class="docutils literal notranslate"><span class="pre">&quot;greater&quot;</span></code> for a right-sided test. Following the same logic, <code class="docutils literal notranslate"><span class="pre">alternative</span></code> should equal <code class="docutils literal notranslate"><span class="pre">&quot;less&quot;</span></code> for a left-sided test.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Because our alternative hypothesis states that the population proportion is <em>greater than</em> the value specified in the null, we are conducting a right-sided test and must set the <code class="docutils literal notranslate"><span class="pre">alternative</span></code> parameter equal to <code class="docutils literal notranslate"><span class="pre">&quot;greater&quot;</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">binom.test</span><span class="p">(</span><span class="m">540</span><span class="p">,</span> <span class="m">1000</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s">&quot;greater&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Exact binomial test
+
+data:  540 and 1000
+number of successes = 540, number of trials = 1000, p-value = 0.006222
+alternative hypothesis: true probability of success is greater than 0.5
+95 percent confidence interval:
+ 0.5135135 1.0000000
+sample estimates:
+probability of success 
+                  0.54 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of primary importance in this output is the p-value, which equals 0.006222. Recall that this does <em>not</em> mean there is a 0.62% chance that the null hypothesis is true. Instead, we interpret the p-value as follows: if the null were true and only half of the electorate supported the Democratic candidate, there would only be a 0.62% chance that our sample of 1,000 people would find 540 or more who support the Democratic candidate. In other words, the result we observed in the sample would be very unlikely if the null were in fact true. Therefore, we reject <span class="math notranslate nohighlight">\(H_o\)</span> and conclude it is likely that the majority of the electorate prefer the Democratic candidate.</p>
+</div>
+</div>
+<div class="section" id="two-sample-hypothesis-testing">
+<h2><span class="section-number">3.3.4. </span>Two-Sample Hypothesis Testing<a class="headerlink" href="#two-sample-hypothesis-testing" title="Permalink to this headline">¶</a></h2>
+<p>Although analyzing one sample of data is useful for problems like gauging public opinion or testing the stability of a manufacturing process, there are more advanced analyses which involve comparing the responses of two or more groups. This can be in the form of comparing means or comparing proportions.</p>
+<div class="section" id="id1">
+<h3><span class="section-number">3.3.4.1. </span>Testing Means<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Many business applications involve a comparison of two population means. For instance, a company may want to know if a new logo produces more sales than the previous logo, or a consumer group may want to test whether two major brands of food freezers differ in the average amount of electricity they use. In this section we extend our knowledge of hypothesis testing on one population mean to comparing two population means.</p>
+<p>To use these tests you need to have a sample from each of the two populations of interest. For the tests to be valid, the samples must be randomly selected. They can be either independent or dependent. This is an important distinction, because it determines which statistical method is used and how one controls for sources of variation. <strong>Independent samples</strong> are selected from each population separately. If we selected a random sample of customers of one domestic gas supplier and a random sample of customers from a rival gas supplier, the samples would be independent. <strong>Dependent samples</strong> consist of matched or paired values that are inherently related to each other. If we selected a sample of athletes and compared their pulse rates before and after an exercise routine, the samples would be paired, or dependent, because we drew the two samples of observations from the same set of athletes. This allows us to control for the variability between athletes and focus on the pulse rate difference in each individual due to the control condition (<em>i.e.</em>, the exercise routine). The choice of independent or dependent samples depends on the context of the test.</p>
+<div class="section" id="independent-samples">
+<h4><span class="section-number">3.3.4.1.1. </span>Independent Samples<a class="headerlink" href="#independent-samples" title="Permalink to this headline">¶</a></h4>
+<p>The independent samples t-test is used to compare the means of two independent samples. It can be used to test whether:</p>
+<ul class="simple">
+<li><p>Biology graduates have a different average annual income than chemistry graduates.</p></li>
+<li><p>Length of life, on average, is shorter for never-married persons than for people who are or have been married.</p></li>
+<li><p>The mean years of schooling of Republicans is different than the mean years of schooling of Democrats.</p></li>
+<li><p>Men average more hours of sleep per night than women.</p></li>
+<li><p>The PE (price to earnings) ratio for tech stocks is on average higher than for financial services stocks.</p></li>
+</ul>
+<p>When performing two sample tests of means, the null hypothesis is always that the population means of the two groups are the same. Formally, if we denote <span class="math notranslate nohighlight">\(\mu_1\)</span> the population mean of group 1 and <span class="math notranslate nohighlight">\(\mu_2\)</span> the population mean of group 2, our null hypothesis is <span class="math notranslate nohighlight">\(H_o:\mu_1=\mu_2\)</span>. There are three possible alternative hypotheses one can test, as listed below:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Alternative Hypothesis</p></th>
+<th class="text-align:center head"><p>Terminology</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(H_{a} :\mu_{1} -\mu_{2}\)</span> &lt; 0</p></td>
+<td class="text-align:center"><p>Left-sided</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(H_{a} :\mu_{1} -\mu_{2}\)</span> &gt; 0</p></td>
+<td class="text-align:center"><p>Right-sided</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(H_{a} :\mu_{1} -\mu_{2} \ne\)</span> 0</p></td>
+<td class="text-align:center"><p>Two-sided</p></td>
+</tr>
+</tbody>
+</table>
+<p>As an example, the General Social Survey (GSS, link <a class="reference external" href="http://gss.norc.org/">here</a>) has been tracking American attitudes on a wide variety of topics. With the exception of the U.S. Census, the GSS is the most frequently used source of information about American society. The surveys are now conducted every other year and measure hundreds of variables on thousands of observations. We have this data loaded into a data frame called <code class="docutils literal notranslate"><span class="pre">gss</span></code>:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>ID</th><th scope=col>WRKGOVT</th><th scope=col>HRS</th><th scope=col>INCOME</th><th scope=col>CUREMPYR</th></tr></thead>
+<tbody>
+	<tr><td>1    </td><td>2    </td><td>NA   </td><td>   NA</td><td>NA   </td></tr>
+	<tr><td>2    </td><td>2    </td><td>40   </td><td>82500</td><td> 3   </td></tr>
+	<tr><td>3    </td><td>2    </td><td>35   </td><td>45000</td><td>10   </td></tr>
+	<tr><td>4    </td><td>1    </td><td>NA   </td><td>16250</td><td>NA   </td></tr>
+	<tr><td>5    </td><td>2    </td><td>43   </td><td>32500</td><td> 3   </td></tr>
+	<tr><td>6    </td><td>2    </td><td>NA   </td><td>   NA</td><td>NA   </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>These variables are defined as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ID</span></code>: The unique ID of each observation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WRKGOVT</span></code>: 1 = Government, 2 = Private</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HRS</span></code>: Hours worked per week</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INCOME</span></code>: Yearly income from primary job</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUREMPYR</span></code>: How many years the employee has been with their current employer</p></li>
+</ul>
+<p>Suppose we want to test if people who work for the government earn more than those who have private-sector jobs. Because we are testing whether the mean in group 1 (government workers) is <em>greater</em> than the mean in group 2 (private-sector workers), our hypotheses are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_{o}\)</span>: On average, government workers earn the same as those in the private sector.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mu_1 = \mu_2\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(H_{a}\)</span>: On average, government workers earn more than those in the private sector.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mu_1 &gt; \mu_2\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Fortunately, we can use the same <code class="docutils literal notranslate"><span class="pre">t.test()</span></code> function that we saw in Section &#64;ref(testing-means) to conduct a two-sample test of means. For a two-sample test, the syntax is slightly different. Assuming our data is saved in a data frame called <code class="docutils literal notranslate"><span class="pre">df</span></code>:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">t.test(df$var</span> <span class="pre">~</span> <span class="pre">df$group,</span> <span class="pre">alternative</span> <span class="pre">=</span> <span class="pre">&quot;two.sided&quot;)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">df$var</span></code>: The variable of interest (<em>i.e.</em>, the variable we are comparing across the two samples).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df$group</span></code>: The sample membership of each observation (<em>i.e.</em>, whether each observation belongs to sample one or sample two).</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">alternative</span></code>: Whether one wants to conduct a two-sided, right-sided, or left-sided test. Under a right-sided test the alternative hypothesis states that the true population parameter of the second group is <em>greater than</em> the true population parameter of the first group, so <code class="docutils literal notranslate"><span class="pre">alternative</span></code> should equal <code class="docutils literal notranslate"><span class="pre">&quot;greater&quot;</span></code> for a right-sided test. Following the same logic, <code class="docutils literal notranslate"><span class="pre">alternative</span></code> should equal <code class="docutils literal notranslate"><span class="pre">&quot;less&quot;</span></code> for a left-sided test.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Applying this to the <code class="docutils literal notranslate"><span class="pre">gss</span></code> data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">gss</span><span class="o">$</span><span class="n">INCOME</span> <span class="o">~</span> <span class="n">gss</span><span class="o">$</span><span class="n">WRKGOVT</span><span class="p">,</span> <span class="n">alt</span> <span class="o">=</span> <span class="s">&quot;greater&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
+
+data:  gss$INCOME by gss$WRKGOVT
+t = 1.497, df = 343.21, p-value = 0.06765
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -383.9179       Inf
+sample estimates:
+mean in group 1 mean in group 2 
+       44621.83        40847.81 
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this output, we find the average yearly income for government workers (group 1) is $44,621 and for private sector workers (group 2) is $40,847. In the sample, government workers do indeed make more on average than private sector workers. However, using a strict threshold of <span class="math notranslate nohighlight">\(\alpha =\)</span> 0.05, the test’s p-value of 0.06765 is too large, so we would <strong>fail to reject the null hypothesis</strong> of equal means and conclude that there is insufficient evidence that this inequality is true in the population. The p-value is relatively low though, so some further analysis could be warranted to investigate this hypothesis (looking for and understanding outliers, taking  a slightly larger sample, etc.)</p>
+<p>For another example, imagine we wanted to test whether there is sufficient evidence to conclude that people who currently work for the government (group 1) have been with their employer shorter or longer on average than those currently working in the private sector (group 2). Our hypotheses for this test would be:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_{o}\)</span>: <span class="math notranslate nohighlight">\(\mu_1 = \mu_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{a}\)</span>: <span class="math notranslate nohighlight">\(\mu_1 \ne \mu_2\)</span></p></li>
+</ul>
+<p>Because we are conducting a two-sided test, we can omit the <code class="docutils literal notranslate"><span class="pre">alt</span></code> parameter in our call to <code class="docutils literal notranslate"><span class="pre">t.test()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">gss</span><span class="o">$</span><span class="n">CUREMPYR</span> <span class="o">~</span> <span class="n">gss</span><span class="o">$</span><span class="n">WRKGOVT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
+
+data:  gss$CUREMPYR by gss$WRKGOVT
+t = 3.738, df = 187.54, p-value = 0.0002462
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 1.517532 4.909142
+sample estimates:
+mean in group 1 mean in group 2 
+      11.111888        7.898551 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that we see a difference in the means of the two samples, 11.1 years for government employees versus 7.9 for private sector employees. In this case, the small p-value for this test, 0.0002462, indicates that there is strong evidence to reject the null hypothesis of equal means. We may conclude that in 2008, it is very likely that on average, government employees had stayed at their current jobs for a different length of time than private sector employees.</p>
+</div>
+<div class="section" id="dependent-samples">
+<h4><span class="section-number">3.3.4.1.2. </span>Dependent Samples<a class="headerlink" href="#dependent-samples" title="Permalink to this headline">¶</a></h4>
+<p>Often we have two groups of data that are not independent but rather paired. The simplest example of paired data is a before-after test, in which each subject is measured twice, resulting in pairs of observations of the same subject. For example, we have individuals who go through a 12-week strength training program and have the amount they can bench press before and after the training program. We can’t analyze these data as two independent samples because we have two measurements (pairs of data) on the same individual. We need to adjust our hypothesis test to account for the fact that the measurements are correlated.</p>
+<p>To see what can go wrong if paired data are not analyzed correctly, consider the following example. A company researcher wants to test a new formula for a sports drink that has been designed to improve running performance. Instead of the regular “carbohydrate-only” drink that the company currently produces, this new sports drink contains a “carbohydrate-protein” formula. The researcher would like to know whether this new carbohydrate-protein sports drink leads to a difference in running performance compared to the carbohydrate-only sports drink.</p>
+<p>To carry out the experiment, the researcher recruited 20 middle distance runners. All of these participants performed two trials in which they had to run as far as possible for 2 hours on a treadmill. In one of the trials, each of the 20 participants drank a bottle of the carbohydrate-only formula. In the other trial, each of the same 20 participants drank a bottle of the carbohydrate-protein formula. At the end of the two trials, the distance each participant ran (in km) was recorded. The data (which is stored in a data frame called <code class="docutils literal notranslate"><span class="pre">carbs</span></code>) is shown in the table below. Do the data present sufficient evidence to indicate that the new formula is better?</p>
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> carb_only </th>
+   <th style="text-align:center;"> carb_protein </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 10.58 </td>
+   <td style="text-align:center;"> 10.53 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 10.89 </td>
+   <td style="text-align:center;"> 11.16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 10.17 </td>
+   <td style="text-align:center;"> 10.31 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 11.61 </td>
+   <td style="text-align:center;"> 11.79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 11.79 </td>
+   <td style="text-align:center;"> 11.88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 9.72 </td>
+   <td style="text-align:center;"> 9.81 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 10.80 </td>
+   <td style="text-align:center;"> 10.98 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 11.80 </td>
+   <td style="text-align:center;"> 12.01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 10.58 </td>
+   <td style="text-align:center;"> 10.76 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 10.98 </td>
+   <td style="text-align:center;"> 11.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 11.66 </td>
+   <td style="text-align:center;"> 11.70 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 12.38 </td>
+   <td style="text-align:center;"> 12.40 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 10.08 </td>
+   <td style="text-align:center;"> 10.21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 10.76 </td>
+   <td style="text-align:center;"> 11.07 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 11.07 </td>
+   <td style="text-align:center;"> 11.35 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 11.75 </td>
+   <td style="text-align:center;"> 11.77 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 11.25 </td>
+   <td style="text-align:center;"> 11.39 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 12.15 </td>
+   <td style="text-align:center;"> 12.24 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 11.43 </td>
+   <td style="text-align:center;"> 11.52 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 11.93 </td>
+   <td style="text-align:center;"> 12.11 </td>
+  </tr>
+</tbody>
+</table>
+<p>At first glance this appears to be a two-sample comparison of means, where we are interested in whether the carbohydrate-protein average distance (<span class="math notranslate nohighlight">\(\mu_{2}\)</span>) is greater than the carbohydrate-only average distance (<span class="math notranslate nohighlight">\(\mu_{1}\)</span>). Therefore, our hypotheses are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_{o}\)</span>: The carbohydrate-protein formula does <em>not</em> result in different performance than the carbohydrate-only formula.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mu_{1} = \mu_{2}\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(H_{a}\)</span>: The carbohydrate-protein formula results in improved performance over the carbohydrate-only formula.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mu_{1} &lt; \mu_{2}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Let’s try using the standard two sample t-test. Because our <strong>alt</strong>ernative hypothesis states that the carb-only mean is <em>less than</em> the carb-protein mean, we set <code class="docutils literal notranslate"><span class="pre">alt</span></code> equal to <code class="docutils literal notranslate"><span class="pre">&quot;less&quot;</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">carbs</span><span class="o">$</span><span class="n">carb_only</span><span class="p">,</span> <span class="n">carbs</span><span class="o">$</span><span class="n">carb_protein</span><span class="p">,</span> <span class="n">alt</span> <span class="o">=</span> <span class="s">&quot;less&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
+
+data:  carbs$carb_only and carbs$carb_protein
+t = -0.59809, df = 37.992, p-value = 0.2767
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+      -Inf 0.2482844
+sample estimates:
+mean of x mean of y 
+  11.1690   11.3055 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the p-value is greater than 0.05, we fail to reject the null hypothesis and cannot conclude there is a difference in distance run after drinking each of the two drink types.</p>
+<p>A second glance at the data reveals an inconsistency with this conclusion. We note that the distance measurement for the carb-only drink is larger than the corresponding value for the carb-protein drink for every observation except row #1. We can see this even more clearly in the visualization below, which shows the difference between the distances run by each runner after the carb-only and carb-protein drinks. The distance run after the carb-protein drink (plotted in green) is greater than the distance run after the carb-only drink (plotted in red) for nearly every runner.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/hyp_testing_12_0.png" src="_images/hyp_testing_12_0.png" />
+</div>
+</div>
+<p>The evidence seems to imply that the carb-protein drink resulted in greater distances than the carb-only drink. Why did the two-sample t-test conclude that there was not a difference between the two drinks?</p>
+<p>The two-sample t-test described earlier requires that the two samples be independent and random, and thus is not the right statistical test procedure for this example. Certainly, the independence requirement was violated by the manner in which the experiment was conducted. Each pair of measurements, a carb-only distance and carb-protein distance, is associated with the same runner. A glance at the data will show that the distances are of approximately the same magnitude for a particular runner, but vary from one runner to another. This, of course, is exactly what we might expect. Distance run, in a large part, is determined by a runner’s stamina and muscle mass. Since each runner had a different physical ability, we might expect a large amount of variability in the distance run from one runner to another.</p>
+<p>Since we are interested in performance variability due to the drink and not runner variability, we must conduct a <strong>paired difference test</strong>. This test eliminates the effect of the runner-to-runner variability and yields more information on the mean difference in the distances run for the two drink types.</p>
+<p>Luckily, a paired t-test is easy to run. All we need to do is add a <code class="docutils literal notranslate"><span class="pre">paired</span></code> argument to the <code class="docutils literal notranslate"><span class="pre">t.test()</span></code> command as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">carbs</span><span class="o">$</span><span class="n">carb_only</span><span class="p">,</span> <span class="n">carbs</span><span class="o">$</span><span class="n">carb_protein</span><span class="p">,</span> <span class="n">alt</span> <span class="o">=</span> <span class="s">&quot;less&quot;</span><span class="p">,</span> <span class="n">paired</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Paired t-test
+
+data:  carbs$carb_only and carbs$carb_protein
+t = -6.6221, df = 19, p-value = 1.229e-06
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+      -Inf -0.100858
+sample estimates:
+mean of the differences 
+                -0.1365 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we account for the fact that the measurements are paired, we find a vastly different p-value and can now reject the null hypothesis of equal means. We conclude that it is likely that, on average, runners drinking the carb-protein mixture would run farther than those who drank the carb-only drink.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">3.3.4.2. </span>Testing Proportions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Besides comparing two population means, one might be interested in comparing two population proportions. For example, a political candidate might want to estimate the difference in the proportions of voters in two districts who favor her candidacy.</p>
+<p>In this section we look at how to do hypothesis testing on proportions from two independent samples. Similar in spirit to the method for comparing two means, we have two population proportions which we denote <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span>. The null hypothesis is that <span class="math notranslate nohighlight">\(H_0:p_1=p_2\)</span>. As with tests of population means, there are three alternative hypotheses:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Alternative Hypothesis</p></th>
+<th class="text-align:center head"><p>Terminology</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(H_{a} :p_{1} &lt; p_{2}\)</span></p></td>
+<td class="text-align:center"><p>Left-tailed</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(H_{a} :p_{1} &gt; p_{2}\)</span></p></td>
+<td class="text-align:center"><p>Right-tailed</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(H_{a} :p_{1} \ne p_{2}\)</span></p></td>
+<td class="text-align:center"><p>Two-tailed</p></td>
+</tr>
+</tbody>
+</table>
+<p>As an example, suppose that Professor Yael and Professor Michael were both given a section of entering MBA students for a statistics boot camp before fall classes started. After the boot camp ended, a survey was given to all the participants. Of the 75 who had Yael as an instructor, 45 said they were satisfied, whereas 48 of the 90 who had Michael were satisfied. Is there a significant difference in the percentage of students who were satisfied between the two instructors? To test this, our null and alternative hypotheses would be:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_o\)</span>: There is no difference in the proportion of satisfied students in Michael and Yael’s classes.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(p_1 = p_2\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(H_a\)</span>: There is a difference in the proportion of satisfied students in Michael and Yael’s classes.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(p_1 \ne p_2\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">prop.test()</span></code> in R to calculate the appropriate p-value from this sample data:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">prop.test(x</span> <span class="pre">=</span> <span class="pre">c(x1,</span> <span class="pre">x2),</span> <span class="pre">n</span> <span class="pre">=</span> <span class="pre">c(n1,</span> <span class="pre">n2),</span> <span class="pre">alternative</span> <span class="pre">=</span> <span class="pre">&quot;two.sided&quot;)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: A vector with the number of “successes” in the two samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: A vector with the sample sizes of the two samples.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">alternative</span></code>: Whether one wants to conduct a two-sided, right-sided, or left-sided test. Under a right-sided test the alternative hypothesis states that the true population parameter is <em>greater than</em> the value specified in the null, so <code class="docutils literal notranslate"><span class="pre">alternative</span></code> should equal <code class="docutils literal notranslate"><span class="pre">&quot;greater&quot;</span></code> for a right-sided test. Following the same logic, <code class="docutils literal notranslate"><span class="pre">alternative</span></code> should equal <code class="docutils literal notranslate"><span class="pre">&quot;less&quot;</span></code> for a left-sided test.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">prop.test</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">45</span><span class="p">,</span> <span class="m">48</span><span class="p">),</span> <span class="n">n</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">75</span><span class="p">,</span> <span class="m">90</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	2-sample test for equality of proportions with continuity correction
+
+data:  c(45, 48) out of c(75, 90)
+X-squared = 0.49304, df = 1, p-value = 0.4826
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.09693574  0.23026908
+sample estimates:
+   prop 1    prop 2 
+0.6000000 0.5333333 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the p-value is greater than 0.05, we fail to reject the null hypothesis and cannot conclude there is a difference between the proportion of satisfied students in the two classes.</p>
+</div>
+</div>
+<div class="section" id="hypothesis-testing-with-more-than-two-samples">
+<h2><span class="section-number">3.3.5. </span>Hypothesis Testing with More Than Two Samples<a class="headerlink" href="#hypothesis-testing-with-more-than-two-samples" title="Permalink to this headline">¶</a></h2>
+<p>This section is optional, and will not be covered in the DSM course. Select “Click to show” to reveal.</p>
+<div class="section" id="testing-means-anova">
+<h3><span class="section-number">3.3.5.1. </span>Testing Means (ANOVA)<a class="headerlink" href="#testing-means-anova" title="Permalink to this headline">¶</a></h3>
+<p>If we want to compare the means of more than two groups, one procedure available is called <strong>Analysis of Variance (ANOVA)</strong>. The name seems strange because we are comparing means, but the word variance comes from the fact that this procedure makes a relatively strong assumption that the variability in each group we are comparing is the same. A rule of thumb when using ANOVA is that the ratio of the largest standard deviation of the groups to the smallest standard deviation should be no more than three.</p>
+<p>The null hypothesis for ANOVA is that the means of all our groups are the same. The alternative is that there are at least two groups that have different means. If we reject the null hypothesis we need to do further analyses to see where the differences exist.</p>
+<p>To understand when one might use ANOVA, consider the following example. Builder’s Buddy, a nationwide home improvement chain, would like to not only sell you a water heater, they would also like to install it for you. The four service centers the company runs are organized by regional markets. One question of interest is whether the employees’ training is similar in the four different markets so that the install time is roughly consistent around the country. Builder’s Buddy collected data from these four different markets on the amount of time it took (in minutes) to install a standard 40-gallon water heater. That data is saved in a data frame called <code class="docutils literal notranslate"><span class="pre">waterData</span></code>, and the first few observations are shown below:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>Time</th><th scope=col>City</th></tr></thead>
+<tbody>
+	<tr><td>165       </td><td>Topeka    </td></tr>
+	<tr><td>145       </td><td>Topeka    </td></tr>
+	<tr><td>177       </td><td>Richmond  </td></tr>
+	<tr><td>179       </td><td>Spokane   </td></tr>
+	<tr><td>213       </td><td>Pittsburgh</td></tr>
+	<tr><td>154       </td><td>Spokane   </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Our null and alternative hypotheses for the ANOVA test are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_o\)</span>: The mean install time is the same for all four cities.</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_a\)</span>: The mean install time is <em>not</em> the same for all four cities.</p></li>
+</ul>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">summary(aov())</span></code> to calculate the appropriate p-value in R:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">summary(aov(df$var</span> <span class="pre">~</span> <span class="pre">df$group))</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">df$var</span></code>: The variable of interest (<em>i.e.</em>, the variable we are comparing across the groups).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df$group</span></code>: The group each observation belongs to.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Applying this to our sample data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="nf">aov</span><span class="p">(</span><span class="n">waterData</span><span class="o">$</span><span class="n">Time</span> <span class="o">~</span> <span class="n">waterData</span><span class="o">$</span><span class="n">City</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               Df Sum Sq Mean Sq F value Pr(&gt;F)
+waterData$City  3   1688   562.7   1.226  0.326
+Residuals      20   9183   459.1               
+</pre></div>
+</div>
+</div>
+</div>
+<p>ANOVA runs what is called an F-test, and we find from the output for our observed data the resulting p-value for this test is 0.3276. This is not below 0.05, so we fail to reject the null hypothesis that the mean install time in each city is the same. Formally, there is not enough evidence to conclude that the samples came from distributions with different means.</p>
+<p>What if we obtain a relatively small p-value and end up rejecting the null hypothesis? We would then want to do further analysis to see where the differences in means exist. The following example shows how to do that.</p>
+<p><strong>Example</strong> An experiment was conducted as follows. In three similar cities an advertisement campaign was launched. In each city only one of the three characteristics (convenience, quality, and price) was emphasized. The weekly sales were recorded for twenty weeks following the beginning of the campaigns. The data is saved in a data frame called <code class="docutils literal notranslate"><span class="pre">sales</span></code>, and the first few observations are shown below.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>sales</th><th scope=col>emphasis</th></tr></thead>
+<tbody>
+	<tr><td>557        </td><td>convenience</td></tr>
+	<tr><td>502        </td><td>price      </td></tr>
+	<tr><td>624        </td><td>quality    </td></tr>
+	<tr><td>606        </td><td>convenience</td></tr>
+	<tr><td>719        </td><td>convenience</td></tr>
+	<tr><td>532        </td><td>price      </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Our null and alternative hypotheses for this test are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_o\)</span>: The mean sales are the same for the three advertisement campaigns.</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_a\)</span>: The mean sales are <em>not</em> the same for the three advertisement campaigns.</p></li>
+</ul>
+<p>Applying this to our sample data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="nf">aov</span><span class="p">(</span><span class="n">sales</span><span class="o">$</span><span class="n">sales</span> <span class="o">~</span> <span class="n">sales</span><span class="o">$</span><span class="n">emphasis</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               Df Sum Sq Mean Sq F value Pr(&gt;F)  
+sales$emphasis  2  57512   28756   3.233 0.0468 *
+Residuals      57 506983    8894                 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>The relatively low p-value of 0.0468 implies the observed data is not consistent with the null hypothesis of equal means. Therefore, we conclude that it appears not all the mean responses are the same.</p>
+<p>The question then is where do the means differ? Before we can answer this question, we need to be aware of the <strong>multiple testing</strong> problem. When performing multiple hypothesis tests at the same time, the chance of making a Type I error (<em>i.e.</em>, rejecting the null hypothesis when it is actually true) increases greatly from the traditional 5%, depending on how many tests are performed. For example, if one ran three hypothesis tests at the same time, the overall Type I error would increase from 5% to 14%, even though each individual test is done at the 5% level. There are corrections to p-values that can be applied when performing multiple tests to correct for this issue. More information about this can be found <a class="reference external" href="https://www.stat.berkeley.edu/~mgoldman/Section0402.pdf">here</a>. The <code class="docutils literal notranslate"><span class="pre">pairwise.t.test()</span></code> command runs all possible two-sample t-tests, and reports p-values adjusted for the multiple comparison problem:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">pairwise.t.test(df$var,</span> <span class="pre">df$group,</span> <span class="pre">p.adjust.method)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">df$var</span></code>: The variable of interest (<em>i.e.</em>, the variable we are comparing across the groups).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df$group</span></code>: The group each observation belongs to.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">p.adjust.method</span></code>: The method used to adjust the p-values to account for multiple testing. We will use a method called the <strong>Bonferroni correction</strong> (see <a class="reference external" href="https://en.wikipedia.org/wiki/Bonferroni_correction">here</a>), so we will set this parameter equal to <code class="docutils literal notranslate"><span class="pre">&quot;bonf&quot;</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Applying this to our sample data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pairwise.t.test</span><span class="p">(</span><span class="n">sales</span><span class="o">$</span><span class="n">sales</span><span class="p">,</span> <span class="n">sales</span><span class="o">$</span><span class="n">emphasis</span><span class="p">,</span> <span class="n">p.adjust.method</span> <span class="o">=</span> <span class="s">&quot;bonf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Pairwise comparisons using t tests with pooled SD 
+
+data:  sales$sales and sales$emphasis 
+
+        convenience price
+price   0.904       -    
+quality 0.043       0.428
+
+P value adjustment method: bonferroni 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The numbers printed in the table within the output (0.904, 0.043, and 0.428) are the bonferroni-adjusted p-values. From this output we see the difference in sales occurred between the quality and convenience groups, as this is the only adjusted p-value below 0.05.</p>
+</div>
+<div class="section" id="testing-proportions-chi-square">
+<h3><span class="section-number">3.3.5.2. </span>Testing Proportions (Chi-Square)<a class="headerlink" href="#testing-proportions-chi-square" title="Permalink to this headline">¶</a></h3>
+<p>Research in business often generates frequency (count) data. This is certainly the case in most opinion surveys in which the person interviewed is asked to respond to a question by marking, say “Agree”, “Not Sure”, or “Disagree”, or some other such collection of categories. In a case like this, the investigator might be concerned with determining what proportion of respondents marked each of the choices or whether there is any relationship between the opinion marked and the sex, age, or occupation of the respondent.</p>
+<p>Chi-square methods make possible the meaningful analysis of frequency data by permitting the comparison of frequencies actually observed with frequencies which would be expected if the null hypothesis were true. At first glance the chi-square test procedures can be confusing as there are two different tests with very similar names.</p>
+<ul class="simple">
+<li><p><strong>Chi-Square Goodness of Fit Test:</strong> this is used to test if counts in different categories follow a specified distribution.</p></li>
+<li><p><strong>Chi-Square Test of Independence:</strong> this is used to test if two categorical variables are independent or dependent.</p></li>
+</ul>
+<p>Using examples, we will investigate each of these tests in turn below.</p>
+<p><strong>Goodness-of-Fit</strong></p>
+<p>Suppose that the Bar Galaxy Chocolate Co. wants to determine if customers have a preference for any of the following four candy bars. From a random sample of 200 people, it was found that:</p>
+<ol class="simple">
+<li><p>43 preferred The Frosty Bar</p></li>
+<li><p>53 preferred Galaxy’s Milk Chocolate</p></li>
+<li><p>60 preferred Galaxy’s Special Dark Chocolate</p></li>
+<li><p>44 preferred Munchies Bar</p></li>
+</ol>
+<p>For the goodness-of-fit test, the null hypothesis states that customers have no preference for any of the four candy bars (1, 2, 3, and 4). That is, all four candy bars are equally preferred. The alternative hypothesis states that the preference probabilities are not all the same. Formally:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_o\)</span>: <span class="math notranslate nohighlight">\(p_1 = p_2 = p_3 = p_4 = 0.25\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_a\)</span>: The data do not follow the distribution specified in <span class="math notranslate nohighlight">\(H_o\)</span>.</p></li>
+</ul>
+<p>The goodness-of-fit test is easily run in R with <code class="docutils literal notranslate"><span class="pre">chisq.test()</span></code>. The data we need to give the command are the observed counts (<code class="docutils literal notranslate"><span class="pre">x</span></code>) and the hypothesized proportions under the null (<code class="docutils literal notranslate"><span class="pre">p</span></code>):</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">chisq.test(x</span> <span class="pre">=</span> <span class="pre">c(x1,</span> <span class="pre">x2,</span> <span class="pre">x3,</span> <span class="pre">x4),</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">c(p1,</span> <span class="pre">p2,</span> <span class="pre">p3,</span> <span class="pre">p4))</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: A vector with the observed counts in each group.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: A vector with the hypothesized proportions of each group under the null.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Applying this to our Bar Galaxy sample data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">chisq.test</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">43</span><span class="p">,</span> <span class="m">53</span><span class="p">,</span> <span class="m">60</span><span class="p">,</span> <span class="m">44</span><span class="p">),</span> <span class="n">p</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="m">0.25</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Chi-squared test for given probabilities
+
+data:  c(43, 53, 60, 44)
+X-squared = 3.88, df = 3, p-value = 0.2747
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the p-value (0.27) is quite large, there is insufficient evidence to reject the null hypothesis. That is, we cannot conclude that there appears to be a candy bar preference.</p>
+<p><strong>Test of Independence</strong></p>
+<p>A contingency table is a cross classification of two categorical variables. The <strong>Chi-Square Test of Indepence</strong> sees if there is an association between categorical variables.</p>
+<p>As an example, the Wall Street Journal Subscriber Study has data on the employment status of subscribers. We have data on sample results corresponding to subscribers of the Eastern and Western editions as well as employment status. This data is stored in a data frame called <code class="docutils literal notranslate"><span class="pre">wsj</span></code>, and the first few observations are shown below.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>status</th><th scope=col>region</th></tr></thead>
+<tbody>
+	<tr><td>Full-time      </td><td>Eastern Edition</td></tr>
+	<tr><td>Not employed   </td><td>Western Edition</td></tr>
+	<tr><td>Part-time      </td><td>Eastern Edition</td></tr>
+	<tr><td>Full-time      </td><td>Eastern Edition</td></tr>
+	<tr><td>Full-time      </td><td>Western Edition</td></tr>
+	<tr><td>Full-time      </td><td>Eastern Edition</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">prop.table()</span></code>, we can tabulate subscribers’ employment status by Easter and Western edition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">prop.table</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">wsj</span><span class="o">$</span><span class="n">status</span><span class="p">,</span> <span class="n">wsj</span><span class="o">$</span><span class="n">region</span><span class="p">),</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          
+                           Eastern Edition Western Edition
+  Full-time                     0.59729730      0.51295800
+  Not employed                  0.26216216      0.30741734
+  Part-time                     0.01675676      0.01340483
+  Self-employed/consultant      0.12378378      0.16621984
+</pre></div>
+</div>
+</div>
+</div>
+<p>The proportions between regions seem similar, but we can formally check to see whether they are the same by running a chi-square test of independence. For this test, our null and alternative hypotheses would be:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_o:\)</span> There is no association between employment status and region.</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_a:\)</span> There is an association between employment status and region.</p></li>
+</ul>
+<p>To run this in R we can use the same <code class="docutils literal notranslate"><span class="pre">chisq.test()</span></code> function we saw before:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">chisq.test(df$var1,</span> <span class="pre">df$var2)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">df$var1</span></code>, <code class="docutils literal notranslate"><span class="pre">df$var2</span></code>: The two categorical variables in the data frame <code class="docutils literal notranslate"><span class="pre">df</span></code> being compared.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Applying this to our Wall Street Journal data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">chisq.test</span><span class="p">(</span><span class="n">wsj</span><span class="o">$</span><span class="n">status</span><span class="p">,</span> <span class="n">wsj</span><span class="o">$</span><span class="n">region</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Pearson&#39;s Chi-squared test
+
+data:  wsj$status and wsj$region
+X-squared = 23.373, df = 3, p-value = 3.376e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>The proportions per region do appear to be different and this is confirmed by the small p-value from the Chi-square test. The null hypothesis of independence is rejected, implying there is a relationship between employment status and edition of the newspaper.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="conf_int.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3.2. </span>Confidence Intervals</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="causal_inf.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Causal Inference</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSM Faculty<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

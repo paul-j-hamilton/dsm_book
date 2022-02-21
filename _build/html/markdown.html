@@ -1,0 +1,770 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R Basics &#8212; Data Science for Managers</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Content with notebooks" href="notebooks.html" />
+    <link rel="prev" title="Welcome to Data Science for Managers!" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science for Managers</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Data Science for Managers!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R Bootcamp
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <strong>
+    R Basics
+   </strong>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/markdown.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/markdown.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmarkdown.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/markdown.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#r-as-a-calculator">
+   R as a Calculator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment">
+   Assignment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-types">
+   Data Types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-vectors">
+   Atomic Vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="r-basics">
+<h1><strong>R Basics</strong><a class="headerlink" href="#r-basics" title="Permalink to this headline">¶</a></h1>
+<p>This chapter provides an introduction to the very basics of R (and coding in general). By the end, you will be familiar with all of the following concepts:</p>
+<ul class="simple">
+<li><p>R as a Calculator</p></li>
+<li><p>Assignment</p></li>
+<li><p>Data Types</p></li>
+<li><p>Atomic Vectors</p></li>
+<li><p>Functions</p></li>
+</ul>
+<p>If you already have experience with coding and/or the R language, you may skip this chapter. However, you must still successfully complete the coding exercise at the end of the bootcamp before our third class.</p>
+<p>To begin, watch the following video:</p>
+<p>[ADD]</p>
+<p>Click the button below to launch an interactive R session in your browser. As you read through the sections of this chapter, use this interactive R session to test out what your learn.</p>
+<p><a href="https://hbs-data-science.shinyapps.io/DSM_R_Basics" class="btn btn-primary" style="color:white;" target="_blank">Start Coding in R!</a></p>
+<hr class="docutils" />
+<div class="section" id="r-as-a-calculator">
+<h2>R as a Calculator<a class="headerlink" href="#r-as-a-calculator" title="Permalink to this headline">¶</a></h2>
+<p>At its most basic, R can be used as a calculator. As you would expect, you can use all the standard mathematical operators:</p>
+<ul class="simple">
+<li><p>Addition (<code class="docutils literal notranslate"><span class="pre">+</span></code>) &amp; Subtraction (<code class="docutils literal notranslate"><span class="pre">-</span></code>)</p></li>
+<li><p>Multiplication (<code class="docutils literal notranslate"><span class="pre">*</span></code>) &amp; Division (<code class="docutils literal notranslate"><span class="pre">/</span></code>)</p></li>
+<li><p>Exponentiation (<code class="docutils literal notranslate"><span class="pre">^</span></code>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">2</span> <span class="o">+</span> <span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">4</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">100</span> <span class="o">/</span> <span class="m">20</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="o">^</span> <span class="m">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">27</div></div>
+</div>
+<p>Of course, R is much more than a simple calculator! In the following sections, you’ll learn the building blocks of R that we’ll rely on throughout the entire course.</p>
+</div>
+<div class="section" id="assignment">
+<h2>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">¶</a></h2>
+<p>When you work with data in Excel, each value in your data set is stored in an individual cell, and each one of those cells has a unique name made up of a letter and a number. For example, in the figure below, cell A2 stores the number <code class="docutils literal notranslate"><span class="pre">110,000</span></code>, cell B3 stores the text <code class="docutils literal notranslate"><span class="pre">&quot;Operations&quot;</span></code>, etc.</p>
+<div class="figure align-default" id="excel">
+<a class="reference internal image-reference" href="../images/Excel_Example.png"><img alt="../images/Excel_Example.png" src="../images/Excel_Example.png" style="height: 200px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Example Excel Worksheet</span><a class="headerlink" href="#excel" title="Permalink to this image">¶</a></p>
+</div>
+<p>Once you have data stored in cells, you can apply formulas to those cells by referencing the cell names. For example, if you ran <code class="docutils literal notranslate"><span class="pre">=SUM(A2:A7)</span></code>, Excel would sum the salaries of all employees in the data set. If this example is framiliar to you, you already understand the basics of R programming!</p>
+<p>To learn how to code in R, you do not need a complete understanding of how the language is designed. However, you should know that everything you create in an R program is referred to as an <strong>object</strong>. Every object you create belongs to one of several <strong>classes</strong>, which determines the properties and attributes of the object.</p>
+<p>To see what this means in concrete terms, let’s take a look at some R code. In the code below, we create an object called <code class="docutils literal notranslate"><span class="pre">A2</span></code>, which contains the value <code class="docutils literal notranslate"><span class="pre">110000</span></code>. We can create objects (or <strong>variables</strong>) with the <strong>assignment operator</strong> <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code>. When we run this line of code, we create an object called <code class="docutils literal notranslate"><span class="pre">A2</span></code> that stores the value <code class="docutils literal notranslate"><span class="pre">110000</span></code>. Think of this as similar to entering the value <code class="docutils literal notranslate"><span class="pre">110000</span></code> into cell <code class="docutils literal notranslate"><span class="pre">A2</span></code> in an Excel worksheet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A2</span> <span class="o">&lt;-</span> <span class="m">110000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code does not produce any output; all we are doing is storing the value <code class="docutils literal notranslate"><span class="pre">11000</span></code> in a variable called <code class="docutils literal notranslate"><span class="pre">A2</span></code>, so there are no results to print out. If we want to see what’s stored in our variable, we can simply run a line of code with the name of the variable and R will output its contents.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">110000</div></div>
+</div>
+<p>Fortunately, we can be more descriptive with our variable names. We can name our variables anything we want, subject to two rules.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>A variable name has to start with a letter and can contain letters, numbers, underscores, and periods.</p></li>
+<li><p>A variable cannot have the same name as any of R’s <strong>reserved words</strong>. These are words that already have meaning in the R language. For example, we could not create a variable called <code class="docutils literal notranslate"><span class="pre">class</span></code>, because this word is already being used for the <code class="docutils literal notranslate"><span class="pre">class()</span></code> function in R.</p></li>
+</ul>
+</div>
+<p>Below we create some more variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">&lt;-</span> <span class="m">5.5</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5.5</div></div>
+</div>
+<p>If you create a variable in R but then want to change its value, you can simply overwrite it with the assignment operator <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code>. Imagine we wanted <code class="docutils literal notranslate"><span class="pre">a</span></code> to store the value <code class="docutils literal notranslate"><span class="pre">6.5</span></code> instead of <code class="docutils literal notranslate"><span class="pre">5.5</span></code>; we can fix it as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">&lt;-</span> <span class="m">6.5</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">6.5</div></div>
+</div>
+<p>The variables we create can store more than just numbers. We can store text in a variable by surrounding the text with quotation marks (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">myFirstTextVar</span> <span class="o">&lt;-</span> <span class="s">&quot;I love DSM!&quot;</span>
+<span class="n">myFirstTextVar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'I love DSM!'</div></div>
+</div>
+<p>You’ll notice in the code example above that in our variable name, the first letter of each word (except the first word) is capitalized. Writing variable names this way is a convention known as <strong>camel case</strong>, and although it is not required, we recommend it to keep your R code easily readable.</p>
+</div>
+<div class="section" id="data-types">
+<h2>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h2>
+<p>You are likely framiliar with the window below from Excel, which shows the format of a cell (or group of cells). The proper choice of format depends on the type of data contained in the cell. For example, a column containing customers’ names should be formatted as <em>General</em> or <em>Text</em>; a column with the transaction dates of customer orders should be formatted as <em>Date</em>; a column with sales prices should be formatted as <em>Currency</em> or <em>Accounting</em>.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../images/Excel_Formats.png"><img alt="../images/Excel_Formats.png" src="../images/Excel_Formats.png" style="height: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Data Formats in Excel</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Just like Excel, R has several <strong>data types</strong> that specify the type of data you are working with. We can see the data type of a variable by applying the <code class="docutils literal notranslate"><span class="pre">class()</span></code> function (we’ll learn more about functions in an upcoming section). For example, if we apply <code class="docutils literal notranslate"><span class="pre">class()</span></code> to our variable <code class="docutils literal notranslate"><span class="pre">myFirstTextVar</span></code>, we see it is a <code class="docutils literal notranslate"><span class="pre">character</span></code>, which means that it stores text. Note that we did not need to explicitly tell R which class <code class="docutils literal notranslate"><span class="pre">myFirstTextVar</span></code> should belong to - because we were storing text in <code class="docutils literal notranslate"><span class="pre">myFirstTextVar</span></code>, R automatically knew to create a <code class="docutils literal notranslate"><span class="pre">character</span></code> object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">myFirstTextVar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'character'</div></div>
+</div>
+<p>The following are the primary data types that you should be aware of:</p>
+<ul class="simple">
+<li><p><strong>Logical</strong> - Used to store Boolean data, which only take on the values <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">logicalVar</span> <span class="o">&lt;-</span> <span class="kc">TRUE</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">logicalVar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'logical'</div></div>
+</div>
+<ul class="simple">
+<li><p><strong>Numeric</strong> - Used to store numbers with or without values after the decimal.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">income</span> <span class="o">&lt;-</span> <span class="m">50000.25</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">income</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'numeric'</div></div>
+</div>
+<ul class="simple">
+<li><p><strong>Character</strong> - Used to store text data, in particular text variables that can take on an infinite or very large set of possible values. For example, someone’s name, which could be nearly anything, should be stored as a character.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">&lt;-</span> <span class="s">&quot;hello world&quot;</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'character'</div></div>
+</div>
+<ul class="simple">
+<li><p><strong>Factor</strong> - Used to represent categorical variables that take on a fixed set of values. For example, in our data set from  <code class="xref std std-numref docutils literal notranslate"><span class="pre">excel</span></code>, the <code class="docutils literal notranslate"><span class="pre">Division</span></code> variable can only take on three possible values: <code class="docutils literal notranslate"><span class="pre">Operations</span></code>, <code class="docutils literal notranslate"><span class="pre">Human</span> <span class="pre">Resources</span></code>, and <code class="docutils literal notranslate"><span class="pre">Sales</span></code>. Therefore, this data should ideally be stored as a factor.</p>
+<ul>
+<li><p>Note that in practice it can often be difficult to decide whether something should be stored as a factor or a character. It is possible to store division as a character instead of as a factor, and in many circumstances this would not be an issue. However, there are certain circumstances where you want R to recognize that a variable takes on a limited set of values. We will come back to this later in the course.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">division</span> <span class="o">&lt;-</span> <span class="nf">as.factor</span><span class="p">(</span><span class="s">&quot;Operations&quot;</span><span class="p">)</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">division</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'factor'</div></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong> - Used to store dates in R.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">birthday</span> <span class="o">&lt;-</span> <span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2000-01-01&quot;</span><span class="p">)</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">birthday</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'Date'</div></div>
+</div>
+<p>Although not a data type, you should also be framiliar with <code class="docutils literal notranslate"><span class="pre">NA</span></code>, which is used to represent missing data in R. We often work with data sets that have missing values. For example, in our employees data set, we may not know the salary of some of the employees. In Excel we might represent this with <code class="docutils literal notranslate"><span class="pre">#N/A</span></code>, but in R it would be stored as <code class="docutils literal notranslate"><span class="pre">NA</span></code>. Because missing data is such a common issue, we will revisit <code class="docutils literal notranslate"><span class="pre">NA</span></code> frequently throughout this book. One has to be particularly careful with missing data in R, as <code class="docutils literal notranslate"><span class="pre">NA</span></code> values can create issues and unexpected behaviors that are sometimes difficult to detect.</p>
+</div>
+<div class="section" id="atomic-vectors">
+<h2>Atomic Vectors<a class="headerlink" href="#atomic-vectors" title="Permalink to this headline">¶</a></h2>
+<p>So far we have seen how to create variables that store a single value only. However, in practice we almost always work with sets of many different values. To work with this type of data in R we can create an <strong>atomic vector</strong>, which stores a set of one or more values of the same type. There are two important components to this definition:</p>
+<ul class="simple">
+<li><p>Atomic vectors can store one or more values, meaning an object that stores just a single value is an atomic vector. This means that every object we have created so far (<em>e.g.</em>, <code class="docutils literal notranslate"><span class="pre">myFirstTextVar</span></code>) has been an atomic vector. Below we will see how to create atomic vectors with more than one value.</p></li>
+<li><p>Atomic vectors cannot mix data types. This means you could not have an atomic vector with numbers <em>and</em> characters, for example.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Atomic vectors store one or more values of the same type.</p>
+</div>
+<p>As we’ve seen throughout the book so far, single-value atomic vectors can be created by simply assigning a value to a variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span> <span class="o">&lt;-</span> <span class="m">2</span>             <span class="c1"># Numeric atomic vector</span>
+<span class="n">v2</span> <span class="o">&lt;-</span> <span class="kc">TRUE</span>          <span class="c1"># Logical atomic vector</span>
+<span class="n">v3</span> <span class="o">&lt;-</span> <span class="s">&quot;R is fun!&quot;</span>   <span class="c1"># Character atomic vector</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we want to combine multiple values into a single atomic vector, we need to use the <code class="docutils literal notranslate"><span class="pre">c()</span></code> function, which stands for “<strong>c</strong>ombine”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">v4</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>                 <span class="c1"># Numeric atomic vector</span>
+<span class="n">v5</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span>          <span class="c1"># Logical atomic vector</span>
+<span class="n">v6</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;R is fun!&quot;</span><span class="p">,</span> <span class="s">&quot;I hate R&quot;</span><span class="p">)</span>    <span class="c1"># Character atomic vector</span>
+<span class="n">v7</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="kc">NA</span><span class="p">)</span>               <span class="c1"># Numeric atomic vector with missing value</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have multiple values stored in a single atomic vector, there are many different functions we can apply to these atomic vectors.</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>A fundamental part of R programming is the use of <strong>functions</strong>, which are very similar to functions in Excel. For example, you may be framiliar with the Excel function <code class="docutils literal notranslate"><span class="pre">SUMIF()</span></code>, which sums the values in a range of cells that adhere to a certain criteria. Let’s return to the small data set from <code class="xref std std-numref docutils literal notranslate"><span class="pre">excel</span></code>:</p>
+<div class="figure align-default" id="excel2">
+<a class="reference internal image-reference" href="../images/Excel_Example.png"><img alt="../images/Excel_Example.png" src="../images/Excel_Example.png" style="height: 200px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Example Excel Worksheet</span><a class="headerlink" href="#excel2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Imagine that we wanted to calculate the total amount spent on only those employees in the Operations department. We can accomplish this with <code class="docutils literal notranslate"><span class="pre">SUMIF()</span></code>, which uses the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">SUMIF(range,</span> <span class="pre">criteria,</span> <span class="pre">sum_range)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">range</span></code>: The range of cells where the criteria should be evaluated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">criteria</span></code>: The criteria to apply to the cells in <code class="docutils literal notranslate"><span class="pre">range</span></code>.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sum_range</span></code>: The cells to sum based on the criteria.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>To apply this function to the data shown in the figure, we would write <code class="docutils literal notranslate"><span class="pre">=SUMIF(B2:B7,</span> <span class="pre">&quot;Operations&quot;,</span> <span class="pre">A2:A7)</span></code>, which would evaluate to <code class="docutils literal notranslate"><span class="pre">302,000</span></code>. Feel free to verify this in Excel yourself.</p>
+<p>Note that every time we use the <code class="docutils literal notranslate"><span class="pre">SUMIF()</span></code> function, we <em>must</em> specify the <code class="docutils literal notranslate"><span class="pre">range</span></code> and <code class="docutils literal notranslate"><span class="pre">criteria</span></code> arguments. The <code class="docutils literal notranslate"><span class="pre">sum_range</span></code> argument is optional, and we only need to use it if we want to sum a different set of cells than those specified in the <code class="docutils literal notranslate"><span class="pre">range</span></code> argument.</p>
+<p>Whenever we introduce a new R function, we will follow the same convention shown above to demonstrate the syntax of the function. The basic syntax of the function will be shown in a light blue box marked “Syntax”, and any required and optional arguments will be described within the box. Additionally, whenever you are learning a new function, we encourage you to search Google for examples, as well as review the official documentation for the function at <a class="reference external" href="https://www.rdocumentation.org/">rdocumentation.org</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can look up the syntax for a function on <a class="reference external" href="https://www.rdocumentation.org/">rdocumentation.org</a>, and/or search Google for helpful examples.</p>
+</div>
+<p>Now let’s learn an actual R function. One commonly used function is <code class="docutils literal notranslate"><span class="pre">length()</span></code>, which (as you might guess) determines the length of an R object. This function uses the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">length(x)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: An R object.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>We can apply this function to the atomic vectors we created in the previous section to determine how many values each one contains:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">v4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">4</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">v5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">v6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">v7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">4</div></div>
+</div>
+<p>Additionally, there is a <code class="docutils literal notranslate"><span class="pre">sum()</span></code> function we can use to add up all the values of an atomic vector. This function uses the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">sum(x,</span> <span class="pre">na.rm=FALSE)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: An R object.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">na.rm</span></code>: If <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, the function will remove any missing values (<code class="docutils literal notranslate"><span class="pre">NA</span></code>s) in the atomic vector and sum the non-missing values. If <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, the function does not remove <code class="docutils literal notranslate"><span class="pre">NA</span></code>s and will return a value of <code class="docutils literal notranslate"><span class="pre">NA</span></code> if there is an <code class="docutils literal notranslate"><span class="pre">NA</span></code> in the atomic vector.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Note that this will not work for <code class="docutils literal notranslate"><span class="pre">v6</span></code>, because there is no logical way to sum characters together. If we apply it to <code class="docutils literal notranslate"><span class="pre">v5</span></code>, it will treat the <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> values like <code class="docutils literal notranslate"><span class="pre">1</span></code> and the <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> values like <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">v4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">14</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">v5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">v7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">&lt;NA&gt;</div></div>
+</div>
+<p>What happened with <code class="docutils literal notranslate"><span class="pre">v7</span></code>? Recall that this vector contains a missing value (<code class="docutils literal notranslate"><span class="pre">NA</span></code>). If you review the syntax for the <code class="docutils literal notranslate"><span class="pre">sum()</span></code> function, you’ll see that it includes an optional parameter <code class="docutils literal notranslate"><span class="pre">na.rm</span></code>, which determines how the function treats missing values. If this argument is set to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, it ignores missing values and calculates the sum of the non-missing values. If it is set to <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, the function will return <code class="docutils literal notranslate"><span class="pre">NA</span></code> if there is a single missing value present.</p>
+<p>However, in our call to the <code class="docutils literal notranslate"><span class="pre">sum()</span></code> function, we didn’t include this argument at all, so what is going on? Optional arguments often have a default value that is used if you fail to specify the desired value explicitly. In this case, the default value is <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, so if we do not specify <code class="docutils literal notranslate"><span class="pre">na.rm=TRUE</span></code> in our call to <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, the missing values will <em>not</em> be ignored and the function will return <code class="docutils literal notranslate"><span class="pre">NA</span></code>.</p>
+<p>If we re-run the function but add <code class="docutils literal notranslate"><span class="pre">na.rm</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>, we get the expected result:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">v7</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">27</div></div>
+</div>
+<p>Similar to <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, there are many other functions that can be applied to atomic vectors:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">mean(x,</span> <span class="pre">na.rm=FALSE)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: An R object.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">na.rm</span></code>: If <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, the function will ignore any missing values (<code class="docutils literal notranslate"><span class="pre">NA</span></code>s) in the atomic vector. If <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, the function does not ignore <code class="docutils literal notranslate"><span class="pre">NA</span></code>s and will return a value of <code class="docutils literal notranslate"><span class="pre">NA</span></code> if there is an <code class="docutils literal notranslate"><span class="pre">NA</span></code> in the atomic vector.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">min(x,</span> <span class="pre">na.rm=FALSE)</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">max(x,</span> <span class="pre">na.rm=FALSE)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: An R object.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">na.rm</span></code>: If <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, the function will ignore any missing values (<code class="docutils literal notranslate"><span class="pre">NA</span></code>s) in the atomic vector. If <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, the function does not ignore <code class="docutils literal notranslate"><span class="pre">NA</span></code>s and will return a value of <code class="docutils literal notranslate"><span class="pre">NA</span></code> if there is an <code class="docutils literal notranslate"><span class="pre">NA</span></code> in the atomic vector.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="n">v4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3.5</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">min</span><span class="p">(</span><span class="n">v5</span><span class="p">)</span>
+<span class="nf">max</span><span class="p">(</span><span class="n">v5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0</div><div class="output text_html">1</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="n">v7</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">9</div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Welcome to Data Science for Managers!</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="notebooks.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Content with notebooks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSM Faculty<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

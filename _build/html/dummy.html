@@ -1,0 +1,954 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5.5. Dummy Variables &#8212; Data Science for Managers</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.6. Transformations (⚵)" href="transformations.html" />
+    <link rel="prev" title="5.4. Multiple Linear Regression" href="multiple_linear_regression.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science for Managers</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Data Science for Managers!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="roadmap.html">
+   Course Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assignments.html">
+   Assignment Sheets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="access.html">
+   Access to Materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="platforms.html">
+   Coding Platforms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R Bootcamp
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="rbasics.html">
+   R Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="r_as_a_calculator.html">
+     R as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="assignment.html">
+     Assignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rbasics_quiz1.html">
+     <strong>
+      Quiz #1
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="atomic_vectors.html">
+     Atomic Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rbasics_quiz2.html">
+     <strong>
+      Quiz #2
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="dataframes.html">
+   Data Frames
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="r_packages.html">
+     R Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reading_in_data.html">
+     Reading in Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_frame_basics.html">
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="df_basics_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fixing_variable_types.html">
+     Fixing Variable Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sorting_data.html">
+     Sorting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_rows.html">
+     Filtering Rows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="selecting_columns.html">
+     Selecting Columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="df_manipulation_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="df_manipulation_quiz.html">
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bootcamp_finish_message.html">
+   Welcome to the Course!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploratory Data Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="eda.html">
+   1. Exploring Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary_stats.html">
+     1.1. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="visualization.html">
+     1.2. Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eda_quiz.html">
+     1.3.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eda_case.html">
+     1.4.
+     <strong>
+      Case Study:
+     </strong>
+     Sabermetrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ggplot.html">
+     1.5. Visualization with ggplot (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="eda_tidyverse.html">
+   2. Data Wrangling with the tidyverse
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pipe_operator.html">
+     2.1. The Pipe Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summarise.html">
+     2.2. Summarising Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dds.html">
+     2.3.
+     <strong>
+      Case Study:
+     </strong>
+     California Department of Developmental Services (DDS)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Inference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="stat_inference.html">
+   3. Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="samps_pops.html">
+     3.1. Samples &amp; Populations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conf_int.html">
+     3.2. Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hyp_testing.html">
+     3.3. Hypothesis Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="causal_inf.html">
+   4. Causal Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="obs_studies.html">
+     4.1. Observational Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rand_experiments.html">
+     4.2. Randomized Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="causal_exercise.html">
+     4.3.
+     <strong>
+      Exercise:
+     </strong>
+     Causal Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="power.html">
+     4.4. Power
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="linear_regression.html">
+   5. Linear Regression
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="correlation.html">
+     5.1. Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="simple_reg.html">
+     5.2. Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="understanding_reg.html">
+     5.3. Understanding Our Regression Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multiple_linear_regression.html">
+     5.4. Multiple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.5. Dummy Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformations.html">
+     5.6. Transformations (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="interactions.html">
+     5.7. Interactions (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prediction &amp; Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml_intro.html">
+   6. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="logistic_reg.html">
+   7. Logistic Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="why_not_lin.html">
+     7.1. Why Not Linear Regression?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="simple_log_reg.html">
+     7.2. Simple Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multiple_log_reg.html">
+     7.3. Multiple Logistic Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="knn.html">
+   8. k-Nearest Neighbors (kNN)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bias_variance.html">
+     8.4. The Bias-Variance Tradeoff
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="model_eval.html">
+   9. Model Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_partition.html">
+     9.1. Partitioning Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="performance_metrics.html">
+     9.2. Performance Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="dt_rf.html">
+   10. Tree Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="decision_trees.html">
+     10.1. Decision Trees
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="random_forest.html">
+     10.2. Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xgboost.html">
+     10.3. XGBoost (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="neural_nets.html">
+   11. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unsupervised.html">
+   12. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlp.html">
+   13. Natural Language Processing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/dummy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/dummy.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdummy.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/dummy.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="dummy-variables">
+<h1><span class="section-number">5.5. </span>Dummy Variables<a class="headerlink" href="#dummy-variables" title="Permalink to this headline">¶</a></h1>
+<p>So far we have been modeling <code class="docutils literal notranslate"><span class="pre">Salary</span></code> as a function of <code class="docutils literal notranslate"><span class="pre">Age</span></code> and <code class="docutils literal notranslate"><span class="pre">Rating</span></code>, which are both quantitative variables. However, there are also categorical variables in our data set that we might want to include in the model. For example, we might be interested in exploring whether there is a gender bias in our salary data. To do this, we need to somehow include <code class="docutils literal notranslate"><span class="pre">Gender</span></code> as an independent variable in our regression. However, this variable is not measured numerically; it takes on the values “Male” or “Female”. How, then, can we include it in our regression model?</p>
+<p>To do this we need to create a <strong>dummy variable</strong>, or a binary, quantitative variable that is used to represent categorical data. Dummy variables use the numeric quantities <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code> to represent the categories of interest. In our case our categorical variable is <code class="docutils literal notranslate"><span class="pre">Gender</span></code>, so our dummy needs to encode one of the genders as <code class="docutils literal notranslate"><span class="pre">0</span></code> and the other as <code class="docutils literal notranslate"><span class="pre">1</span></code>. (Note that it is largely arbitrary which category we assign to <code class="docutils literal notranslate"><span class="pre">1</span></code> and which we assign to <code class="docutils literal notranslate"><span class="pre">0</span></code>.) Let’s create a new variable in our data set called <code class="docutils literal notranslate"><span class="pre">male_dummy</span></code>, which equals <code class="docutils literal notranslate"><span class="pre">1</span></code> if the employee is male and <code class="docutils literal notranslate"><span class="pre">0</span></code> if the employee is female:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">employees</span><span class="o">$</span><span class="n">male_dummy</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">employees</span><span class="o">$</span><span class="n">Gender</span> <span class="o">==</span> <span class="s">&quot;Male&quot;</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">employees</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>ID</th><th scope=col>Name</th><th scope=col>Gender</th><th scope=col>Age</th><th scope=col>Rating</th><th scope=col>Degree</th><th scope=col>Start_Date</th><th scope=col>Retired</th><th scope=col>Division</th><th scope=col>Salary</th><th scope=col>male_dummy</th></tr></thead>
+<tbody>
+	<tr><td>6881               </td><td>al-Rahimi, Tayyiba </td><td>Female             </td><td>51                 </td><td>10                 </td><td>High School        </td><td>1990-02-23         </td><td>FALSE              </td><td>Operations         </td><td>108804             </td><td>0                  </td></tr>
+	<tr><td>2671               </td><td>Lewis, Austin      </td><td>Male               </td><td>34                 </td><td> 4                 </td><td>Ph.D               </td><td>2007-02-23         </td><td>FALSE              </td><td>Engineering        </td><td>182343             </td><td>1                  </td></tr>
+	<tr><td>8925               </td><td>el-Jaffer, Manaal  </td><td>Female             </td><td>50                 </td><td>10                 </td><td>Master's           </td><td>1991-02-23         </td><td>FALSE              </td><td>Engineering        </td><td>206770             </td><td>0                  </td></tr>
+	<tr><td>2769               </td><td>Soto, Michael      </td><td>Male               </td><td>52                 </td><td>10                 </td><td>High School        </td><td>1987-02-23         </td><td>FALSE              </td><td>Sales              </td><td>183407             </td><td>1                  </td></tr>
+	<tr><td>2658               </td><td>al-Ebrahimi, Mamoon</td><td>Male               </td><td>55                 </td><td> 8                 </td><td>Ph.D               </td><td>1985-02-23         </td><td>FALSE              </td><td>Corporate          </td><td>236240             </td><td>1                  </td></tr>
+	<tr><td>1933               </td><td>Medina, Brandy     </td><td>Female             </td><td>62                 </td><td> 7                 </td><td>Associate's        </td><td>1979-02-23         </td><td> TRUE              </td><td>Sales              </td><td>    NA             </td><td>0                  </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Now that we’ve created a dummy variable for gender, we can add it to our regression model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">modelMaleDummy</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Salary</span> <span class="o">~</span> <span class="n">Age</span> <span class="o">+</span> <span class="n">Rating</span> <span class="o">+</span> <span class="n">male_dummy</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">employees</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">modelMaleDummy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = Salary ~ Age + Rating + male_dummy, data = employees)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-91483 -21741    803  22130  85908 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 27047.67    5472.39   4.943 9.17e-07 ***
+Age          1964.33      92.04  21.343  &lt; 2e-16 ***
+Rating       5520.34     526.47  10.486  &lt; 2e-16 ***
+male_dummy   8278.08    2017.04   4.104 4.42e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 30570 on 916 degrees of freedom
+  (80 observations deleted due to missingness)
+Multiple R-squared:  0.4025,	Adjusted R-squared:  0.4006 
+F-statistic: 205.7 on 3 and 916 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>This produces the following estimated regression equation:</p>
+<div class="math notranslate nohighlight">
+\[predicted \;salary = \hat{y} = \$27,047.67 + \$1,964.33(Age)  + \$5,520.34(Rating)   + \$8,278.08(male\_dummy)\]</div>
+<p>The interpretation of the coefficients on <code class="docutils literal notranslate"><span class="pre">Age</span></code> and <code class="docutils literal notranslate"><span class="pre">Rating</span></code> are the same as before; for example, we would say that on average, salary goes up by $5,520.34 for each additional point in an employee’s rating, assuming all other variables in the model are kept constant. However, a similar interpretation would not be possible for the coefficient on <code class="docutils literal notranslate"><span class="pre">male_dummy</span></code>, as this variable can only take on the values <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code>. Instead we interpret this coefficient as follows: on average, men at the company are paid $8,278.08 more than women at the company, assuming all other variables in the model are kept constant. Because the p-value on this coefficient is quite small, we might conclude from these results that there does appear to be a gender bias in the company’s salary data.</p>
+<p>To better understand the coefficient on the dummy variable, consider two employees, one male and one female. Assume that they are both 35, and both received an 8 in their last performance evaluation. For the male employee, our model would predict his salary to be:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}predicted \;salary = \hat{y} &amp; =  \$27,047.67 + \$1,964.33(35)  + \$5,520.34(8)   + \$8,278.08(1) \\ &amp; = \$139,961.94 + \$8,278.08(1)  \\ &amp; = \$148,240.02 \end{aligned}\end{split}\]</div>
+<p>Conversely, for the female employee, our model would predict her salary to be:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}predicted \;salary = \hat{y} &amp; =  \$27,047.67 + \$1,964.33(35)  + \$5,520.34(8)   + \$8,278.08(0) \\ &amp; = \$139,961.94 + \$8,278.08(0)  \\ &amp; = \$139,961.94 \end{aligned}\end{split}\]</div>
+<p>From this example we can see that when the other variables are held constant, the difference between the predicted salary for men and women is the value of the coefficient on our dummy variable ($8,278.08).</p>
+<p>In this example, we manually created a dummy variable for gender (called <code class="docutils literal notranslate"><span class="pre">male_dummy</span></code>) and used that variable in our model. However, this was not actually necessary - the <code class="docutils literal notranslate"><span class="pre">lm()</span></code> function automatically converts any categorical variables you include into dummy variables behind the scenes. If we specify our model as before but include <code class="docutils literal notranslate"><span class="pre">Gender</span></code> instead of <code class="docutils literal notranslate"><span class="pre">male_dummy</span></code>, we get the same results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">modelMaleDummy</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Salary</span> <span class="o">~</span> <span class="n">Age</span> <span class="o">+</span> <span class="n">Rating</span> <span class="o">+</span> <span class="n">Gender</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">employees</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">modelMaleDummy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = Salary ~ Age + Rating + Gender, data = employees)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-91483 -21741    803  22130  85908 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 27047.67    5472.39   4.943 9.17e-07 ***
+Age          1964.33      92.04  21.343  &lt; 2e-16 ***
+Rating       5520.34     526.47  10.486  &lt; 2e-16 ***
+GenderMale   8278.08    2017.04   4.104 4.42e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 30570 on 916 degrees of freedom
+  (80 observations deleted due to missingness)
+Multiple R-squared:  0.4025,	Adjusted R-squared:  0.4006 
+F-statistic: 205.7 on 3 and 916 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dummy variables are relatively straightforward for <em>binary</em> categorical variables such as <code class="docutils literal notranslate"><span class="pre">Gender</span></code>. But what about a variable like <code class="docutils literal notranslate"><span class="pre">Degree</span></code>, which can take on several different values (<code class="docutils literal notranslate"><span class="pre">&quot;High</span> <span class="pre">School&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Associate's&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Bachelor's&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Master's&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;Ph.D&quot;</span></code>)? It might be natural to assume that you could just assign a unique integer to each category. In other words, our dummy for degree could represent “High School” as 0, “Associate’s” as 1, “Bachelor’s” as 2, “Master’s” as 3, and “Ph.D” as 4. However, this method of coding categorical variables is problematic. First, it implies an ordering to the categories that may not be correct. There might be an ordering to <code class="docutils literal notranslate"><span class="pre">Degree</span></code>, but consider the <code class="docutils literal notranslate"><span class="pre">Division</span></code> variable; there is no inherent ordering to the divisions of a company, so any ordering implied by a dummy variable would be arbitrary. Second, this method of coding implies a fixed difference between each category. There is no reason to believe that the difference between an associate’s and a bachelor’s is the same as the difference between a bachelor’s and a master’s, for example.</p>
+<p>How, then, do we incorporate multinomial categorical variables into our regression model? The answer is by creating separate 0 / 1 dummy variables for each of the variable’s categories. For example, we will need one dummy variable (<code class="docutils literal notranslate"><span class="pre">DegreeAssociate's</span></code>) that equals <code class="docutils literal notranslate"><span class="pre">1</span></code> for observations where <code class="docutils literal notranslate"><span class="pre">Degree</span></code> equals “Associate’s”, and <code class="docutils literal notranslate"><span class="pre">0</span></code> if not. We will need another dummy variable (<code class="docutils literal notranslate"><span class="pre">DegreeBachelor's</span></code>) that equals <code class="docutils literal notranslate"><span class="pre">1</span></code> for observations where <code class="docutils literal notranslate"><span class="pre">Degree</span></code> equals “Bachelor’s” and <code class="docutils literal notranslate"><span class="pre">0</span></code> if not, and so on. The table below shows how all possible values of <code class="docutils literal notranslate"><span class="pre">Degree</span></code> can be represented through four binary dummy variables:</p>
+<table class=" lightable-classic-2" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Degree </th>
+   <th style="text-align:center;"> DegreeAssociate's </th>
+   <th style="text-align:center;"> DegreeBachelor's </th>
+   <th style="text-align:center;"> DegreeMaster's </th>
+   <th style="text-align:center;"> DegreePh.D </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> High School </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Associate's </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bachelor's </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Master's </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ph.D </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+</tbody>
+</table>
+<p>Note that we do <em>not</em> need a fifth dummy variable to represent the “High School” category. This is because this information is already implicitly captured in the other four dummy variables; if <code class="docutils literal notranslate"><span class="pre">DegreeAssociate's</span></code>, <code class="docutils literal notranslate"><span class="pre">DegreeBachelor's</span></code>, <code class="docutils literal notranslate"><span class="pre">DegreeMaster's</span></code>, and <code class="docutils literal notranslate"><span class="pre">DegreePh.D</span></code> all equal zero, we know the employee must hold a high school diploma, so there is no need for an additional <code class="docutils literal notranslate"><span class="pre">DegreeHighSchool</span></code> variable. In general, a <span class="math notranslate nohighlight">\(k\)</span>-category variable can be represented with <span class="math notranslate nohighlight">\(k-1\)</span> dummy variables.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For regression modeling, categorical variables that take on <span class="math notranslate nohighlight">\(k\)</span> values must be converted into <span class="math notranslate nohighlight">\(k-1\)</span> binary dummy variables.</p>
+</div>
+<p>As noted above, the <code class="docutils literal notranslate"><span class="pre">lm()</span></code> command automatically creates dummy variables behind the scenes, so we can simply include <code class="docutils literal notranslate"><span class="pre">Degree</span></code> in our call to <code class="docutils literal notranslate"><span class="pre">lm()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">modelDegree</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Salary</span> <span class="o">~</span> <span class="n">Age</span> <span class="o">+</span> <span class="n">Rating</span> <span class="o">+</span> <span class="n">Gender</span> <span class="o">+</span> <span class="n">Degree</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">employees</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">modelDegree</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = Salary ~ Age + Rating + Gender + Degree, data = employees)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-64403 -16227    352  15917  70513 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           4.427   4502.240   0.001 0.999216    
+Age                2006.083     70.078  28.627  &lt; 2e-16 ***
+Rating             5181.073    401.489  12.905  &lt; 2e-16 ***
+GenderMale         8220.111   1532.334   5.364 1.03e-07 ***
+DegreeAssociate&#39;s  9477.556   2444.091   3.878 0.000113 ***
+DegreeBachelor&#39;s  33065.808   2426.033  13.630  &lt; 2e-16 ***
+DegreeMaster&#39;s    40688.574   2410.054  16.883  &lt; 2e-16 ***
+DegreePh.D        53730.605   2408.267  22.311  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 23220 on 912 degrees of freedom
+  (80 observations deleted due to missingness)
+Multiple R-squared:  0.6568,	Adjusted R-squared:  0.6541 
+F-statistic: 249.3 on 7 and 912 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>To interpret the coefficients on the dummy variables for degree, we must first acknowledge that they are all relative to the implicit baseline category, <code class="docutils literal notranslate"><span class="pre">&quot;High</span> <span class="pre">School&quot;</span></code>. The baseline (or reference) category is the one that is not given its own dummy variable; in this case we do not have a separate dummy for <code class="docutils literal notranslate"><span class="pre">&quot;High</span> <span class="pre">School&quot;</span></code>, so it is our baseline. With this in mind, we interpret the coefficients on our dummy variables as follows:</p>
+<ul class="simple">
+<li><p>On average, employees with an Associate’s degree are paid $9,477.56 more than employees with a high school diploma, assuming all other variables in the model are kept constant.</p></li>
+<li><p>On average, employees with a Bachelor’s degree are paid $33,065.81 more than employees with a high school diploma, assuming all other variables in the model are kept constant.</p></li>
+<li><p>On average, employees with an Master’s degree are paid $40,688.57 more than employees with a high school diploma, assuming all other variables in the model are kept constant.</p></li>
+<li><p>On average, employees with a Ph.D are paid $53,730.61 more than employees with a high school diploma, assuming all other variables in the model are kept constant.</p></li>
+</ul>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="multiple_linear_regression.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5.4. </span>Multiple Linear Regression</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="transformations.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.6. </span>Transformations (⚵)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSM Faculty<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

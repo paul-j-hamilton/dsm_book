@@ -1,0 +1,98 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Getting Started
+    chapters:
+    - file: roadmap
+    - file: assignments
+    - file: access
+    - file: platforms
+  - caption: R Bootcamp
+    chapters:
+    - file: rbasics
+      sections:
+      - file: r_as_a_calculator
+      - file: assignment
+      - file: data_types
+      - file: rbasics_quiz1
+      - file: atomic_vectors
+      - file: functions
+      - file: rbasics_quiz2
+    - file: dataframes
+      sections:
+      - file: r_packages
+      - file: reading_in_data
+      - file: data_frame_basics
+      - file: df_basics_exercise
+      - file: fixing_variable_types
+      - file: sorting_data
+      - file: filtering_rows
+      - file: selecting_columns
+      - file: df_manipulation_exercise
+      - file: df_manipulation_quiz
+    - file: bootcamp_finish_message
+  - caption: Exploratory Data Analysis
+    numbered: True
+    chapters:
+      - file: eda
+        sections:
+        - file: summary_stats
+        - file: visualization
+        - file: eda_quiz
+        - file: eda_case
+        - file: ggplot
+      - file: eda_tidyverse
+        sections:
+          - file: pipe_operator
+          - file: summarise
+          - file: dds
+  - caption: Inference
+    numbered: True
+    chapters:
+      - file: stat_inference
+        sections:
+          - file: samps_pops
+          - file: conf_int
+          - file: hyp_testing
+      - file: causal_inf
+        sections:
+          - file: obs_studies
+          - file: rand_experiments
+          - file: causal_exercise
+          - file: power
+      - file: linear_regression
+        sections:
+          - file: correlation
+          - file: simple_reg
+          - file: understanding_reg
+          - file: multiple_linear_regression
+          - file: dummy
+          - file: transformations
+          - file: interactions
+  - caption: Prediction & Machine Learning
+    numbered: True
+    chapters:
+      - file: ml_intro
+      - file: logistic_reg
+        sections:
+          - file: why_not_lin
+          - file: simple_log_reg
+          - file: multiple_log_reg
+      - file: knn
+        sections:
+          - file: bias_variance
+      - file: model_eval
+        sections:
+          - file: data_partition
+          - file: performance_metrics
+      - file: dt_rf
+        sections:
+          - file: decision_trees
+          - file: random_forest
+          - file: xgboost
+      - file: neural_nets
+      - file: unsupervised
+      - file: nlp
