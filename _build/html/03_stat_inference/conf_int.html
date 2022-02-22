@@ -1,0 +1,1016 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.2. Confidence Intervals &#8212; Data Science for Managers</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.3. Hypothesis Testing" href="hyp_testing.html" />
+    <link rel="prev" title="3.1. Samples &amp; Populations" href="samps_pops.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science for Managers</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Data Science for Managers!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/roadmap.html">
+   Course Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/assignments.html">
+   Assignment Sheets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/access.html">
+   Access to Materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/platforms.html">
+   Coding Platforms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R Bootcamp
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics.html">
+   R Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/r_as_a_calculator.html">
+     R as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/assignment.html">
+     Assignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/data_types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz1.html">
+     <strong>
+      Quiz #1
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/atomic_vectors.html">
+     Atomic Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz2.html">
+     <strong>
+      Quiz #2
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/02_dataframes/dataframes.html">
+   Data Frames
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/r_packages.html">
+     R Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/reading_in_data.html">
+     Reading in Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/data_frame_basics.html">
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_basics_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/fixing_variable_types.html">
+     Fixing Variable Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/sorting_data.html">
+     Sorting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/filtering_rows.html">
+     Filtering Rows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/selecting_columns.html">
+     Selecting Columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_quiz.html">
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_bootcamp/bootcamp_finish_message.html">
+   Welcome to the Course!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploratory Data Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01_eda/eda.html">
+   1. Exploring Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/summary_stats.html">
+     1.1. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/visualization.html">
+     1.2. Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/eda_quiz.html">
+     1.3.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/ggplot.html">
+     1.4. Visualization with ggplot (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_tidy/eda_tidyverse.html">
+   2. Data Wrangling with the tidyverse
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/pipe_operator.html">
+     2.1. The Pipe Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/summarise.html">
+     2.2. Summarising Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/dds.html">
+     2.3.
+     <strong>
+      Case Study:
+     </strong>
+     California Department of Developmental Services (DDS)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Inference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="stat_inference.html">
+   3. Statistical Inference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="samps_pops.html">
+     3.1. Samples &amp; Populations
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.2. Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hyp_testing.html">
+     3.3. Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hyp_test_quiz.html">
+     3.4.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="one_samp_test_exercise.html">
+     3.5.
+     <strong>
+      Exercise:
+     </strong>
+     One-Sample Hypothesis Testing (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="two_samp_test_exercise.html">
+     3.6.
+     <strong>
+      Exercise:
+     </strong>
+     Two-Sample Hypothesis Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04_causal_inference/causal_inference.html">
+   4. Causal Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/obs_studies.html">
+     4.1. Observational Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/rand_experiments.html">
+     4.2. Randomized Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/causal_exercise.html">
+     4.3.
+     <strong>
+      Exercise:
+     </strong>
+     Causal Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/power.html">
+     4.4. Power
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05_linear_regression/linear_regression.html">
+   5. Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/correlation.html">
+     5.1. Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/simple_reg.html">
+     5.2. Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/understanding_reg.html">
+     5.3. Understanding Our Regression Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise1.html">
+     5.4.
+     <strong>
+      Exercise:
+     </strong>
+     Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/multiple_linear_regression.html">
+     5.5. Multiple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/dummy.html">
+     5.6. Dummy Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise2.html">
+     5.7.
+     <strong>
+      Exercise:
+     </strong>
+     Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/transformations.html">
+     5.8. Transformations (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/interactions.html">
+     5.9. Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise3.html">
+     5.10.
+     <strong>
+      Exercise:
+     </strong>
+     Multiple Linear Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prediction &amp; Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_ml_intro/ml_intro.html">
+   6. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07_logistic_regression/logistic_regression.html">
+   7. Logistic Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/why_not_lin.html">
+     7.1. Why Not Linear Regression?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/simple_log_reg.html">
+     7.2. Simple Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/multiple_log_reg.html">
+     7.3. Multiple Logistic Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08_knn/knn.html">
+   8. k-Nearest Neighbors (kNN)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08_knn/bias_variance.html">
+     8.4. The Bias-Variance Tradeoff
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09_model_eval/model_eval.html">
+   9. Model Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_model_eval/data_partition.html">
+     9.1. Partitioning Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_model_eval/performance_metrics.html">
+     9.2. Performance Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10_dt_rf/dt_rf.html">
+   10. Tree Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/decision_trees.html">
+     10.1. Decision Trees
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/random_forest.html">
+     10.2. Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/xgboost.html">
+     10.3. XGBoost (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11_neural_nets/neural_nets.html">
+   11. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12_unsupervised/unsupervised.html">
+   12. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13_nlp/nlp.html">
+   13. Natural Language Processing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/03_stat_inference/conf_int.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03_stat_inference/conf_int.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F03_stat_inference/conf_int.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/03_stat_inference/conf_int.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confidence-intervals-for-proportions">
+   3.2.1. Confidence Intervals for Proportions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confidence-intervals-for-means">
+   3.2.2. Confidence Intervals for Means
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="confidence-intervals">
+<h1><span class="section-number">3.2. </span>Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Permalink to this headline">¶</a></h1>
+<p>As described in the previous section, we often want to use sample data to estimate population quantities. Due to the randomness inherent to sampling, an observed sample statistic is almost certainly not equal to the true population parameter. To quantify the variability surrounding the sample statistic, we can compute a <strong>confidence interval</strong> which provides a lower and upper bound for where we think the true population value lies. Note that unless we take a sample which consists of the entire population (often called a census), we will never know the true population parameter with absolute certainty.</p>
+<div class="section" id="confidence-intervals-for-proportions">
+<h2><span class="section-number">3.2.1. </span>Confidence Intervals for Proportions<a class="headerlink" href="#confidence-intervals-for-proportions" title="Permalink to this headline">¶</a></h2>
+<p>Suppose that in a survey of one hundred adult cell phone users, 30% switched carriers in the past two years. Based on this sample statistic (which we denote <span class="math notranslate nohighlight">\(\hat{p}\)</span>), what can we conclude about the proportion of all adult cell phone users who switched carriers (which we denote <span class="math notranslate nohighlight">\(p\)</span>)? Our sample estimate of <span class="math notranslate nohighlight">\(\hat{p} = 30%\)</span> is based on a random sample of one hundred users and not the entire population, so we cannot conclude that the true population parameter is <span class="math notranslate nohighlight">\(p = 30%\)</span>. Instead, we must calculate a confidence interval to understand the range of plausible values for the population proportion <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>For proportions, we generally use the following formula to calculate a confidence interval from our sample estimate:</p>
+<div class="math notranslate nohighlight">
+\[ \hat{p} \pm z^\ast \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}} \]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{p}\)</span> is our estimate from the sample, <span class="math notranslate nohighlight">\(n\)</span> is the number of observations in the sample, and <span class="math notranslate nohighlight">\(z^\ast\)</span> is a constant that determines our desired level of confidence in the interval (we typically use a value of 1.96, which corresponds to a 95% level of confidence).</p>
+<p>Now imagine we wanted to construct a 95% confidence interval based on our sample of one hundred cell phone users. Applying the above formula:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\hat{p} \pm z^\ast \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}} &amp;= 0.30\ \pm\ 1.96\sqrt{\frac{0.30\left(0.70\right)}{100}} \\
+&amp;=\ [0.2124,\ 0.3998] 
+\end{aligned}
+\end{split}\]</div>
+<p>We interpret this confidence interval as follows: “we are 95% confident that the true population proportion of adult cell phone users who switched carriers in the past two years is between 21.24% and 39.98%.”</p>
+<p>Note that we can adjust our desired level of confidence by changing the value of <span class="math notranslate nohighlight">\(z^\ast\)</span>. For example, imagine we only desired 80% confidence in our interval estimate. In this case, we would apply the same formula but use a <span class="math notranslate nohighlight">\(z^\ast\)</span> value of 1.28.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+hat{p} \pm z^{\ast}\sqrt{\frac{\hat{p}\left(1-\hat{p}\right)}{n}}\ &amp;= 0.30\ \pm\ 1.28\sqrt{\frac{0.30\left(0.70\right)}{100}} \\
+&amp;=\ [0.2398,\ 0.3664]
+\end{aligned}
+\end{split}\]</div>
+<p>We interpret this confidence interval as follows: “we are 80% confident that the true population proportion of adult cell phone users who switched carriers in the past two years is between 23.98% and 36.64%.” In this case, relative to the 95% confidence interval we are slightly less confident that the interval contains the true population proportion, but the interval is narrower. This implies that as we decrease our level of confidence, our interval becomes more precise (and vice versa). The table below shows the appropriate value of <span class="math notranslate nohighlight">\(z^{\ast}\)</span> for several common confidence levels.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Confidence Level</p></th>
+<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(z^{\ast}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>80%</p></td>
+<td class="text-align:center"><p>1.28</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>90%</p></td>
+<td class="text-align:center"><p>1.645</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>95%</p></td>
+<td class="text-align:center"><p>1.96</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>98%</p></td>
+<td class="text-align:center"><p>2.33</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>99%</p></td>
+<td class="text-align:center"><p>2.58</p></td>
+</tr>
+</tbody>
+</table>
+<p>In R, we can calculate a confidence interval for proportions with the <code class="docutils literal notranslate"><span class="pre">binom.test()</span></code> command, which uses the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">binom.test(x,</span> <span class="pre">n,</span> <span class="pre">conf.level</span> <span class="pre">=</span> <span class="pre">0.95)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The number of “successes” in the sample.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: The sample size.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">conf.level</span></code>: The confidence level of the interval.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Applying this to our sample of cell phone users, we can run <code class="docutils literal notranslate"><span class="pre">binom.test()</span></code> with <code class="docutils literal notranslate"><span class="pre">x</span></code> equal to thirty and <code class="docutils literal notranslate"><span class="pre">n</span></code> equal to one hundred:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">binom.test</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Exact binomial test
+
+data:  30 and 100
+number of successes = 30, number of trials = 100, p-value = 7.85e-05
+alternative hypothesis: true probability of success is not equal to 0.5
+95 percent confidence interval:
+ 0.2124064 0.3998147
+sample estimates:
+probability of success 
+                   0.3 
+</pre></div>
+</div>
+</div>
+</div>
+<p>For now, all we care about in this output is the line that reads <code class="docutils literal notranslate"><span class="pre">95</span> <span class="pre">percent</span> <span class="pre">confidence</span> <span class="pre">interval:</span></code>. We interpret this output as follows: we are 95% confident that the true population proportion of adult cell phone users who switched carriers in the past two years is between 21.24% and 39.98%.</p>
+</div>
+<div class="section" id="confidence-intervals-for-means">
+<h2><span class="section-number">3.2.2. </span>Confidence Intervals for Means<a class="headerlink" href="#confidence-intervals-for-means" title="Permalink to this headline">¶</a></h2>
+<p>Now suppose that in our sample of one hundred adult cell phone users, we also asked them to rate their satisfaction with their most recent service provider on a continuous scale from one to ten. In this sample, the average rating was 6.72 with a standard deviation of 1.72. Based on this sample statistic (which we denote <span class="math notranslate nohighlight">\(\bar{x}\)</span>), what can we conclude about the average level of satisfaction among the entire population of adult cell phone users (which we denote <span class="math notranslate nohighlight">\(\mu\)</span>)? Our sample estimate of <span class="math notranslate nohighlight">\(\bar{x} = 6.72\)</span> is based on a random sample of one hundred users and not the entire population, so we cannot conclude that the true population parameter is <span class="math notranslate nohighlight">\(\mu = 6.72\)</span>. Instead, we must calculate a confidence interval to understand the range of plausible values for the population mean <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<p>When working with means, we use a different formula to calculate the confidence interval:</p>
+<div class="math notranslate nohighlight">
+\[ \bar{x} \pm t^{\ast}\frac{s}{\sqrt n},\ \ \ \ \ \ \ \ df\ =\ n\ -\ 1 \]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> is our estimate from the sample, <span class="math notranslate nohighlight">\(n\)</span> is the number of observations in the sample, <span class="math notranslate nohighlight">\(s\)</span> is the standard deviation from the sample, <span class="math notranslate nohighlight">\(df\)</span> is the degrees of freedom (described below), and <span class="math notranslate nohighlight">\(t^{\ast}\)</span> is a constant that determines our desired level of confidence in the interval.</p>
+<p>The standard deviation from the sample (<span class="math notranslate nohighlight">\(s\)</span>) is calculated using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[ s\ =\ \sqrt{\frac{\sum{(x_i\ -\ \bar{x})}^2}{n\ -\ 1}} \]</div>
+<p>Unlike the z^\ast from the previous section, the value <span class="math notranslate nohighlight">\(t^\ast\)</span> depends on both our desired level of confidence and something called the <strong>degrees of freedom</strong> of the test. In the case of confidence intervals for means, the degrees of freedom is simply the sample size (<span class="math notranslate nohighlight">\(n\)</span>) minus one. To determine the appropriate value of <span class="math notranslate nohighlight">\(t^{\ast}\)</span> for our 95% confidence interval, we therefore need to look up the value of <span class="math notranslate nohighlight">\(t^{\ast}\)</span> that corresponds to a confidence level of 0.95 with 99 degrees of freedom. This can be done by searching the web for a calculator that returns the appropriate value of <span class="math notranslate nohighlight">\(t^{\ast}\)</span> based on our degrees of freedom and confidence level; in this case, the value is approximately 1.98. Note that in practice, one would often use statistical software (such as the R or Python programming languages, SPSS, Excel, etc.) to calculate confidence intervals instead of calculating them by hand. These packages determine the appropriate value of <span class="math notranslate nohighlight">\(t^{\ast}\)</span> for you behind the scenes, so you will rarely need to look it up yourself.</p>
+<p>Now let’s apply the above formulas to calculate a 95% confidence interval (note there may be some error due to rounding):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\bar{x}\ \pm\ t^{\ast}\frac{s}{\sqrt n}\ &amp;=\ 6.72\ \pm\ 1.98\frac{1.72}{\sqrt{100}} \\
+&amp;=\ [6.38,\ 7.06]
+\end{aligned}
+\end{split}\]</div>
+<p>We interpret this confidence interval as follows: “we are 95% confident that the true population average satisfaction among all adult cell phone users is between 6.38 and 7.06.”</p>
+<p>Recall that our <code class="docutils literal notranslate"><span class="pre">employees</span></code> data set has the salary of the sampled employees. Imagine that based on this sample, we would like to estimate the true average salary of all employees at the company. For means, we need to use the <code class="docutils literal notranslate"><span class="pre">t.test()</span></code> function to calculate the 95% confidence interval:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">t.test(x,</span> <span class="pre">conf.level</span> <span class="pre">=</span> <span class="pre">0.95)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: An atomic vector with the sample values.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">conf.level</span></code>: The confidence level of the interval.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Applying this to our sample of employees:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">employees</span><span class="o">$</span><span class="n">Salary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
+
+data:  employees$Salary
+t = 120.22, df = 919, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 153931.5 159040.5
+sample estimates:
+mean of x 
+   156486 
+</pre></div>
+</div>
+</div>
+</div>
+<p>As with the output for proportions, we can (for now) ignore everything besides the line that reads <code class="docutils literal notranslate"><span class="pre">95</span> <span class="pre">percent</span> <span class="pre">confidence</span> <span class="pre">interval:</span></code>. We interpret this output as follows: we are 95% confident that the true population average salary at the company is between $153,931.5 and $159,040.5.</p>
+<p>We could also calculate confidence intervals for specific subgroups. Let’s use the <code class="docutils literal notranslate"><span class="pre">employees</span></code> data to calculate the salary confidence intervals for men and women separately:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">maleEmployees</span> <span class="o">&lt;-</span> <span class="nf">filter</span><span class="p">(</span><span class="n">employees</span><span class="p">,</span> <span class="n">Gender</span><span class="o">==</span><span class="s">&quot;Male&quot;</span><span class="p">)</span>
+<span class="nf">t.test</span><span class="p">(</span><span class="n">maleEmployees</span><span class="o">$</span><span class="n">Salary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
+
+data:  maleEmployees$Salary
+t = 85.751, df = 457, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 157515.6 164904.5
+sample estimates:
+mean of x 
+   161210 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">femaleEmployees</span> <span class="o">&lt;-</span> <span class="nf">filter</span><span class="p">(</span><span class="n">employees</span><span class="p">,</span> <span class="n">Gender</span><span class="o">==</span><span class="s">&quot;Female&quot;</span><span class="p">)</span>
+<span class="nf">t.test</span><span class="p">(</span><span class="n">femaleEmployees</span><span class="o">$</span><span class="n">Salary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
+
+data:  femaleEmployees$Salary
+t = 85.442, df = 461, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 148311.4 155294.2
+sample estimates:
+mean of x 
+ 151802.8 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the 95% confidence intervals do <em>not</em> overlap, which suggests that on average, women at the company are paid lower than men. To investigate this further, we need a formal method to compare groups statistically. This topic is covered in the next section.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./03_stat_inference"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="samps_pops.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3.1. </span>Samples &amp; Populations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="hyp_testing.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.3. </span>Hypothesis Testing</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSM Faculty<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

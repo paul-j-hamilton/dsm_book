@@ -1,0 +1,891 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4.4. Power &#8212; Data Science for Managers</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Linear Regression" href="../05_linear_regression/linear_regression.html" />
+    <link rel="prev" title="4.3. Exercise: Causal Inference" href="causal_exercise.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science for Managers</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Data Science for Managers!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/roadmap.html">
+   Course Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/assignments.html">
+   Assignment Sheets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/access.html">
+   Access to Materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/platforms.html">
+   Coding Platforms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R Bootcamp
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics.html">
+   R Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/r_as_a_calculator.html">
+     R as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/assignment.html">
+     Assignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/data_types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz1.html">
+     <strong>
+      Quiz #1
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/atomic_vectors.html">
+     Atomic Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz2.html">
+     <strong>
+      Quiz #2
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/02_dataframes/dataframes.html">
+   Data Frames
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/r_packages.html">
+     R Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/reading_in_data.html">
+     Reading in Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/data_frame_basics.html">
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_basics_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/fixing_variable_types.html">
+     Fixing Variable Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/sorting_data.html">
+     Sorting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/filtering_rows.html">
+     Filtering Rows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/selecting_columns.html">
+     Selecting Columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_quiz.html">
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_bootcamp/bootcamp_finish_message.html">
+   Welcome to the Course!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploratory Data Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01_eda/eda.html">
+   1. Exploring Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/summary_stats.html">
+     1.1. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/visualization.html">
+     1.2. Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/eda_quiz.html">
+     1.3.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/ggplot.html">
+     1.4. Visualization with ggplot (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_tidy/eda_tidyverse.html">
+   2. Data Wrangling with the tidyverse
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/pipe_operator.html">
+     2.1. The Pipe Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/summarise.html">
+     2.2. Summarising Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/dds.html">
+     2.3.
+     <strong>
+      Case Study:
+     </strong>
+     California Department of Developmental Services (DDS)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Inference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03_stat_inference/stat_inference.html">
+   3. Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/samps_pops.html">
+     3.1. Samples &amp; Populations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/conf_int.html">
+     3.2. Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/hyp_testing.html">
+     3.3. Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/hyp_test_quiz.html">
+     3.4.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/one_samp_test_exercise.html">
+     3.5.
+     <strong>
+      Exercise:
+     </strong>
+     One-Sample Hypothesis Testing (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/two_samp_test_exercise.html">
+     3.6.
+     <strong>
+      Exercise:
+     </strong>
+     Two-Sample Hypothesis Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="causal_inference.html">
+   4. Causal Inference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="obs_studies.html">
+     4.1. Observational Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rand_experiments.html">
+     4.2. Randomized Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="causal_exercise.html">
+     4.3.
+     <strong>
+      Exercise:
+     </strong>
+     Causal Inference
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.4. Power
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05_linear_regression/linear_regression.html">
+   5. Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/correlation.html">
+     5.1. Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/simple_reg.html">
+     5.2. Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/understanding_reg.html">
+     5.3. Understanding Our Regression Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise1.html">
+     5.4.
+     <strong>
+      Exercise:
+     </strong>
+     Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/multiple_linear_regression.html">
+     5.5. Multiple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/dummy.html">
+     5.6. Dummy Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise2.html">
+     5.7.
+     <strong>
+      Exercise:
+     </strong>
+     Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/transformations.html">
+     5.8. Transformations (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/interactions.html">
+     5.9. Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise3.html">
+     5.10.
+     <strong>
+      Exercise:
+     </strong>
+     Multiple Linear Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prediction &amp; Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_ml_intro/ml_intro.html">
+   6. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07_logistic_regression/logistic_regression.html">
+   7. Logistic Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/why_not_lin.html">
+     7.1. Why Not Linear Regression?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/simple_log_reg.html">
+     7.2. Simple Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/multiple_log_reg.html">
+     7.3. Multiple Logistic Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08_knn/knn.html">
+   8. k-Nearest Neighbors (kNN)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08_knn/bias_variance.html">
+     8.4. The Bias-Variance Tradeoff
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09_model_eval/model_eval.html">
+   9. Model Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_model_eval/data_partition.html">
+     9.1. Partitioning Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_model_eval/performance_metrics.html">
+     9.2. Performance Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10_dt_rf/dt_rf.html">
+   10. Tree Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/decision_trees.html">
+     10.1. Decision Trees
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/random_forest.html">
+     10.2. Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/xgboost.html">
+     10.3. XGBoost (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11_neural_nets/neural_nets.html">
+   11. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12_unsupervised/unsupervised.html">
+   12. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13_nlp/nlp.html">
+   13. Natural Language Processing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/04_causal_inference/power.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04_causal_inference/power.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F04_causal_inference/power.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/04_causal_inference/power.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="power">
+<h1><span class="section-number">4.4. </span>Power<a class="headerlink" href="#power" title="Permalink to this headline">¶</a></h1>
+<p>After completing the steps in the previous section, businesses face an additional decision: how much data to collect in their experiment. Of course, more data is always better, but there are usually economic limitations that prevent one from collecting an arbitrarily large sample. Therefore, we face a trade-off: large samples may be prohibitively expensive, but if our sample is too small we may not have enough “power” to detect a significant difference between our treatment and control groups. That is, we may not have enough data to reject the null when there truly is a difference between the two groups. <strong>Power analysis</strong> allows us to calculate the minimum sample size required to detect a difference, given that one really exists.</p>
+<p>Using the language of hypothesis testing from <a class="reference external" href="../03_stat_inference/hyp_testing.html#hypothesis-testing">Hypothesis Testing</a>, Musicfi plans to test the following hypotheses, where <span class="math notranslate nohighlight">\(\mu_0\)</span> is the mean of the control group and <span class="math notranslate nohighlight">\(\mu_1\)</span> is the mean of the treatment group:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_o: \mu_0 = \mu_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_a: \mu_0 \ne \mu_1\)</span></p></li>
+</ul>
+<p>Imagine that the alternative hypothesis (<span class="math notranslate nohighlight">\(H_a\)</span>) is true, <em>i.e.</em>, the mean streaming minutes is different for customers in the control and treatment groups. Even under this scenario, there is no guarantee that our analysis will detect the difference because we have a <strong>sample</strong> of customers (fortunately a random sample) and not the population of all possible customers. The question then becomes: <strong>what is the smallest sample we can collect that will still provide a reasonable chance of detecting a difference <em>if one exists</em>?</strong></p>
+<p>To tackle this question, think through the following scenarios. What do you think would require more data:</p>
+<p>(a) Detecting a difference in streaming time between free and premium users when the true average difference is five minutes, or
+(b) Detecting a difference when the true average difference is only two minutes?</p>
+<p>Intuitively, the larger the true difference, the more likely that difference will manifest itself in our random sample. Therefore, we need would need more data in scenario (b) to pick up on the difference than we would in scenario (a).</p>
+<p>Let’s imagine that based on the business context, Musicfi does not care if the difference between free and premium users is less than two minutes; in other words, if the true difference is two minutes or less, Musicfi would consider that difference negligible. Therefore, they want to determine the smallest possible sample size that still has a good chance of detecting a difference of two minutes or greater. Note this implies that if the true difference is <em>less</em> than two minutes, the experiment will likely <em>not</em> pick up on that difference. Determining the minimum detectable difference is an important step in a power analysis, and one that requires input from managers who have business area expertise.</p>
+<p>To conduct a power analysis, we need several pieces of information:</p>
+<ol class="simple">
+<li><p>The <strong>significance level</strong> of the test (<span class="math notranslate nohighlight">\(\alpha\)</span>). As before, we will use a significance level of 0.05.</p></li>
+<li><p>The <strong>power of the test</strong> (<span class="math notranslate nohighlight">\(1-\beta\)</span>). This is the probability that our test will detect the difference <em>given that there is a difference in the population</em>. A common choice for <span class="math notranslate nohighlight">\(1-\beta\)</span> is 0.8. Note that this implies there is still a <span class="math notranslate nohighlight">\(\beta\)</span> = 20% chance our test will <em>not</em> detect the difference when a difference actually exists.</p></li>
+<li><p>The <strong>treatment effect</strong>, defined as the difference between the two groups (<span class="math notranslate nohighlight">\(\mu_1 - \mu_o\)</span>). Of course, we don’t know the true population treatment effect — this is the quantity we are trying to estimate from the experiment. However, to determine how big our sample size should be, we need a plausible guess of the smallest effect that we would want to detect in our study. Typically, the estimate is based on historical data; we usually shrink the estimate closer to zero because our data is likely subject to unobserved confounding.</p></li>
+<li><p>The <strong>pooled standard deviation</strong> of the two groups, usually estimated from historical data.</p></li>
+</ol>
+<p>We then combine 3 and 4 to compute the normalized difference in means <span class="math notranslate nohighlight">\(d\)</span> (know as the effect size, or Cohen’s <span class="math notranslate nohighlight">\(d\)</span>) by dividing our estimate of the treatment effect by the pooled standard deviation.</p>
+<p>For example, with the Musicfi data we want to observe a minimum difference of two minutes, so we would calculate <span class="math notranslate nohighlight">\(d\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[d = \frac{\mu_1 - \mu_0}{s} = \frac{2}{s}\]</div>
+<p>The quantity <span class="math notranslate nohighlight">\(s\)</span> is the pooled standard deviation of the two groups, and is calculated from the standard deviations of the control group and the treatment group (<span class="math notranslate nohighlight">\(s_o\)</span> and <span class="math notranslate nohighlight">\(s_1\)</span> respectively) using the formula below. These quantities typically need to be estimated from historical data; in our case, we can use the data from Musicfi’s previous experiment, which is stored in <code class="docutils literal notranslate"><span class="pre">musicfiExp</span></code>.</p>
+<div class="math notranslate nohighlight">
+\[s = \sqrt{\frac{s_1^2 + s_0^2}{2}}\]</div>
+<p>After determining the three inputs using our historical data, we use the <code class="docutils literal notranslate"><span class="pre">pwr.t.test()</span></code> function from R’s <code class="docutils literal notranslate"><span class="pre">pwr</span></code> package to calculate the required sample size.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p>pwr::pwr.t.test(d, power, sig.level=0.05)</p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">d</span></code>: The effect size, <em>i.e.</em>, Cohen’s <span class="math notranslate nohighlight">\(d\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">power</span></code>: The power of the test (<span class="math notranslate nohighlight">\(1-\beta\)</span>).</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">conf.level</span></code>: The significance level of the test.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Let’s say we want to design a new experiment that will have an 80% chance of detecting a difference of two minutes or greater at a 5% significance level. We can use the <code class="docutils literal notranslate"><span class="pre">pwr.t.test()</span></code> function to calculate the minimum sample size we will need for this experiment.</p>
+<p>First, we need to calculate <span class="math notranslate nohighlight">\(s\)</span> based on our historical data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create separate data frames for free and premium users</span>
+<span class="n">musicfiExpFree</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">musicfiExp</span><span class="p">,</span> <span class="n">AccountType</span><span class="o">==</span><span class="s">&quot;Free&quot;</span><span class="p">)</span>
+<span class="n">musicfiExpPremium</span> <span class="o">=</span> <span class="nf">subset</span><span class="p">(</span><span class="n">musicfiExp</span><span class="p">,</span> <span class="n">AccountType</span><span class="o">==</span><span class="s">&quot;Premium&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate the sample standard deviation of streaming minutes for free and premium users</span>
+<span class="n">s0</span> <span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">musicfiExpFree</span><span class="o">$</span><span class="n">StreamingMinutes</span><span class="p">)</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">musicfiExpPremium</span><span class="o">$</span><span class="n">StreamingMinutes</span><span class="p">)</span>
+
+<span class="c1"># Calculate the estimate of the pooled standard deviation</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">((</span><span class="n">s0</span><span class="o">^</span><span class="m">2</span> <span class="o">+</span> <span class="n">s1</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use <code class="docutils literal notranslate"><span class="pre">s</span></code> to calculate Cohen’s <span class="math notranslate nohighlight">\(d\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="m">2</span><span class="o">/</span><span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can apply the <code class="docutils literal notranslate"><span class="pre">pwr.t.test()</span></code> function to determine our sample size:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pwr.t.test</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="m">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     Two-sample t test power calculation 
+
+              n = 127.7748
+              d = 0.3518408
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number in *each* group
+</pre></div>
+</div>
+</div>
+</div>
+<p>These results indicate that (rounding up) we need at least 128 participants in the control and treatment groups, for a total sample size of 256.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./04_causal_inference"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="causal_exercise.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4.3. </span><strong>Exercise:</strong> Causal Inference</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../05_linear_regression/linear_regression.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Linear Regression</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSM Faculty<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

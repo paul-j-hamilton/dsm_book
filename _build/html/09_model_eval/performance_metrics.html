@@ -1,0 +1,1180 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9.2. Performance Metrics &#8212; Data Science for Managers</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. Tree Models" href="../10_dt_rf/dt_rf.html" />
+    <link rel="prev" title="9.1. Partitioning Data" href="data_partition.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science for Managers</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Data Science for Managers!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/roadmap.html">
+   Course Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/assignments.html">
+   Assignment Sheets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/access.html">
+   Access to Materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/platforms.html">
+   Coding Platforms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R Bootcamp
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics.html">
+   R Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/r_as_a_calculator.html">
+     R as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/assignment.html">
+     Assignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/data_types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz1.html">
+     <strong>
+      Quiz #1
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/atomic_vectors.html">
+     Atomic Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz2.html">
+     <strong>
+      Quiz #2
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/02_dataframes/dataframes.html">
+   Data Frames
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/r_packages.html">
+     R Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/reading_in_data.html">
+     Reading in Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/data_frame_basics.html">
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_basics_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/fixing_variable_types.html">
+     Fixing Variable Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/sorting_data.html">
+     Sorting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/filtering_rows.html">
+     Filtering Rows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/selecting_columns.html">
+     Selecting Columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_quiz.html">
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_bootcamp/bootcamp_finish_message.html">
+   Welcome to the Course!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploratory Data Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01_eda/eda.html">
+   1. Exploring Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/summary_stats.html">
+     1.1. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/visualization.html">
+     1.2. Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/eda_quiz.html">
+     1.3.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/ggplot.html">
+     1.4. Visualization with ggplot (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_tidy/eda_tidyverse.html">
+   2. Data Wrangling with the tidyverse
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/pipe_operator.html">
+     2.1. The Pipe Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/summarise.html">
+     2.2. Summarising Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/dds.html">
+     2.3.
+     <strong>
+      Case Study:
+     </strong>
+     California Department of Developmental Services (DDS)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Inference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03_stat_inference/stat_inference.html">
+   3. Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/samps_pops.html">
+     3.1. Samples &amp; Populations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/conf_int.html">
+     3.2. Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/hyp_testing.html">
+     3.3. Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/hyp_test_quiz.html">
+     3.4.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/one_samp_test_exercise.html">
+     3.5.
+     <strong>
+      Exercise:
+     </strong>
+     One-Sample Hypothesis Testing (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/two_samp_test_exercise.html">
+     3.6.
+     <strong>
+      Exercise:
+     </strong>
+     Two-Sample Hypothesis Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04_causal_inference/causal_inference.html">
+   4. Causal Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/obs_studies.html">
+     4.1. Observational Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/rand_experiments.html">
+     4.2. Randomized Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/causal_exercise.html">
+     4.3.
+     <strong>
+      Exercise:
+     </strong>
+     Causal Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/power.html">
+     4.4. Power
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05_linear_regression/linear_regression.html">
+   5. Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/correlation.html">
+     5.1. Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/simple_reg.html">
+     5.2. Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/understanding_reg.html">
+     5.3. Understanding Our Regression Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise1.html">
+     5.4.
+     <strong>
+      Exercise:
+     </strong>
+     Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/multiple_linear_regression.html">
+     5.5. Multiple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/dummy.html">
+     5.6. Dummy Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise2.html">
+     5.7.
+     <strong>
+      Exercise:
+     </strong>
+     Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/transformations.html">
+     5.8. Transformations (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/interactions.html">
+     5.9. Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise3.html">
+     5.10.
+     <strong>
+      Exercise:
+     </strong>
+     Multiple Linear Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prediction &amp; Machine Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_ml_intro/ml_intro.html">
+   6. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07_logistic_regression/logistic_regression.html">
+   7. Logistic Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/why_not_lin.html">
+     7.1. Why Not Linear Regression?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/simple_log_reg.html">
+     7.2. Simple Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/multiple_log_reg.html">
+     7.3. Multiple Logistic Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08_knn/knn.html">
+   8. k-Nearest Neighbors (kNN)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08_knn/bias_variance.html">
+     8.4. The Bias-Variance Tradeoff
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="model_eval.html">
+   9. Model Evaluation
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_partition.html">
+     9.1. Partitioning Data
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     9.2. Performance Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10_dt_rf/dt_rf.html">
+   10. Tree Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/decision_trees.html">
+     10.1. Decision Trees
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/random_forest.html">
+     10.2. Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/xgboost.html">
+     10.3. XGBoost (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11_neural_nets/neural_nets.html">
+   11. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12_unsupervised/unsupervised.html">
+   12. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13_nlp/nlp.html">
+   13. Natural Language Processing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/09_model_eval/performance_metrics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/09_model_eval/performance_metrics.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F09_model_eval/performance_metrics.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/09_model_eval/performance_metrics.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification">
+   9.2.1. Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confusion-matrices">
+     9.2.1.1. Confusion Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roc-curves">
+     9.2.1.2. ROC Curves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#log-loss">
+     9.2.1.3. Log Loss
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression">
+   9.2.2. Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mae">
+     9.2.2.1. MAE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mape">
+     9.2.2.2. MAPE
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="performance-metrics">
+<h1><span class="section-number">9.2. </span>Performance Metrics<a class="headerlink" href="#performance-metrics" title="Permalink to this headline">¶</a></h1>
+<p>So far we have been evaluating our models via their accuracy, or the proportion of times when their predictions agreed with the true outcome. This is a simple measure to calculate, and in some circumstances is sufficient to evaluate the performance of a prediction model. However, there are many other performance metrics with different strengths and weaknesses that may be more useful depending on the context of the problem. In this section, we will cover some of the popular alternatives. The different metrics we describe in this chapter are organized by classification and regression problems.</p>
+<div class="section" id="classification">
+<h2><span class="section-number">9.2.1. </span>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h2>
+<p>As a reminder, classification problems are those where the outcome variable is categorical. In this section, we focus on performance metrics for evaluating models with binary outcomes.</p>
+<div class="section" id="confusion-matrices">
+<h3><span class="section-number">9.2.1.1. </span>Confusion Matrices<a class="headerlink" href="#confusion-matrices" title="Permalink to this headline">¶</a></h3>
+<p>From the accuracy score we calculated in Section <a class="reference external" href="data_partition.html#holdout-sets">Holdout Sets</a>, we know that our final model incorrectly predicted around 10% of the observations in the holdout set. But what kind of mistakes did it make? Did it label customers who <em>did</em> churn as non-churners? Or did it label customers who <em>did not</em> churn as churners? We can investigate this through a <strong>confusion matrix</strong>, or a table that breaks down the type of correct and incorrect predictions made by a model. We can create confusion matrices in R with the <code class="docutils literal notranslate"><span class="pre">ConfusionMatrix()</span></code> function from the <code class="docutils literal notranslate"><span class="pre">MLmetrics</span></code> package, which uses the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">MLmetrics::ConfusionMatrix(y_pred,</span> <span class="pre">y_true)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code>: An atomic vector with the model predictions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_true</span></code>: An atomic vector with the true labels.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Applying this to our holdout set:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ConfusionMatrix</span><span class="p">(</span><span class="n">finalModelPredictions</span><span class="p">,</span> <span class="n">churnHoldoutScaled</span><span class="o">$</span><span class="n">churn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      y_pred
+y_true  no yes
+   no  715  25
+   yes  61  49
+</pre></div>
+</div>
+</div>
+</div>
+<p>What does this table tell us? The diagonal of the table (<em>i.e.</em>, 715 and 49) represents the observations that the model predicted correctly (715 + 49 = 764). Conversely, the off-diagonals (25 and 61) represent the observations that the model predicted incorrectly (25 + 61 = 86). If we divide the number of correct predictions (764) by the total number of observations in the holdout set (850), we get our accuracy score of 89.9%.</p>
+<p>Now let’s focus on each value in the confusion matrix:</p>
+<ul class="simple">
+<li><p>The top-left cell indicates that the model correctly identified <em>715</em> of the non-churners.</p></li>
+<li><p>The top-right cell indicates that the model incorrectly flagged <em>25</em> non-churners as churners.</p></li>
+<li><p>The bottom-left cell indicates that the model incorrectly flagged <em>61</em> churners as non-churners.</p></li>
+<li><p>The bottom-right cell indicates that the model correctly identified <em>49</em> of the churners.</p></li>
+</ul>
+<p>Why might this be more informative than simple accuracy? Although accuracy tells us the total number of mistakes our model made, it does not tell us which <em>type</em> of mistakes the model made. In this context, there are two possible mistakes: flagging someone who is not going to churn as a churner (known as a <strong>false positive</strong>), and flagging someone who is going to churn as a non-churner (known as a <strong>false negative</strong>).</p>
+<p>Depending on the business context, these two types of mistakes may not be associated with identical costs. Assume that if our model predicts a customer is about to churn, we plan to offer that customer a $100 rebate to convince them to stay with the service. In this case, it is likely much more costly to lose a customer than it is to provide the rebate to a customer that would not have churned. If we make a false positive error and incorrectly assume that someone is about to churn, we will unnecessarily lose $100, as the customer would have stayed regardless of whether we gave them the rebate. Conversely, if we make a false negative error and incorrectly assume that someone is not about to churn, we will not offer them a rebate and permanently lose them as a customer. Therefore, a false negative is likely more costly than a false positive in this context.</p>
+<p>This is another example of the role managers play in the data science pipeline. A thorough understanding of the business context is required to evaluate the relative costs of these two types of errors. A highly accurate model may still be insufficient if it makes highly costly mistakes. It is therefore important that managers and data scientists collaborate to evaluate models <em>in the context of the business problem</em>.</p>
+<p>Up until now, we have been implicitly applying a cutoff of 50% to our model’s predictions. Remember that the kNN algorithm predicts the <em>probability</em> that a given customer will churn (a value between 0% and 100%). When we applied the model to the holdout set using the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> function (see Section <a class="reference external" href="data_partition.html#holdout-sets">Holdout Sets</a>), this function automatically converted the model’s predictions from a continuous probability to a discrete “churn” / “did not churn”. By default <code class="docutils literal notranslate"><span class="pre">predict()</span></code> uses a cutoff of 50%. This means that if our model predicts the probability of churning as greater than 50%, the final prediction is considered “churn”; if the probability is less than 50%, the final prediction is considered “not churn”.</p>
+<p>This cutoff of 50% seems like a natural threshold, but there is no reason we <em>must</em> choose 50%. As we noted above, the cost of a false positive and false negative error may be different. If the cost of a false positive is very high, we may only want to predict “churn” if we are very, very confident that the customer is about to churn. Therefore, we may want to increase the threshold above 50%. For example, we may only want to predict “churn” if the model’s predicted probability is greater than 80%. Conversely, if the cost of a false negative is very high, we may want to decrease the threshold below 50%.</p>
+<p>If we apply a different cutoff to our predictions, we will get a different confusion matrix for the same model. Let’s start with a cutoff of 80%. First, we need to re-run the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> function so that we get the raw probabilities, instead of just <code class="docutils literal notranslate"><span class="pre">&quot;yes&quot;</span></code> / <code class="docutils literal notranslate"><span class="pre">&quot;no&quot;</span></code>. We can do this by adding the optional parameter <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">=</span> <span class="pre">&quot;prob&quot;</span></code> to the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">finalModelPredictionsProb</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">knnCV</span><span class="p">,</span> <span class="n">churnHoldoutScaled</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;prob&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">finalModelPredictionsProb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>no</th><th scope=col>yes</th></tr></thead>
+<tbody>
+	<tr><td>0.6666667</td><td>0.3333333</td></tr>
+	<tr><td>1.0000000</td><td>0.0000000</td></tr>
+	<tr><td>1.0000000</td><td>0.0000000</td></tr>
+	<tr><td>1.0000000</td><td>0.0000000</td></tr>
+	<tr><td>1.0000000</td><td>0.0000000</td></tr>
+	<tr><td>1.0000000</td><td>0.0000000</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>This creates a data frame, where one column represents the model’s predicted probability that the observation is a <code class="docutils literal notranslate"><span class="pre">&quot;yes&quot;</span></code>, and the other represents the predicted probability that the observations is a <code class="docutils literal notranslate"><span class="pre">&quot;no&quot;</span></code>. Note that these two columns always sum to 1.</p>
+<p>Now that we have the raw probabilities, we can apply our custom cutoff of 0.8. In the code below, we create a vector called <code class="docutils literal notranslate"><span class="pre">finalModelPredictions0.8</span></code>, where each element equals <code class="docutils literal notranslate"><span class="pre">&quot;yes&quot;</span></code> if the predicted probability of churning is greater than 80%, and <code class="docutils literal notranslate"><span class="pre">&quot;no&quot;</span></code> if the predicted probability is less than 80%.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">finalModelPredictions0.8</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">finalModelPredictionsProb</span><span class="o">$</span><span class="n">yes</span> <span class="o">&gt;</span> <span class="m">0.8</span><span class="p">,</span> <span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="s">&quot;no&quot;</span><span class="p">)</span>
+<span class="n">finalModelPredictions0.8</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><ol class=list-inline>
+	<li>'no'</li>
+	<li>'no'</li>
+	<li>'no'</li>
+	<li>'no'</li>
+	<li>'no'</li>
+</ol>
+</div></div>
+</div>
+<p>Now we can use <code class="docutils literal notranslate"><span class="pre">ConfusionMatrix()</span></code> to calculate the confusion matrix with our new cutoff of 80%:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ConfusionMatrix</span><span class="p">(</span><span class="n">finalModelPredictions0.8</span><span class="p">,</span> <span class="n">churnHoldoutScaled</span><span class="o">$</span><span class="n">churn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      y_pred
+y_true  no yes
+   no  739   1
+   yes  94  16
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, this confusion matrix looks different than the one where we used a cutoff of 50%. Now, the model makes only one false positive error, but it makes many more false negative errors (94).</p>
+<p>Let’s repeat this process with a lower cutoff of 20%.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">finalModelPredictions0.2</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">finalModelPredictionsProb</span><span class="o">$</span><span class="n">yes</span> <span class="o">&gt;</span> <span class="m">0.2</span><span class="p">,</span> <span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="s">&quot;no&quot;</span><span class="p">)</span>
+<span class="nf">ConfusionMatrix</span><span class="p">(</span><span class="n">finalModelPredictions0.2</span><span class="p">,</span> <span class="n">churnHoldoutScaled</span><span class="o">$</span><span class="n">churn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      y_pred
+y_true  no yes
+   no  623 117
+   yes  25  85
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we apply a lower cutoff, the model makes less false negative errors (25), but more false positive errors (117).</p>
+<p>As emphasized previously, it is the manager’s job to determine which one of these cutoffs is appropriate. In general, if based on the business context a false negative error is more costly, one would want to apply a lower cutoff. If instead a false positive error is more costly, one would want to apply a higher cutoff.</p>
+</div>
+<div class="section" id="roc-curves">
+<h3><span class="section-number">9.2.1.2. </span>ROC Curves<a class="headerlink" href="#roc-curves" title="Permalink to this headline">¶</a></h3>
+<p>To evaluate our model on the holdout set, we could continue looking at confusion matrices associated with different cutoffs. However, there are an infinite number of possible cutoffs to pick from between 0 and 1. Therefore, we need an evaluation method that is independent of arbitrary cutoff choices. One such method is the <strong>ROC curve</strong> (Receiver Operating Characteristic Curve), which plots the model’s false positive and true positive rates across all possible cutoff values.</p>
+<p>Recall our three confusion matrices, which show the model’s performance at different cutoffs (0.2, 0.5, and 0.8). For 0.2, the false positive rate (or the proportion of non-churners that are incorrectly flagged as churners) is 117 / (623 + 117) = 15.81%. The true positive rate (or the proportion of churners that are correctly flagged as churners) is 85 / (25 + 85) = 77.27%. For 0.5 the false positive and true positive rates are (3.38%, 44.55%) respectively, and for 0.8 these values are (0.14%, 14.55%).</p>
+<p>We also know that if we used a cutoff of one, all of the predictions would be “not churn”, so the false positive and true positive rates would be (0%, 0%). Similarly, if we used a cutoff of zero, all of the predictions would be “churn”, so the false positive and true positive rates would be (100%, 100%).</p>
+<p>Let’s plot these five points, with the false positive rate on the x-axis and the true positive rate on the y-axis:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/performance_metrics_12_0.png" src="../_images/performance_metrics_12_0.png" />
+</div>
+</div>
+<p>As we can see from this curve, we face a tradeoff when it comes to the cutoff value we choose. As we decrease the value of the cutoff, our true positive rate increases, which means we correctly flag more people who will end up churning. However, our false positive rate also increases, meaning we incorrectly flag more people who will <em>not</em> end up churning. As always, how one chooses to balance this tradeoff (<em>i.e.</em>, how to pick the correct cutoff) depends on the business context of the problem.</p>
+<p>To understand this curve even further, consider what it would look like if we just randomly guessed the probability of churning for each observation. Because we are guessing randomly, at any given cutoff the probability of a false positive would be the same as the probability of a true positive. Therefore, a very poor model that randomly guessed at the outcome would be plotted on the 45 degree line, where the false positive and true positive rates are the same. This is shown below in the red dotted line.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/performance_metrics_14_0.png" src="../_images/performance_metrics_14_0.png" />
+</div>
+</div>
+<p>Finally, consider what the curve would look like with a perfect model. For observations that did churn, this model would predict the probability of churning to be 100%, and for observations that did not churn, this model would predict the probability of churning to be 0%. At a threshold of one the false positive and true positive rates would still be (0%, 0%), and at a threshold of zero these rates would still be (100%, 100%). However, for any other threshold, the false positive and true positive rates would be (0%, 100%). This curve is plotted below in the blue dashed line.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/performance_metrics_16_0.png" src="../_images/performance_metrics_16_0.png" />
+</div>
+</div>
+<p>In general, the better our model, the closer the ROC curve will be to the blue line, and the further away it will be from the red line.</p>
+<p>We can plot the ROC curve for our model in R using the <code class="docutils literal notranslate"><span class="pre">prediction()</span></code> and <code class="docutils literal notranslate"><span class="pre">performance()</span></code> functions from the <code class="docutils literal notranslate"><span class="pre">ROCR</span></code> package. These functions use the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">ROCR::prediction(predictions,</span> <span class="pre">labels)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code>: An atomic vector with the model predictions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_true</span></code>: An atomic vector with the true labels.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">ROCR::performance(predictionObj,</span> <span class="pre">measure1,</span> <span class="pre">measure2,</span> <span class="pre">...)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">predictionObj</span></code>: An object created using the <code class="docutils literal notranslate"><span class="pre">prediction()</span></code> function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">measure1</span></code>: The desired model performance measure. See the “Details” section <a class="reference external" href="https://www.rdocumentation.org/packages/ROCR/versions/1.0-1/topics/performance">here</a> for a full list. For our purposes, we will use “tpr” for the true positive rate and “fpr” for the false positive rate.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">measure2,</span> <span class="pre">...</span></code>: Any additional model performance measures.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Below we apply these functions to create an object <code class="docutils literal notranslate"><span class="pre">roc</span></code>, which can be passed to the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function to plot the ROC curve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ROCR</span><span class="p">)</span>
+
+<span class="n">rocPrediction</span> <span class="o">&lt;-</span> <span class="nf">prediction</span><span class="p">(</span><span class="n">finalModelPredictionsProb</span><span class="o">$</span><span class="n">yes</span><span class="p">,</span> <span class="n">churnHoldoutScaled</span><span class="o">$</span><span class="n">churn</span><span class="p">)</span>
+<span class="n">roc</span> <span class="o">&lt;-</span> <span class="nf">performance</span><span class="p">(</span><span class="n">rocPrediction</span><span class="p">,</span> <span class="s">&quot;tpr&quot;</span><span class="p">,</span> <span class="s">&quot;fpr&quot;</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">roc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/performance_metrics_18_0.png" src="../_images/performance_metrics_18_0.png" />
+</div>
+</div>
+<p>We can summarize this plot numerically through a measure known as <strong>area under the ROC curve (AUC)</strong>, which (as the name implies) measures the area underneath our plotted ROC curve. If our curve fell on the red dotted line (representing the worst possible model), the area under the curve would be 0.5. Conversely, if our curve fell on the blue dotted line (representing the best possible model), the area under the curve would be 1. Therefore, the closer our AUC is to 1, the better our model, and the closer it is to 0.5, the worse our model. Note that because it is based on the ROC curve, this metric is independent of any particular cutoff value, unlike accuracy and confusion matrices.</p>
+<p>We can calculate the AUC of our model in R using the <code class="docutils literal notranslate"><span class="pre">AUC()</span></code> function the <code class="docutils literal notranslate"><span class="pre">MLmetrics</span></code> package, which uses the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">MLmetrics::AUC(y_pred,</span> <span class="pre">y_true)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code>: An atomic vector with the model’s predicted probabilities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_true</span></code>: An atomic vector with the true labels, represented numerically as 0 / 1. Note that this is different from some of the other functions from <code class="docutils literal notranslate"><span class="pre">MLmetrics</span></code>, where the labels can be in their original form (<em>i.e.</em>, “churn” / “not churn”).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Below we apply this function to our model. Note that <code class="docutils literal notranslate"><span class="pre">churnHoldoutScaled$churn</span></code> labels the observations as “no” or “yes”, but the <code class="docutils literal notranslate"><span class="pre">AUC()</span></code> function expects them to be labeled as 0 or 1 (respectively). Therefore, we first need to re-code the true values from “no” / “yes” to 0 / 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert labels to binary (0 / 1)</span>
+<span class="n">trueLabelsBinary</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">churnHoldoutScaled</span><span class="o">$</span><span class="n">churn</span><span class="o">==</span><span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+
+<span class="c1"># Calculate AUC</span>
+<span class="nf">AUC</span><span class="p">(</span><span class="n">finalModelPredictionsProb</span><span class="o">$</span><span class="n">yes</span><span class="p">,</span> <span class="n">trueLabelsBinary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.831627764127764</div></div>
+</div>
+</div>
+<div class="section" id="log-loss">
+<h3><span class="section-number">9.2.1.3. </span>Log Loss<a class="headerlink" href="#log-loss" title="Permalink to this headline">¶</a></h3>
+<p>Another problem with simple accuracy is that it does not take into account the strength of each prediction. Imagine two competing models that both correctly predict a given customer will churn. Model 1 outputs a predicted probability of 0.51, while Model 2 outputs a predicted probability of 0.99. If we were scoring based on simple accuracy, these models would be considered equivalent (at a cutoff of 0.5) - both correctly predicted that the customer would churn. The problem with this scoring method is that it does not reward Model 2 for having a predicted probability much closer to 1.</p>
+<p>One solution to this issue is to score classification models via <strong>log loss</strong>, which is defined as:</p>
+<div class="math notranslate nohighlight">
+\[Log\ Loss = -\frac{1}{n}\sum^{n}_{i=1}[y_ilog(\hat{p_i}) + (1 - y_i)log(1 - \hat{p_i})]\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> is the number of observations in the data set</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_i\)</span> is the observed realization of observation <span class="math notranslate nohighlight">\(i\)</span>; it equals 1 if the observation churned and 0 if not</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{p_i}\)</span> is the predicted probability that observation <span class="math notranslate nohighlight">\(i\)</span> churned according to the model</p></li>
+</ul>
+<p>To help understand log loss, think through the following scenarios:</p>
+<ul>
+<li><p><strong>Great predictions</strong></p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(y_i\)</span> = 1 &amp; <span class="math notranslate nohighlight">\(\hat{p_i}\)</span> = 0.99:</strong> the observation actually churned, and the model estimated the probability of a churn to be 99%.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[logloss_i = 1log(0.99) + (1-1)log(1-0.99) = log(0.99) \approx \mathbf{-0.004}\]</div>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(y_i\)</span> = 0 &amp; <span class="math notranslate nohighlight">\(\hat{p_i}\)</span> = 0.01:</strong> the observation did not churn, and the model estimated the probability of a churn to be 1%.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[logloss_i = 1log(0.99) + (1-1)log(1-0.99) = log(0.99) \approx \mathbf{-0.004}\]</div>
+</li>
+<li><p><strong>Terrible predictions</strong></p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(y_i\)</span> = 0 &amp; <span class="math notranslate nohighlight">\(\hat{p_i}\)</span> = 0.99:</strong> the observation did not churn, but the model estimated the probability of a churn to be 99%.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[logloss_i = 0log(0.99) + (1-0)log(1-0.99) = log(0.01) = \mathbf{-2}\]</div>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(y_i\)</span> = 1 &amp; <span class="math notranslate nohighlight">\(\hat{p_i}\)</span> = 0.01:</strong> the observation actually churned, but the model estimated the probability of a churn to be only 1%.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[logloss_i = 1log(0.01) + (1-1)log(1-0.01) = log(0.01) = \mathbf{-2}\]</div>
+</li>
+</ul>
+<p>From these examples, it is clear that the absolute value of the log loss is small when the model is close to the truth and large when the model is far off. Now consider the following:</p>
+<ul>
+<li><p><strong>Good (not great) predictions</strong></p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(y_i\)</span> = 1 &amp; <span class="math notranslate nohighlight">\(\hat{p_i}\)</span> = 0.66:</strong> the observation actually churned, and the model estimated the probability of a churn to be 66%.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[logloss_i = 1log(0.66) + (1-1)log(1-0.66) = log(0.66) \approx \mathbf{-0.1805}\]</div>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(y_i\)</span> = 0 &amp; <span class="math notranslate nohighlight">\(\hat{p_i}\)</span> = 0.33:</strong> the observation did not churn, and the model estimated the probability of a churn to be 33%.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[logloss_i = 0log(0.33) + (1-0)log(1-0.33) = log(0.66) \approx \mathbf{-0.1805}\]</div>
+</li>
+<li><p><strong>Bad (not terrible) predictions</strong></p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(y_i\)</span> = 0 &amp; <span class="math notranslate nohighlight">\(\hat{p_i}\)</span> = 0.66:</strong> the observation did not churn, but the model estimated the probability of a churn to be 66%.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[logloss_i = 0log(0.66) + (1-0)log(1-0.66) = log(0.33) \approx \mathbf{-0.4815}\]</div>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(y_i\)</span> = 1 &amp; <span class="math notranslate nohighlight">\(\hat{p_i}\)</span> = 0.33:</strong> the observation actually churned, but the model estimated the probability of a churn to be only 33%.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[logloss_i = 1log(0.33) + (1-1)log(1-0.33) = log(0.33) \approx \mathbf{-0.4815}\]</div>
+</li>
+</ul>
+<p>Notice that as our predictions go from terrible to bad to good to great, the log loss decreases in absolute value (<em>i.e.</em>, it gets closer to zero). A perfect classifier would have a log loss of precisely zero. Less ideal classifiers have progressively larger values of log loss.</p>
+<p>We can calculate log loss in R using the <code class="docutils literal notranslate"><span class="pre">LogLoss()</span></code> function from the <code class="docutils literal notranslate"><span class="pre">MLmetrics</span></code> package, which uses the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">MLmetrics::LogLoss(y_pred,</span> <span class="pre">y_true)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code>: An atomic vector with the model’s predicted probabilities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_true</span></code>: An atomic vector with the true labels, represented numerically as 0 / 1. Note that this is different from some of the other functions from <code class="docutils literal notranslate"><span class="pre">MLmetrics</span></code>, where the labels can be in their original form (<em>i.e.</em>, “churn” / “not churn”).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Like <code class="docutils literal notranslate"><span class="pre">AUC()</span></code>, to use this function we first need to re-code the true values from “no” / “yes” to 0 / 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert labels to binary (0 / 1)</span>
+<span class="n">trueLabelsBinary</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">churnHoldoutScaled</span><span class="o">$</span><span class="n">churn</span><span class="o">==</span><span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+
+<span class="c1"># Calculate log loss</span>
+<span class="nf">LogLoss</span><span class="p">(</span><span class="n">finalModelPredictionsProb</span><span class="o">$</span><span class="n">yes</span><span class="p">,</span> <span class="n">trueLabelsBinary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1.19365748435143</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="regression">
+<h2><span class="section-number">9.2.2. </span>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h2>
+<p>[In Progress]</p>
+<div class="section" id="mae">
+<h3><span class="section-number">9.2.2.1. </span>MAE<a class="headerlink" href="#mae" title="Permalink to this headline">¶</a></h3>
+<p>[In Progress]</p>
+</div>
+<div class="section" id="mape">
+<h3><span class="section-number">9.2.2.2. </span>MAPE<a class="headerlink" href="#mape" title="Permalink to this headline">¶</a></h3>
+<p>[In Progress]</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./09_model_eval"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="data_partition.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">9.1. </span>Partitioning Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../10_dt_rf/dt_rf.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Tree Models</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSM Faculty<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

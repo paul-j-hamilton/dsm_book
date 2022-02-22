@@ -1,0 +1,992 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5.3. Understanding Our Regression Model &#8212; Data Science for Managers</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.4. Exercise: Simple Linear Regression" href="reg_exercise1.html" />
+    <link rel="prev" title="5.2. Simple Linear Regression" href="simple_reg.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science for Managers</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Data Science for Managers!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/roadmap.html">
+   Course Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/assignments.html">
+   Assignment Sheets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/access.html">
+   Access to Materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/platforms.html">
+   Coding Platforms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R Bootcamp
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics.html">
+   R Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/r_as_a_calculator.html">
+     R as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/assignment.html">
+     Assignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/data_types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz1.html">
+     <strong>
+      Quiz #1
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/atomic_vectors.html">
+     Atomic Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz2.html">
+     <strong>
+      Quiz #2
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/02_dataframes/dataframes.html">
+   Data Frames
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/r_packages.html">
+     R Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/reading_in_data.html">
+     Reading in Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/data_frame_basics.html">
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_basics_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/fixing_variable_types.html">
+     Fixing Variable Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/sorting_data.html">
+     Sorting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/filtering_rows.html">
+     Filtering Rows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/selecting_columns.html">
+     Selecting Columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_quiz.html">
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_bootcamp/bootcamp_finish_message.html">
+   Welcome to the Course!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploratory Data Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01_eda/eda.html">
+   1. Exploring Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/summary_stats.html">
+     1.1. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/visualization.html">
+     1.2. Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/eda_quiz.html">
+     1.3.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/ggplot.html">
+     1.4. Visualization with ggplot (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_tidy/eda_tidyverse.html">
+   2. Data Wrangling with the tidyverse
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/pipe_operator.html">
+     2.1. The Pipe Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/summarise.html">
+     2.2. Summarising Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/dds.html">
+     2.3.
+     <strong>
+      Case Study:
+     </strong>
+     California Department of Developmental Services (DDS)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Inference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03_stat_inference/stat_inference.html">
+   3. Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/samps_pops.html">
+     3.1. Samples &amp; Populations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/conf_int.html">
+     3.2. Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/hyp_testing.html">
+     3.3. Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/hyp_test_quiz.html">
+     3.4.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/one_samp_test_exercise.html">
+     3.5.
+     <strong>
+      Exercise:
+     </strong>
+     One-Sample Hypothesis Testing (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/two_samp_test_exercise.html">
+     3.6.
+     <strong>
+      Exercise:
+     </strong>
+     Two-Sample Hypothesis Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04_causal_inference/causal_inference.html">
+   4. Causal Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/obs_studies.html">
+     4.1. Observational Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/rand_experiments.html">
+     4.2. Randomized Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/causal_exercise.html">
+     4.3.
+     <strong>
+      Exercise:
+     </strong>
+     Causal Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/power.html">
+     4.4. Power
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="linear_regression.html">
+   5. Linear Regression
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="correlation.html">
+     5.1. Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="simple_reg.html">
+     5.2. Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.3. Understanding Our Regression Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reg_exercise1.html">
+     5.4.
+     <strong>
+      Exercise:
+     </strong>
+     Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multiple_linear_regression.html">
+     5.5. Multiple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dummy.html">
+     5.6. Dummy Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reg_exercise2.html">
+     5.7.
+     <strong>
+      Exercise:
+     </strong>
+     Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformations.html">
+     5.8. Transformations (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="interactions.html">
+     5.9. Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reg_exercise3.html">
+     5.10.
+     <strong>
+      Exercise:
+     </strong>
+     Multiple Linear Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prediction &amp; Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_ml_intro/ml_intro.html">
+   6. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07_logistic_regression/logistic_regression.html">
+   7. Logistic Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/why_not_lin.html">
+     7.1. Why Not Linear Regression?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/simple_log_reg.html">
+     7.2. Simple Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/multiple_log_reg.html">
+     7.3. Multiple Logistic Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08_knn/knn.html">
+   8. k-Nearest Neighbors (kNN)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08_knn/bias_variance.html">
+     8.4. The Bias-Variance Tradeoff
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09_model_eval/model_eval.html">
+   9. Model Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_model_eval/data_partition.html">
+     9.1. Partitioning Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_model_eval/performance_metrics.html">
+     9.2. Performance Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10_dt_rf/dt_rf.html">
+   10. Tree Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/decision_trees.html">
+     10.1. Decision Trees
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/random_forest.html">
+     10.2. Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/xgboost.html">
+     10.3. XGBoost (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11_neural_nets/neural_nets.html">
+   11. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12_unsupervised/unsupervised.html">
+   12. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13_nlp/nlp.html">
+   13. Natural Language Processing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/05_linear_regression/understanding_reg.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05_linear_regression/understanding_reg.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F05_linear_regression/understanding_reg.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/05_linear_regression/understanding_reg.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-r-squared-r-2">
+   5.3.1. The R-Squared (
+   <span class="math notranslate nohighlight">
+    \(R^2\)
+   </span>
+   )
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimate-of-noise-and-prediction">
+   5.3.2. Estimate of Noise and Prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-diagnostic-plots">
+   5.3.3. Basic Diagnostic Plots
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="understanding-our-regression-model">
+<h1><span class="section-number">5.3. </span>Understanding Our Regression Model<a class="headerlink" href="#understanding-our-regression-model" title="Permalink to this headline">¶</a></h1>
+<p>Our least squares estimates <span class="math notranslate nohighlight">\(b_0\)</span> and <span class="math notranslate nohighlight">\(b_1\)</span> are estimates of the true theoretical values <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> respectively. Since the regression line is calculated using sample data, we can construct confidence intervals and perform hypothesis tests on our estimates. The <code class="docutils literal notranslate"><span class="pre">confint()</span></code> function reports 95% confidence intervals for the regression coefficients.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">confint(model)</span></code></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">confint</span><span class="p">(</span><span class="n">modelAge</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr></thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td>58390.197</td><td>75877.208</td></tr>
+	<tr><th scope=row>Age</th><td> 1834.364</td><td> 2219.292</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>We can obtain more detailed output using the <code class="docutils literal notranslate"><span class="pre">summary()</span></code> command.</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">summary(model)</span></code></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">modelAge</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = Salary ~ Age, data = employees)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-103272  -21766    2428   23138   90680 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 67133.70    4455.17   15.07   &lt;2e-16 ***
+Age          2026.83      98.07   20.67   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 32630 on 918 degrees of freedom
+  (80 observations deleted due to missingness)
+Multiple R-squared:  0.3175,	Adjusted R-squared:  0.3168 
+F-statistic: 427.1 on 1 and 918 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>We usually focus on just <span class="math notranslate nohighlight">\(b_1\)</span> since we are primarily interested in the relationship between the variables. Our best estimate for <span class="math notranslate nohighlight">\(b_1\)</span> is $2,026.83, but because we are basing this estimate on a data sample, we could be wrong. We can say with 95% confidence that the true value of the slope (denoted <span class="math notranslate nohighlight">\(\beta_1\)</span>) could be as low as $1,834.36 to as high as $2,219.29. The good news is the confidence interval contains only positive values, indicating a positive relationship between <code class="docutils literal notranslate"><span class="pre">Salary</span></code> and <code class="docutils literal notranslate"><span class="pre">Age</span></code>. If zero fell into this interval we would not be able to conclude that there was a positive relationship between <code class="docutils literal notranslate"><span class="pre">Salary</span></code> and <code class="docutils literal notranslate"><span class="pre">Age</span></code>.</p>
+<p>By applying the <code class="docutils literal notranslate"><span class="pre">summary()</span></code> command to our regression we can see p-values listed for each coefficient. The hypothesis test being done here is “does the true slope equal 0?”, and “does the true intercept equal 0?”. In symbols we are testing for the slope:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_o: \beta_1 = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_a: \beta_1 \ne 0\)</span></p></li>
+</ul>
+<p>A small p-value, less than the significance level (often 0.05), means we reject the null hypothesis and can conclude there is likely a linear relationship between the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> variables; simply put, a small p-value indicates we need <span class="math notranslate nohighlight">\(x\)</span> in the model.</p>
+<p>The p-value for the intercept corresponds to the hypothesis test asking, “does the true intercept equal 0?” We often ignore the p-value of the intercept when the intercept is difficult to interpret.</p>
+<div class="section" id="the-r-squared-r-2">
+<h2><span class="section-number">5.3.1. </span>The R-Squared (<span class="math notranslate nohighlight">\(R^2\)</span>)<a class="headerlink" href="#the-r-squared-r-2" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">summary()</span></code> command gives additional information about the regression fit. In particular, at the bottom of the summary output, we see two items:</p>
+<ul class="simple">
+<li><p>Multiple R-squared, often denoted <span class="math notranslate nohighlight">\(R^2\)</span></p></li>
+<li><p>Adjusted R-squared, often denoted <span class="math notranslate nohighlight">\(R_a^{2}\)</span></p></li>
+</ul>
+<p>The <span class="math notranslate nohighlight">\(R^2\)</span> is a goodness of fit measure and always falls in the interval 0 to 1. In essence, we do regression to try to understand how changes in the <span class="math notranslate nohighlight">\(x\)</span> variable explain what is happening to a <span class="math notranslate nohighlight">\(y\)</span> variable. If <span class="math notranslate nohighlight">\(y\)</span> didn’t vary when <span class="math notranslate nohighlight">\(x\)</span> changes, it would be very boring to explain, so in essence we are trying to explain the variation in <span class="math notranslate nohighlight">\(y\)</span> using <span class="math notranslate nohighlight">\(x\)</span>. The <span class="math notranslate nohighlight">\(R^2\)</span> tells us the percentage of the variation in <span class="math notranslate nohighlight">\(y\)</span> explained by <span class="math notranslate nohighlight">\(x\)</span>, with higher being better. One issue with <span class="math notranslate nohighlight">\(R^2\)</span> is that it can go up simply by adding more <span class="math notranslate nohighlight">\(x\)</span> variables to a model, so <span class="math notranslate nohighlight">\(R_a^2\)</span> reflects a penalty factor related to the number of <span class="math notranslate nohighlight">\(x\)</span> variables in the model. The adjusted R-squared value is always the preferred measure to report.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When a linear regression model has more than one independent variable, report <span class="math notranslate nohighlight">\(R_a^2\)</span> instead of <span class="math notranslate nohighlight">\(R^2\)</span>.</p>
+</div>
+<p>However, neither <span class="math notranslate nohighlight">\(R^2\)</span> nor <span class="math notranslate nohighlight">\(R_a^2\)</span> indicates anything about predictability, so another measure described below is more useful to consider.</p>
+</div>
+<div class="section" id="estimate-of-noise-and-prediction">
+<h2><span class="section-number">5.3.2. </span>Estimate of Noise and Prediction<a class="headerlink" href="#estimate-of-noise-and-prediction" title="Permalink to this headline">¶</a></h2>
+<p>When we look at the scatter plot, we see noise in the model; that is, we see a line plus variation (“noise”) around the line. Regression modeling assumes that the noise <span class="math notranslate nohighlight">\(\epsilon\)</span> is normally distributed with mean 0 and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>. The value <span class="math notranslate nohighlight">\(\sigma^2\)</span> is key when using a regression model for prediction, since it tells us how accurate our predictions are. The estimate of <span class="math notranslate nohighlight">\(\sigma\)</span> from our sample data is denoted <span class="math notranslate nohighlight">\(s_e\)</span> and is called the <strong>residual standard error</strong>.</p>
+<p>This residual standard error is important because we can create approximate prediction intervals using the formula:</p>
+<div class="math notranslate nohighlight">
+\[predicted\; y =\hat{y} =  (b_0+b_1(x))\pm 1.96(s_e)\]</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">summary()</span></code> function applied to the regression tells us that the residual standard error is $32,630. Thus, the predicted income of someone 40 years old is:</p>
+<div class="math notranslate nohighlight">
+\[\$67,133.70 + \$2,026.83(40) = \$148,206.9\]</div>
+<p>But we know it’s not an exact relationship, so it would be nice to put lower and upper bounds on this prediction. We are roughly 95% confident that the predicted income for someone 40 years old is in the interval:</p>
+<div class="math notranslate nohighlight">
+\[\$148,206.9 \pm 1.96(\$32,630) = (\$84,252.1 ; \$212,161.7)\]</div>
+<p>A more formal prediction interval can be found in R using the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> function. Note that the formula shown above is an approximation and that this function’s results are more precise, so the intervals differ slightly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">newData</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Age</span> <span class="o">=</span> <span class="m">40</span><span class="p">)</span>
+<span class="nf">predict</span><span class="p">(</span><span class="n">modelAge</span><span class="p">,</span> <span class="n">newData</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="s">&quot;predict&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>fit</th><th scope=col>lwr</th><th scope=col>upr</th></tr></thead>
+<tbody>
+	<tr><td>148206.8</td><td>84124.55</td><td>212289.1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>A rough rule of thumb when looking at regression models is to look at <span class="math notranslate nohighlight">\(s_e\)</span> then double it; your 95% prediction interval will be roughly <span class="math notranslate nohighlight">\(\hat{y} \pm 2(s_e)\)</span> (for this estimate 2 is rounded up from 1.96). You can use this as a quick guide to decide if you think it is an acceptable model.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><span class="math notranslate nohighlight">\(R^2\)</span> does not inform about a linear regression model’s predictive ability, so one must also report <span class="math notranslate nohighlight">\(s_e\)</span>.</p>
+</div>
+</div>
+<div class="section" id="basic-diagnostic-plots">
+<h2><span class="section-number">5.3.3. </span>Basic Diagnostic Plots<a class="headerlink" href="#basic-diagnostic-plots" title="Permalink to this headline">¶</a></h2>
+<p>When doing regression analysis, we assume a linear relationship between the <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> variable. We also assume the noise in the model follows a normal distribution. Both of these assumptions may be checked with separate <strong>diagnostic plots</strong>.</p>
+<p>The residuals <span class="math notranslate nohighlight">\(e_i\)</span>, also called the <strong>errors</strong>, are the observed (<span class="math notranslate nohighlight">\(y_i\)</span>) minus the predicted (<span class="math notranslate nohighlight">\(\hat{y_i}\)</span>) values for each row in our data set. The most basic plot is a residual versus fitted (predicted) value plot. This plot is easily created in R as shown below, and if the modeling assumptions are correct should show a random scatter of points. Note that we pass our regression model into the same <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function we have seen before, but set the <code class="docutils literal notranslate"><span class="pre">which</span></code> argument to <code class="docutils literal notranslate"><span class="pre">1</span></code> in order to get a residual vs. fitted plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">modelAge</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/understanding_reg_8_0.png" src="../_images/understanding_reg_8_0.png" />
+</div>
+</div>
+<p>The red line shown in the plot is a local linear smooth used to capture the trend of the points. We see no relationship between the residuals and the fitted values, which must be true if the regression assumptions hold.</p>
+<p>To contrast with the ideal plot, consider some simulated data of a non-linear relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, which we don’t know so we fit a line. As the plots below indicate, there is an unusual relationship between the residuals and fitted values that would indicate we should investigate this model more fully.</p>
+<div class="figure align-center" id="unusual-resid">
+<a class="reference internal image-reference" href="../_images/unusual_resid_fitted.png"><img alt="../_images/unusual_resid_fitted.png" src="../_images/unusual_resid_fitted.png" style="height: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5.3 </span><span class="caption-text">Unusual Residuals v. Fitted Plot</span><a class="headerlink" href="#unusual-resid" title="Permalink to this image">¶</a></p>
+</div>
+<p>The normality assumption of the noise in the model may be checked by either looking at a histogram or a <strong>qq-plot</strong> of the error terms. We can extract an atomic vector of the residuals from our model using the <code class="docutils literal notranslate"><span class="pre">residuals()</span></code> function:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">residuals(model)</span></code></p>
+</div>
+<p>By passing these residuals into <code class="docutils literal notranslate"><span class="pre">hist()</span></code>, we can observe the histogram of the residuals to check whether they are normally-distributed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="nf">residuals</span><span class="p">(</span><span class="n">modelAge</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/understanding_reg_10_0.png" src="../_images/understanding_reg_10_0.png" />
+</div>
+</div>
+<p>Based on this plot, the residuals of our model appear to be relatively normal. Another important diagnostic plot to look at is the <strong>qq-plot</strong>, which also helps us visually inspect whether our residuals are normally distributed. A qq-plot plots the residuals from our model against a straight line. If the plotted residuals fall mostly on the straight line, we conclude that they are most likely normally-distributed. If they deviate from the straight line, we conclude they might not be normally-distributed.</p>
+<p>To create the qq-plot, we can pass our model into the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function and set the <code class="docutils literal notranslate"><span class="pre">which</span></code> parameter equal to <code class="docutils literal notranslate"><span class="pre">2</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">modelAge</span><span class="p">,</span> <span class="n">which</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/understanding_reg_12_0.png" src="../_images/understanding_reg_12_0.png" />
+</div>
+</div>
+<p>Consistent with the histogram of the residuals, the qq-plot shows that the residuals are approximately normal (<em>i.e.</em>, they mostly fall on the straight line).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Always verify that the model residuals are normally distributed.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./05_linear_regression"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="simple_reg.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5.2. </span>Simple Linear Regression</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="reg_exercise1.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.4. </span><strong>Exercise:</strong> Simple Linear Regression</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSM Faculty<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1106 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. k-Nearest Neighbors (kNN) &#8212; Data Science for Managers</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.4. The Bias-Variance Tradeoff" href="bias_variance.html" />
+    <link rel="prev" title="7.3. Multiple Logistic Regression" href="../07_logistic_regression/multiple_log_reg.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science for Managers</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Data Science for Managers!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/roadmap.html">
+   Course Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/assignments.html">
+   Assignment Sheets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/access.html">
+   Access to Materials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_getting_started/platforms.html">
+   Coding Platforms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R Bootcamp
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics.html">
+   R Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/r_as_a_calculator.html">
+     R as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/assignment.html">
+     Assignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/data_types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz1.html">
+     <strong>
+      Quiz #1
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/atomic_vectors.html">
+     Atomic Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/01_rbasics/rbasics_quiz2.html">
+     <strong>
+      Quiz #2
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00_bootcamp/02_dataframes/dataframes.html">
+   Data Frames
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/r_packages.html">
+     R Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/reading_in_data.html">
+     Reading in Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/data_frame_basics.html">
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_basics_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/fixing_variable_types.html">
+     Fixing Variable Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/sorting_data.html">
+     Sorting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/filtering_rows.html">
+     Filtering Rows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/selecting_columns.html">
+     Selecting Columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_exercise.html">
+     <strong>
+      Exercise:
+     </strong>
+     Data Frame Manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_bootcamp/02_dataframes/df_manipulation_quiz.html">
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_bootcamp/bootcamp_finish_message.html">
+   Welcome to the Course!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exploratory Data Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01_eda/eda.html">
+   1. Exploring Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/summary_stats.html">
+     1.1. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/visualization.html">
+     1.2. Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/eda_quiz.html">
+     1.3.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/ggplot.html">
+     1.4. Visualization with ggplot (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_tidy/eda_tidyverse.html">
+   2. Data Wrangling with the tidyverse
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/pipe_operator.html">
+     2.1. The Pipe Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/summarise.html">
+     2.2. Summarising Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_tidy/dds.html">
+     2.3.
+     <strong>
+      Case Study:
+     </strong>
+     California Department of Developmental Services (DDS)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Inference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03_stat_inference/stat_inference.html">
+   3. Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/samps_pops.html">
+     3.1. Samples &amp; Populations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/conf_int.html">
+     3.2. Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/hyp_testing.html">
+     3.3. Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/hyp_test_quiz.html">
+     3.4.
+     <strong>
+      Quiz
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/one_samp_test_exercise.html">
+     3.5.
+     <strong>
+      Exercise:
+     </strong>
+     One-Sample Hypothesis Testing (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_stat_inference/two_samp_test_exercise.html">
+     3.6.
+     <strong>
+      Exercise:
+     </strong>
+     Two-Sample Hypothesis Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04_causal_inference/causal_inference.html">
+   4. Causal Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/obs_studies.html">
+     4.1. Observational Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/rand_experiments.html">
+     4.2. Randomized Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/causal_exercise.html">
+     4.3.
+     <strong>
+      Exercise:
+     </strong>
+     Causal Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_causal_inference/power.html">
+     4.4. Power
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05_linear_regression/linear_regression.html">
+   5. Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/correlation.html">
+     5.1. Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/simple_reg.html">
+     5.2. Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/understanding_reg.html">
+     5.3. Understanding Our Regression Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise1.html">
+     5.4.
+     <strong>
+      Exercise:
+     </strong>
+     Simple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/multiple_linear_regression.html">
+     5.5. Multiple Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/dummy.html">
+     5.6. Dummy Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise2.html">
+     5.7.
+     <strong>
+      Exercise:
+     </strong>
+     Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/transformations.html">
+     5.8. Transformations (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/interactions.html">
+     5.9. Interactions (⚵)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_linear_regression/reg_exercise3.html">
+     5.10.
+     <strong>
+      Exercise:
+     </strong>
+     Multiple Linear Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prediction &amp; Machine Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_ml_intro/ml_intro.html">
+   6. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07_logistic_regression/logistic_regression.html">
+   7. Logistic Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/why_not_lin.html">
+     7.1. Why Not Linear Regression?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/simple_log_reg.html">
+     7.2. Simple Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_logistic_regression/multiple_log_reg.html">
+     7.3. Multiple Logistic Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   8. k-Nearest Neighbors (kNN)
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bias_variance.html">
+     8.4. The Bias-Variance Tradeoff
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09_model_eval/model_eval.html">
+   9. Model Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_model_eval/data_partition.html">
+     9.1. Partitioning Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_model_eval/performance_metrics.html">
+     9.2. Performance Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10_dt_rf/dt_rf.html">
+   10. Tree Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/decision_trees.html">
+     10.1. Decision Trees
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/random_forest.html">
+     10.2. Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_dt_rf/xgboost.html">
+     10.3. XGBoost (⚵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11_neural_nets/neural_nets.html">
+   11. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12_unsupervised/unsupervised.html">
+   12. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13_nlp/nlp.html">
+   13. Natural Language Processing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/08_knn/knn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/08_knn/knn.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F08_knn/knn.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/08_knn/knn.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-distance">
+   8.1. Calculating Distance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-data">
+   8.2. Normalizing Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applying-knn-in-r">
+   8.3. Applying kNN in R
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="k-nearest-neighbors-knn">
+<h1><span class="section-number">8. </span>k-Nearest Neighbors (kNN)<a class="headerlink" href="#k-nearest-neighbors-knn" title="Permalink to this headline">¶</a></h1>
+<p>For many businesses, <strong>customer churn</strong> is an important metric for measuring customer retention. Banks, social media platforms, telecommunication companies, etc. all need to monitor customer turnover to help understand why customers leave their platform, and whether there are intervention strategies that can help prevent customer churn.</p>
+<p>Imagine that you work for a telecommunications provider and would like to reduce customer churn. To that end, you hope to develop a predictive model that will identify which customers are at a high risk of leaving for another provider. If you could identify these customers before they leave, you may be able to develop intervention strategies that would encourage them to stay.</p>
+<p>Using historical customer data that your company collected in the past quarter, you compile a data set with the account characteristics of each customer and whether or not they “churned” by the end of the previous quarter. This data is stored in a data frame called <code class="docutils literal notranslate"><span class="pre">churn</span></code>, the first few rows of which are shown below. A data dictionary which describes each variable in the data set is also provided below.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>account_length</th><th scope=col>international_plan</th><th scope=col>voice_mail_plan</th><th scope=col>number_vmail_messages</th><th scope=col>total_day_minutes</th><th scope=col>total_day_calls</th><th scope=col>total_night_minutes</th><th scope=col>total_night_calls</th><th scope=col>total_intl_minutes</th><th scope=col>total_intl_calls</th><th scope=col>total_intl_charge</th><th scope=col>number_customer_service_calls</th><th scope=col>churn</th></tr></thead>
+<tbody>
+	<tr><td>165  </td><td>no   </td><td>no   </td><td> 0   </td><td>209.4</td><td> 67  </td><td>150.2</td><td> 88  </td><td>12.8 </td><td> 1   </td><td>3.46 </td><td>0    </td><td>no   </td></tr>
+	<tr><td>103  </td><td>no   </td><td>no   </td><td> 0   </td><td>180.2</td><td>134  </td><td>181.7</td><td>134  </td><td> 8.4 </td><td> 3   </td><td>2.27 </td><td>1    </td><td>no   </td></tr>
+	<tr><td> 90  </td><td>no   </td><td>yes  </td><td>27   </td><td>156.7</td><td> 51  </td><td>123.2</td><td>111  </td><td>12.6 </td><td> 6   </td><td>3.40 </td><td>2    </td><td>no   </td></tr>
+	<tr><td> 36  </td><td>no   </td><td>no   </td><td> 0   </td><td>177.9</td><td>129  </td><td>306.3</td><td>102  </td><td>10.8 </td><td> 6   </td><td>2.92 </td><td>2    </td><td>no   </td></tr>
+	<tr><td> 95  </td><td>no   </td><td>yes  </td><td>35   </td><td>229.1</td><td>143  </td><td>248.4</td><td>110  </td><td> 3.9 </td><td> 3   </td><td>1.05 </td><td>0    </td><td>no   </td></tr>
+	<tr><td>119  </td><td>no   </td><td>no   </td><td> 0   </td><td>231.5</td><td> 82  </td><td>211.0</td><td>118  </td><td> 7.4 </td><td>10   </td><td>2.00 </td><td>1    </td><td>no   </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">account_length</span></code>: number of months the customer has been with the provider.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">internation_plan</span></code>: whether the customer has an international plan.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">voice_mail_plan</span></code>: whether the customer has a voice mail plan.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">number_vmail_messages</span></code>: number of voice-mail messages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_day_minutes</span></code>: total minutes of calls during the day.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_day_calls</span></code>: total number of calls during the day.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_night_minutes</span></code>: total minutes of calls during the night.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_night_calls</span></code>: total number of calls during the night.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_intl_minutes</span></code>: total minutes of international calls.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_intl_calls</span></code>: total number of international calls.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_intl_charge</span></code>: total charge on international calls.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">number_customer_service_calls</span></code>: number of calls to customer service.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">churn</span></code>: whether or not the customer churned.</p></li>
+</ul>
+<p>Our goal is to use the information stored in the <code class="docutils literal notranslate"><span class="pre">churn</span></code> data set to predict whether new customers will churn in the upcoming quarter. A straightforward way to accomplish this would be to identify the observations in <code class="docutils literal notranslate"><span class="pre">churn</span></code> that are most similar to our new customer, and then observe whether or not those customers churned in the previous period. For example, if our new customer is from the Midwest, has twenty voice mail messages, does not have an international plan, etc., we could identify the observations in <code class="docutils literal notranslate"><span class="pre">churn</span></code> that have the same (or very similar) characteristics. If the majority of those customers churned in the previous quarter, we might predict that our new customer is likely to churn; if the majority did not, we might predict that our new customer is at a low risk of churning. This is in essence how the k-nearest neighbors algorithm makes predictions.</p>
+<p>More formally, the <strong>k-nearest neighbors (kNN)</strong> algorithm starts by calculating the distance between a new observation and each of the observations in <code class="docutils literal notranslate"><span class="pre">churn</span></code>. The <span class="math notranslate nohighlight">\(k\)</span> observations that are closest to the new observation are considered its “neighbors”. If most of these neighbors churned in the previous quarter, the model predicts that the new customer will churn (and vice versa). The number of neighbors that the model considers is determined by <span class="math notranslate nohighlight">\(k\)</span>, which is set by the user. <span class="math notranslate nohighlight">\(k\)</span> is known as a <strong>hyperparameter</strong>, or a model parameter whose value must be specified by the user.</p>
+<p>To demonstrate knn, let’s start with a simplified data set that only has 100 observations and two independent features, <code class="docutils literal notranslate"><span class="pre">total_intl_charge</span></code> and <code class="docutils literal notranslate"><span class="pre">account_length</span></code>. Our <strong>feature space</strong>, or the geometric space that our data occupy, looks like the following:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/knn_4_0.png" src="../_images/knn_4_0.png" />
+</div>
+</div>
+<p>Suppose we have three new customers and would like to predict whether or not they will churn in the upcoming quarter. These customers are plotted as green squares in the figure below. If we use a <span class="math notranslate nohighlight">\(k\)</span> of five, we can find the five customers in <code class="docutils literal notranslate"><span class="pre">churn</span></code> that are most similar to our new customers (based on their <code class="docutils literal notranslate"><span class="pre">account_length</span></code> and <code class="docutils literal notranslate"><span class="pre">total_intl_charge</span></code>):</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/knn_6_0.png" src="../_images/knn_6_0.png" />
+</div>
+</div>
+<p>We see that that five nearest neighbors of Customer A all churned in the previous quarter, so the algorithm would predict that Customer A will churn. Similarly, all five nearest neighbors of customer C did <em>not</em> churn in the previous quarter, so the algorithm would predict that Custer C will <em>not</em> churn.</p>
+<p>For Customer B, three of the nearest neighbors churned and two did <em>not</em>. Therefore, for this observation the model would predict a 60% chance of churning (3 churns / 5 neighbors = 0.60). Ultimately we need to make a binary decision about whether to intervene on this customer’s account or not. To do this, we need to convert the predicted probability of 60% into a binary prediction of “churn” or “no churn”. Because the predicted chance of churning is greater than 50%, the model is predicting that it is more likely than not that the customer will churn. Therefore, one may choose to treat this as a prediction of “churn”. In this case, we have used a cutoff of 50% to convert the model’s prediction into a binary outcome; if the predicted probability is less than 50% we interpret the prediction as “no churn”, and if it is greater than 50% we interpret it as “churn”.</p>
+<p>Although 50% seems like a natural cutoff, consider the following scenario. Suppose that when our model predicts a customer will churn, we offer that customer a very large discount to convince them to stay with the service. Because this discount is so costly, we only want to offer it to customers when we are very confident that they will churn in the upcoming quarter. If this were the case, we may want to be more than 50% confident before we intervene. For example, we may choose to intervene only if the model is 80% or more confident that the customer will churn in the next quarter. In this scenario, we would apply a cutoff of 80% instead of 50%. This is an example of how managerial judgment is an important component of any data science project. Without understanding the costs of an intervention (and the relative benefit of retaining customers), it would be difficult to find the optimum cutoff to apply to the model’s predictions.</p>
+<div class="section" id="calculating-distance">
+<h2><span class="section-number">8.1. </span>Calculating Distance<a class="headerlink" href="#calculating-distance" title="Permalink to this headline">¶</a></h2>
+<p>So far we have not discussed how the model calculates the distance between observations. It turns out that there are several different ways to calculate distance, and each method has its own advantages (<em>see</em> <a class="reference external" href="https://www.kdnuggets.com/2020/11/most-popular-distance-metrics-knn.html">here</a> for more information). Here we will only cover the most basic distance measure, called Euclidean distance. However, be aware that there are other methods that may be useful depending on the context of the problem.</p>
+<p>The <strong>Euclidean distance</strong> between two points is simply the distance between those points in Euclidean space. Let’s say we want to calculate the Euclidean distance between Customer A and one of their neighbors:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/knn_8_0.png" src="../_images/knn_8_0.png" />
+</div>
+</div>
+<p>For two points (<span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(y_1\)</span>) and (<span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(y_2\)</span>), the Euclidean distance between them is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+\]</div>
+<p>The coordinates for Customer A are (25, 3), and the coordinates for the other point are (4.56, 2.69). Applying the formula above, we can calculate the distance between them as:</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{(4.56 - 25)^2 + (2.69 - 3)^2} \approx 20.44
+\]</div>
+<p>The larger this value, the further away the two points are in Euclidean space. Therefore, the kNN algorithm finds the <span class="math notranslate nohighlight">\(k\)</span> observations with the smallest Euclidean distance from the new observation. Note that although we are currently working in two dimensions, this formula can be extended to higher dimensions when we are working with more than two independent features.</p>
+</div>
+<div class="section" id="normalizing-data">
+<h2><span class="section-number">8.2. </span>Normalizing Data<a class="headerlink" href="#normalizing-data" title="Permalink to this headline">¶</a></h2>
+<p>If you review the plot from the previous section, you will notice that the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> axes are on very different scales. The <code class="docutils literal notranslate"><span class="pre">account_length</span></code> variable ranges from around zero to over 200, while <code class="docutils literal notranslate"><span class="pre">total_intl_charge</span></code> ranges from from about two to four. This is problematic for the calculation of Euclidean distance, because the distance between points is impacted by the magnitude of each variable.</p>
+<p>For example, imagine two observations with the same <code class="docutils literal notranslate"><span class="pre">total_intl_charge</span></code> but a different <code class="docutils literal notranslate"><span class="pre">account_length</span></code>: (50, 2) and (100, 2). The Euclidean distance between these observations would be:</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{(100 - 50)^2 + (2 - 2)^2} = \sqrt{(50)^2} = 50
+\]</div>
+<p>Now imagine two observations with the same <code class="docutils literal notranslate"><span class="pre">account_length</span></code> but a different <code class="docutils literal notranslate"><span class="pre">total_intl_charge</span></code>: (150, 2) and (150, 3). The Euclidean distance between these observations would be:</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{(150 - 150)^2 + (3 - 2)^2} = \sqrt{(1)^2} = 1
+\]</div>
+<p>If we plot these points in our feature space, they seem to be roughly the same distance from each other. However, they have very different Euclidean distances. The reason for this is that <code class="docutils literal notranslate"><span class="pre">account_length</span></code> is measured on a greater scale than <code class="docutils literal notranslate"><span class="pre">total_intl_charge</span></code>, so it has a greater impact the distance metric.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/knn_10_0.png" src="../_images/knn_10_0.png" />
+</div>
+</div>
+<p>When applying the kNN algorithm, we want to eliminate the impact of magnitude on the distance between points. One common method to accomplish this is to <strong>normalize</strong> the data so that each variable is measured on the same scale. A common method of normalization is <strong>min-max scaling</strong>, which converts each variable to the range [0, 1]. For a given variable <span class="math notranslate nohighlight">\(x\)</span>, the formula for min-max scaling is:</p>
+<div class="math notranslate nohighlight">
+\[
+x' = \frac{x - min(x)}{max() - min(x)}
+\]</div>
+<p>If we apply this process to our data set, our feature space will look the same, but <code class="docutils literal notranslate"><span class="pre">account_length</span></code> and <code class="docutils literal notranslate"><span class="pre">total_intl_charge</span></code> will both be in the range [0, 1]:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/knn_12_0.png" src="../_images/knn_12_0.png" />
+</div>
+</div>
+<p>Now when we calculate Euclidean distance <em>after</em> applying min-max normalization, the scale that each variable is measured on will not impact the distance metric.</p>
+</div>
+<div class="section" id="applying-knn-in-r">
+<h2><span class="section-number">8.3. </span>Applying kNN in R<a class="headerlink" href="#applying-knn-in-r" title="Permalink to this headline">¶</a></h2>
+<p>Now that we understand how the kNN algorithm works, let’s see how it can be applied to our <code class="docutils literal notranslate"><span class="pre">churn</span></code> data set in R.</p>
+<p>Instead of working with just <code class="docutils literal notranslate"><span class="pre">account_length</span></code> and <code class="docutils literal notranslate"><span class="pre">total_intl_charge</span></code>, we will now work with all relevant features in our data set. As we saw in the previous section, the first thing to do is normalize the continuous variables in the data set so that they are on the same scale. We can apply min-max scaling with the <code class="docutils literal notranslate"><span class="pre">preProcess()</span></code> function from the <code class="docutils literal notranslate"><span class="pre">caret</span></code> package, which uses the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">caret::preProcess(x,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">c(&quot;center&quot;,</span> <span class="pre">&quot;scale&quot;))</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: A data frame with the variables to scale.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span></code>: Used to specify the desired type of preprocessing. To apply min-max scaling, this can be set to “range”.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>This function creates an object (which we call <code class="docutils literal notranslate"><span class="pre">scaler</span></code> below) that we can then pass in to <code class="docutils literal notranslate"><span class="pre">predict()</span></code> to scale our data set. As you can see, the continuous variables in <code class="docutils literal notranslate"><span class="pre">churnScaled</span></code> are all in the range [0,1]. Note also that <code class="docutils literal notranslate"><span class="pre">preProcess()</span></code> knows to ignore non-continuous variables (<em>e.g.</em>, <code class="docutils literal notranslate"><span class="pre">international_plan</span></code>), which do not need to be normalized.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
+
+<span class="c1"># Create min-max scaler</span>
+<span class="n">scaler</span> <span class="o">&lt;-</span> <span class="nf">preProcess</span><span class="p">(</span><span class="n">churn</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;range&quot;</span><span class="p">)</span>
+
+<span class="c1"># Apply scaler to our data set</span>
+<span class="n">churnScaled</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">scaler</span><span class="p">,</span> <span class="n">churn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>account_length</th><th scope=col>international_plan</th><th scope=col>voice_mail_plan</th><th scope=col>number_vmail_messages</th><th scope=col>total_day_minutes</th><th scope=col>total_day_calls</th><th scope=col>total_night_minutes</th><th scope=col>total_night_calls</th><th scope=col>total_intl_minutes</th><th scope=col>total_intl_calls</th><th scope=col>total_intl_charge</th><th scope=col>number_customer_service_calls</th><th scope=col>churn</th></tr></thead>
+<tbody>
+	<tr><td>0.6776860</td><td>no       </td><td>no       </td><td>0.00     </td><td>0.5957326</td><td>0.4060606</td><td>0.3802532</td><td>0.5176471</td><td>0.640    </td><td>0.05     </td><td>0.6407407</td><td>0.0000000</td><td>no       </td></tr>
+	<tr><td>0.4214876</td><td>no       </td><td>no       </td><td>0.00     </td><td>0.5126600</td><td>0.8121212</td><td>0.4600000</td><td>0.7882353</td><td>0.420    </td><td>0.15     </td><td>0.4203704</td><td>0.1111111</td><td>no       </td></tr>
+	<tr><td>0.3677686</td><td>no       </td><td>yes      </td><td>0.54     </td><td>0.4458037</td><td>0.3090909</td><td>0.3118987</td><td>0.6529412</td><td>0.630    </td><td>0.30     </td><td>0.6296296</td><td>0.2222222</td><td>no       </td></tr>
+	<tr><td>0.1446281</td><td>no       </td><td>no       </td><td>0.00     </td><td>0.5061166</td><td>0.7818182</td><td>0.7754430</td><td>0.6000000</td><td>0.540    </td><td>0.30     </td><td>0.5407407</td><td>0.2222222</td><td>no       </td></tr>
+	<tr><td>0.3884298</td><td>no       </td><td>yes      </td><td>0.70     </td><td>0.6517781</td><td>0.8666667</td><td>0.6288608</td><td>0.6470588</td><td>0.195    </td><td>0.15     </td><td>0.1944444</td><td>0.0000000</td><td>no       </td></tr>
+	<tr><td>0.4876033</td><td>no       </td><td>no       </td><td>0.00     </td><td>0.6586060</td><td>0.4969697</td><td>0.5341772</td><td>0.6941176</td><td>0.370    </td><td>0.50     </td><td>0.3703704</td><td>0.1111111</td><td>no       </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<br>
+<p>Next, we need to convert the categorical features in our data set to numeric dummy variables. If you recall from Section <a class="reference external" href="../05_linear_regression/dummy.html#dummy-variables">Dummy Variables</a>, the <code class="docutils literal notranslate"><span class="pre">lm()</span></code> and <code class="docutils literal notranslate"><span class="pre">glm()</span></code> functions automatically convert categorical variables to binary dummy variables when one is using linear or logistic regression. Unfortunately, the function we will use for kNN does <em>not</em> do this automatically, so we need to do it ourselves.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert categorical variables to dummy variables</span>
+<span class="n">churnScaled</span><span class="o">$</span><span class="n">international_plan</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">churnScaled</span><span class="o">$</span><span class="n">international_plan</span><span class="o">==</span><span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="n">churnScaled</span><span class="o">$</span><span class="n">voice_mail_plan</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">churnScaled</span><span class="o">$</span><span class="n">voice_mail_plan</span><span class="o">==</span><span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>account_length</th><th scope=col>international_plan</th><th scope=col>voice_mail_plan</th><th scope=col>number_vmail_messages</th><th scope=col>total_day_minutes</th><th scope=col>total_day_calls</th><th scope=col>total_night_minutes</th><th scope=col>total_night_calls</th><th scope=col>total_intl_minutes</th><th scope=col>total_intl_calls</th><th scope=col>total_intl_charge</th><th scope=col>number_customer_service_calls</th><th scope=col>churn</th></tr></thead>
+<tbody>
+	<tr><td>0.6776860</td><td>0        </td><td>0        </td><td>0.00     </td><td>0.5957326</td><td>0.4060606</td><td>0.3802532</td><td>0.5176471</td><td>0.640    </td><td>0.05     </td><td>0.6407407</td><td>0.0000000</td><td>no       </td></tr>
+	<tr><td>0.4214876</td><td>0        </td><td>0        </td><td>0.00     </td><td>0.5126600</td><td>0.8121212</td><td>0.4600000</td><td>0.7882353</td><td>0.420    </td><td>0.15     </td><td>0.4203704</td><td>0.1111111</td><td>no       </td></tr>
+	<tr><td>0.3677686</td><td>0        </td><td>1        </td><td>0.54     </td><td>0.4458037</td><td>0.3090909</td><td>0.3118987</td><td>0.6529412</td><td>0.630    </td><td>0.30     </td><td>0.6296296</td><td>0.2222222</td><td>no       </td></tr>
+	<tr><td>0.1446281</td><td>0        </td><td>0        </td><td>0.00     </td><td>0.5061166</td><td>0.7818182</td><td>0.7754430</td><td>0.6000000</td><td>0.540    </td><td>0.30     </td><td>0.5407407</td><td>0.2222222</td><td>no       </td></tr>
+	<tr><td>0.3884298</td><td>0        </td><td>1        </td><td>0.70     </td><td>0.6517781</td><td>0.8666667</td><td>0.6288608</td><td>0.6470588</td><td>0.195    </td><td>0.15     </td><td>0.1944444</td><td>0.0000000</td><td>no       </td></tr>
+	<tr><td>0.4876033</td><td>0        </td><td>0        </td><td>0.00     </td><td>0.6586060</td><td>0.4969697</td><td>0.5341772</td><td>0.6941176</td><td>0.370    </td><td>0.50     </td><td>0.3703704</td><td>0.1111111</td><td>no       </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<br>
+<p>Now that we have prepared the data set we will use to build the model (<code class="docutils literal notranslate"><span class="pre">churnedScaled</span></code>), let’s prepare the data set with the observation we would like to make a prediction on. Suppose we have a file called <code class="docutils literal notranslate"><span class="pre">&quot;churn_new.csv&quot;</span></code> that contains the information of a new customer, and we would like to predict whether that customer will churn in the next quarter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">churnNew</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;../_build/data/churn_new.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>account_length</th><th scope=col>international_plan</th><th scope=col>voice_mail_plan</th><th scope=col>number_vmail_messages</th><th scope=col>total_day_minutes</th><th scope=col>total_day_calls</th><th scope=col>total_night_minutes</th><th scope=col>total_night_calls</th><th scope=col>total_intl_minutes</th><th scope=col>total_intl_calls</th><th scope=col>total_intl_charge</th><th scope=col>number_customer_service_calls</th></tr></thead>
+<tbody>
+	<tr><td>12  </td><td>no  </td><td>no  </td><td>0   </td><td>250 </td><td>118 </td><td>280 </td><td>90  </td><td>11.8</td><td>3   </td><td>3.19</td><td>1   </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<br>
+<p>As with our other data set, we need to (1) normalize the variables, and (2) convert the categorical variables into dummies. To normalize the data, we can apply the <code class="docutils literal notranslate"><span class="pre">scaler</span></code> object that we created above. To do this we can now just pass <code class="docutils literal notranslate"><span class="pre">scaler</span></code> and <code class="docutils literal notranslate"><span class="pre">churnNew</span></code> into <code class="docutils literal notranslate"><span class="pre">predict()</span></code>. This will apply the min-max formula to <code class="docutils literal notranslate"><span class="pre">churnNew</span></code> based on the minimum and maximum values used to create <code class="docutils literal notranslate"><span class="pre">churnScaled</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">churnNewScaled</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">scaler</span><span class="p">,</span> <span class="n">churnNew</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>account_length</th><th scope=col>international_plan</th><th scope=col>voice_mail_plan</th><th scope=col>number_vmail_messages</th><th scope=col>total_day_minutes</th><th scope=col>total_day_calls</th><th scope=col>total_night_minutes</th><th scope=col>total_night_calls</th><th scope=col>total_intl_minutes</th><th scope=col>total_intl_calls</th><th scope=col>total_intl_charge</th><th scope=col>number_customer_service_calls</th></tr></thead>
+<tbody>
+	<tr><td>0.04545455</td><td>no        </td><td>no        </td><td>0         </td><td>0.7112376 </td><td>0.7151515 </td><td>0.7088608 </td><td>0.5294118 </td><td>0.59      </td><td>0.15      </td><td>0.5907407 </td><td>0.1111111 </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<br>
+<p>Next, we need to convert our categorical variables into dummies:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">churnNewScaled</span><span class="o">$</span><span class="n">international_plan</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">churnNewScaled</span><span class="o">$</span><span class="n">international_plan</span><span class="o">==</span><span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="n">churnNewScaled</span><span class="o">$</span><span class="n">voice_mail_plan</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">churnNewScaled</span><span class="o">$</span><span class="n">voice_mail_plan</span><span class="o">==</span><span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>account_length</th><th scope=col>international_plan</th><th scope=col>voice_mail_plan</th><th scope=col>number_vmail_messages</th><th scope=col>total_day_minutes</th><th scope=col>total_day_calls</th><th scope=col>total_night_minutes</th><th scope=col>total_night_calls</th><th scope=col>total_intl_minutes</th><th scope=col>total_intl_calls</th><th scope=col>total_intl_charge</th><th scope=col>number_customer_service_calls</th></tr></thead>
+<tbody>
+	<tr><td>0.04545455</td><td>0         </td><td>0         </td><td>0         </td><td>0.7112376 </td><td>0.7151515 </td><td>0.7088608 </td><td>0.5294118 </td><td>0.59      </td><td>0.15      </td><td>0.5907407 </td><td>0.1111111 </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<br>
+<p>Now that our data has been processed, we can actually apply the kNN algorithm! We can do this in R with the <code class="docutils literal notranslate"><span class="pre">knn()</span></code> function from the <code class="docutils literal notranslate"><span class="pre">class</span></code> package, which uses the following syntax:</p>
+<div class="admonition-syntax admonition">
+<p class="admonition-title">Syntax</p>
+<p><code class="docutils literal notranslate"><span class="pre">class::knn(train,</span> <span class="pre">test,</span> <span class="pre">cl,</span> <span class="pre">k</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">prob</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></p>
+<ul class="simple">
+<li><p><em>Required arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">train</span></code>: A data frame with the observations used to build the model. This should only contain the independent (<span class="math notranslate nohighlight">\(X\)</span>) features, not the target feature (<span class="math notranslate nohighlight">\(Y\)</span>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test</span></code>: A data frame with the observation(s) the model should be applied to.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cl</span></code>: A vector with the correct labels (<span class="math notranslate nohighlight">\(Y\)</span>) of the observations used to build the model.</p></li>
+</ul>
+</li>
+<li><p><em>Optional arguments</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">k</span></code>: The number of nearest neighbors considered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prob</span></code>: Whether or not the probability of each prediction is returned. If <code class="docutils literal notranslate"><span class="pre">prob</span></code> equals <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, the function returns a binary prediction (<em>e.g.</em> “churn” or “no churn”).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Below we apply this function, with <code class="docutils literal notranslate"><span class="pre">churnScaled</span></code> used to build the model and <code class="docutils literal notranslate"><span class="pre">churnNewScaled</span></code> used to make predictions. Note that the <code class="docutils literal notranslate"><span class="pre">train</span></code> parameter only accepts the <span class="math notranslate nohighlight">\(X\)</span> features (and not the target feature <span class="math notranslate nohighlight">\(Y\)</span>), so we exclude the thirteen column in <code class="docutils literal notranslate"><span class="pre">churnScaled</span></code> when passing the data to <code class="docutils literal notranslate"><span class="pre">train</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">class</span><span class="p">)</span>
+<span class="n">knnModelK5</span> <span class="o">&lt;-</span> <span class="nf">knn</span><span class="p">(</span><span class="n">train</span> <span class="o">=</span> <span class="n">churnScaled</span><span class="p">[,</span><span class="m">-13</span><span class="p">],</span> <span class="n">test</span> <span class="o">=</span> <span class="n">churnNewScaled</span><span class="p">,</span> 
+                  <span class="n">cl</span> <span class="o">=</span> <span class="n">churnScaled</span><span class="o">$</span><span class="n">churn</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">knnModelK5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">no
+<details>
+	<summary style=display:list-item;cursor:pointer>
+		<strong>Levels</strong>:
+	</summary>
+	<ol class=list-inline>
+		<li>'no'</li>
+		<li>'yes'</li>
+	</ol>
+</details></div></div>
+</div>
+<p>Based on this output, our model predicts that the new customer will <em>not</em> churn.</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./08_knn"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../07_logistic_regression/multiple_log_reg.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7.3. </span>Multiple Logistic Regression</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="bias_variance.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8.4. </span>The Bias-Variance Tradeoff</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSM Faculty<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

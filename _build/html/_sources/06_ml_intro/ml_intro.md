@@ -1,0 +1,51 @@
+---
+jupytext:
+  cell_metadata_filter: -all
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: R
+  language: R
+  name: ir
+---
+
+# Introduction to Machine Learning
+
+Broadly speaking, **machine learning** is a sub-field of computer science which studies algorithms that learn from patterns observed in data. Sometimes the goal is to build a model that can predict unknown outcomes, while other times machine learning is used to explore the natural patterns or characteristics of a data set. The field is generally organized into three main approaches:
+
++ **Supervised learning**, where the goal is to build a model that can predict uncertain outcomes. Prediction is a process that uses historical data to forecast future events (*e.g.*, using January’s sale data to determine which customers are likely to return in February). The growth in predictive machine learning models is in large part responsible for the increased uptake of data science in so many industry sectors. Today, predictive models affect most aspects of our everyday life, from Netflix’s recommendation algorithm to Google’s search engine, or even to food placement on grocery store shelves. Mastering these methods will allow one to develop forecasts that apply across various business problems and industries. The majority of the material covered in this section of the book concerns supervised machine learning.
+
++ **Unsupervised learning**, where the goal is to observe any patterns or structures that might emerge from a data set. For example, an online marketing company may be interested in grouping consumers into different segments based on those consumers’ characteristics, such as their demographics, shopping behaviors, geographic location, etc. Unsupervised machine learning could be used to cluster customers into different groups based on their similarity across these features.
+
++ **Reinforcement learning**, where a computer program operates in a dynamic environment and repeatedly receives feedback on its performance at some target task. For example, self-driving cars are trained using reinforcement learning. In the current edition, reinforcement learning is not covered in this book.
+
+## Supervised Learning
+
+Supervised learning is generally divided into two main types of prediction problems: classification and regression. Many machine learning algorithms can be used for either classification or regression, although some can only be used for one or the other. In this section we will focus on classification problems, although most of the algorithms we will cover (decision trees, random forests, and neural networks) can be used for both. 
+
+### Classification
+
+In **classification** problems the outcome of interest is discrete, meaning one is trying to predict the category an observation belongs to. The following are some examples of classification problems:
+
++ A spam detection system that classifies incoming emails as spam or not spam.
++ A bank using an algorithm to predict whether potential lenders will default or repay on their loan.
++ A sorting machine on an assembly line that identifies apples, pears, and oranges and sorts them into different bins.
++ An HR department that conducts an employee engagement survey and uses the data to predict who will stay and leave in the upcoming year.
+
+### Regression
+
+In **regression** problems the outcome of interest is continuous, so the goal is to make a prediction as close to the true value as possible. The following are some examples of regression problems:
+
++ A paint company that wants to predict their total revenue in the upcoming quarter.
++ An investor trying to predict the stock price of a company over the next six months.
++ An online marketing company that wants to predict the number of shares a sponsored post will receive.
+
+Note that we were already introduced to regression in a previous section, where we covered linear regression. Indeed, linear regression, which models continuous outcomes as a function of one or more independent variables, is one of the most popular models for regression problems.
+
+## To Explain or To Predict?
+
+[In Progress]

@@ -1,0 +1,8 @@
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+employees <- read_csv("../_build/data/employee_data.csv")
+employees$Salary <- parse_number(employees$Salary)
+employees$Degree<-as.factor(employees$Degree)
+employees <- within(employees, Degree <- relevel(Degree, ref = "High School"))
+modelAge <- lm(Salary ~ Age, data=employees)

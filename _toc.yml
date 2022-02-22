@@ -6,93 +6,98 @@ root: intro
 parts:
   - caption: Getting Started
     chapters:
-    - file: roadmap
-    - file: assignments
-    - file: access
-    - file: platforms
+    - file: 00_getting_started/roadmap
+    - file: 00_getting_started/assignments
+    - file: 00_getting_started/access
+    - file: 00_getting_started/platforms
   - caption: R Bootcamp
     chapters:
-    - file: rbasics
+    - file: 00_bootcamp/01_rbasics/rbasics
       sections:
-      - file: r_as_a_calculator
-      - file: assignment
-      - file: data_types
-      - file: rbasics_quiz1
-      - file: atomic_vectors
-      - file: functions
-      - file: rbasics_quiz2
-    - file: dataframes
+      - file: 00_bootcamp/01_rbasics/r_as_a_calculator
+      - file: 00_bootcamp/01_rbasics/assignment
+      - file: 00_bootcamp/01_rbasics/data_types
+      - file: 00_bootcamp/01_rbasics/rbasics_quiz1
+      - file: 00_bootcamp/01_rbasics/atomic_vectors
+      - file: 00_bootcamp/01_rbasics/functions
+      - file: 00_bootcamp/01_rbasics/rbasics_quiz2
+    - file: 00_bootcamp/02_dataframes/dataframes
       sections:
-      - file: r_packages
-      - file: reading_in_data
-      - file: data_frame_basics
-      - file: df_basics_exercise
-      - file: fixing_variable_types
-      - file: sorting_data
-      - file: filtering_rows
-      - file: selecting_columns
-      - file: df_manipulation_exercise
-      - file: df_manipulation_quiz
-    - file: bootcamp_finish_message
+      - file: 00_bootcamp/02_dataframes/r_packages
+      - file: 00_bootcamp/02_dataframes/reading_in_data
+      - file: 00_bootcamp/02_dataframes/data_frame_basics
+      - file: 00_bootcamp/02_dataframes/df_basics_exercise
+      - file: 00_bootcamp/02_dataframes/fixing_variable_types
+      - file: 00_bootcamp/02_dataframes/sorting_data
+      - file: 00_bootcamp/02_dataframes/filtering_rows
+      - file: 00_bootcamp/02_dataframes/selecting_columns
+      - file: 00_bootcamp/02_dataframes/df_manipulation_exercise
+      - file: 00_bootcamp/02_dataframes/df_manipulation_quiz
+    - file: 00_bootcamp/bootcamp_finish_message
   - caption: Exploratory Data Analysis
     numbered: True
     chapters:
-      - file: eda
+      - file: 01_eda/eda
         sections:
-        - file: summary_stats
-        - file: visualization
-        - file: eda_quiz
-        - file: eda_case
-        - file: ggplot
-      - file: eda_tidyverse
+        - file: 01_eda/summary_stats
+        - file: 01_eda/visualization
+        - file: 01_eda/eda_quiz
+        - file: 01_eda/ggplot
+      - file: 02_tidy/eda_tidyverse
         sections:
-          - file: pipe_operator
-          - file: summarise
-          - file: dds
+          - file: 02_tidy/pipe_operator
+          - file: 02_tidy/summarise
+          - file: 02_tidy/dds
   - caption: Inference
     numbered: True
     chapters:
-      - file: stat_inference
+      - file: 03_stat_inference/stat_inference
         sections:
-          - file: samps_pops
-          - file: conf_int
-          - file: hyp_testing
-      - file: causal_inf
+          - file: 03_stat_inference/samps_pops
+          - file: 03_stat_inference/conf_int
+          - file: 03_stat_inference/hyp_testing
+          - file: 03_stat_inference/hyp_test_quiz
+          - file: 03_stat_inference/one_samp_test_exercise
+          - file: 03_stat_inference/two_samp_test_exercise
+      - file: 04_causal_inference/causal_inference
         sections:
-          - file: obs_studies
-          - file: rand_experiments
-          - file: causal_exercise
-          - file: power
-      - file: linear_regression
+          - file: 04_causal_inference/obs_studies
+          - file: 04_causal_inference/rand_experiments
+          - file: 04_causal_inference/causal_exercise
+          - file: 04_causal_inference/power
+      - file: 05_linear_regression/linear_regression
         sections:
-          - file: correlation
-          - file: simple_reg
-          - file: understanding_reg
-          - file: multiple_linear_regression
-          - file: dummy
-          - file: transformations
-          - file: interactions
+          - file: 05_linear_regression/correlation
+          - file: 05_linear_regression/simple_reg
+          - file: 05_linear_regression/understanding_reg
+          - file: 05_linear_regression/reg_exercise1
+          - file: 05_linear_regression/multiple_linear_regression
+          - file: 05_linear_regression/dummy
+          - file: 05_linear_regression/reg_exercise2
+          - file: 05_linear_regression/transformations
+          - file: 05_linear_regression/interactions
+          - file: 05_linear_regression/reg_exercise3
   - caption: Prediction & Machine Learning
     numbered: True
     chapters:
-      - file: ml_intro
-      - file: logistic_reg
+      - file: 06_ml_intro/ml_intro
+      - file: 07_logistic_regression/logistic_regression
         sections:
-          - file: why_not_lin
-          - file: simple_log_reg
-          - file: multiple_log_reg
-      - file: knn
+          - file: 07_logistic_regression/why_not_lin
+          - file: 07_logistic_regression/simple_log_reg
+          - file: 07_logistic_regression/multiple_log_reg
+      - file: 08_knn/knn
         sections:
-          - file: bias_variance
-      - file: model_eval
+          - file: 08_knn/bias_variance
+      - file: 09_model_eval/model_eval
         sections:
-          - file: data_partition
-          - file: performance_metrics
-      - file: dt_rf
+          - file: 09_model_eval/data_partition
+          - file: 09_model_eval/performance_metrics
+      - file: 10_dt_rf/dt_rf
         sections:
-          - file: decision_trees
-          - file: random_forest
-          - file: xgboost
-      - file: neural_nets
-      - file: unsupervised
-      - file: nlp
+          - file: 10_dt_rf/decision_trees
+          - file: 10_dt_rf/random_forest
+          - file: 10_dt_rf/xgboost
+      - file: 11_neural_nets/neural_nets
+      - file: 12_unsupervised/unsupervised
+      - file: 13_nlp/nlp
