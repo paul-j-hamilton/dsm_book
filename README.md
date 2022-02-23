@@ -27,6 +27,8 @@ This README describes best practices for managing materials across all three of 
 
 ## Textbook Materials
 
+[In Progress]
+
 ## Google Materials
 
 **Username:** dsmfaculty@gmail.com
