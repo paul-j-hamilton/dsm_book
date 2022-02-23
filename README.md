@@ -23,9 +23,47 @@ All Colab notebooks and Google Polls for the course are managed on Google Drive.
 
 ### Drive Folder
 
-With such a large team of faculty, teaching fellows, and 
+With such a large team of faculty, teaching fellows, and research associates working on the course, it is imperative that the Drive folder is well organized and maintained. The folder should be intuitively designed such that it is obvious where all materials are stored with the folder. There should also be a README file in the root of the folder that describes how the folder is structured. 
+
+The dsmfaculty@gmail.com account owns the master folder for the course called "DSM" (direct link [here](https://drive.google.com/drive/folders/1cBOCc2-X58ySGGwkP85ArtoCfRuiAPar?usp=sharing)). This folder contains the following subfolders:
++ `"Book"` - A permanent folder with all of the materials (Colab notebooks, polls, etc.) that are used in the course textbook.
++ Course Folders (e.g. `"DSM I (Spring 2022, EC)"`) - These folders are used to manage the Drive materials for any current iterations of the course. When creating a folder for a new iteration of the course, follow the naming convention used in the previous versions of the course.
++ `"!Archived"` - A folder with archived course folders from previous iterations of the course. You can peruse these folders to see how we have organized materials in the past. 
+
+To see how course folders are organized, here are the contents of the `"DSM I (Fall 2021, EC)"` folder within `"Archived"`:
+
+<img src="https://i.imgur.com/98qaslF.png" alt="drawing" width="800"/>
+
+And here are the contents of the `"Folder Structure (README).png"` file:
+
+<img src="https://lh4.googleusercontent.com/PupMof-Oup2kr_MJ9jzOINBKo6wb0J36Z6h80LVi8nPrBCBAgzS_Na6BUzf_w4JImXGkqkbILuq8J3dTO4BO=w1366-h657-rw" alt="drawing" width="500"/>
+
+As shown in the README, there are three primary subfolders: `"!Temp"`, which is used to store and share temporary documents to prevent the rest of the course folder from getting cluttered; `"Admin"`, which stores administrative documents such as the syllabus, course overview note, course calendar, etc.; and `"Class Materials"`, which contains subfolders for each class in the course. Each one of these class folders contains all the necessary materials (documents, data, code notebooks, etc.) for the relevant class session.  
+
+Let's look into one of the class folders, for example `"Class 4"`. This contains the following:
++ `"data"` - All of the data sets for Class 4, including the case data the students will analyze during class (`"lexoo_transactions.csv"`) and the data that is used in the prework (`"gss_data.csv"`, `"wsj_table.csv"`)
++ `"documents"` - Any relevant documents, such as teaching plans and teaching notes.
++ `"notebooks"` - All of the Colab notebooks for Class 4, including notebooks assigned as prework (`"Class 4: Videos.ipynb"`), the starter notebook for the case that will be shared with students (`"Class 4: Lexoo.ipynb"`), and the finisher notebook for the case with the suggested answers (`"Class 4: Lexoo (FINISHER).ipynb"`). 
++ `"polls"` - Google polls use to collect feedback, and occasionally student answers to case questions. 
++ `"Class 4: Assignment Sheet.ipynb"` - The assignment sheet for Class 4 that is given to the students. In this iteration of the course we created the assignment sheets as Colab notebooks, but subsequently we have changed to writing assignment sheets as Google Docs.
 
 #### Colab Notebooks
+
+All coding in the course is done within Colab notebooks. There are several important points to note about Colab notebooks:
++ Google does not officially support the R kernel for Colab, so we have developed a workaround to run R within Colab. To create an R notebook, you must copy a pre-existing notebook that is set up with the R kernel. We have saved an R notebook template under the outer `"DSM"` folder called `"Notebook Template.ipynb"`, so whenever you want to create a new notebook you should copy this template, move it to the approriate folder, and work within that copy. 
++ It is best practice to maintain two versions of each notebook: the "live" version of the notebook that is distributed to the students, and the "finisher" notebook for faculty and teaching fellows that contains all of the answers/code. The live version contains some code cells with `# ADD COMMAND(S) HERE` where students are expected to write code themselves, and text cells with `[ADD ANSWER HERE]` where students are expected to provide written answers. In the finisher version of the notebook, all of these placeholders are filled in. For an example of this, see the two version of the `"Class 2: Sabermetrics"` notebooks [here](https://drive.google.com/drive/folders/17SSVY65rSNZmNAi0IqEYWwabzQBkhxKH?usp=sharing). 
++ Most packages are *not* pre-installed on the virtual machines that run Colab notebooks. Therefore, in each working session one needs to install and load any packages used throughout the notebook, which can sometimes take several minutes. Notably, the `tidyverse` and `ggplot2` packages are pre-installed, so these packages can simply be loaded. 
++ We typically begin each notebook with a reminder for the students to make a copy of the notebook in their personal Drive account, as well as a reminder to install and load all necessary packages. For example, here is the beginning of a notebook from a class in the later half of the course:
+
+  <img src="https://i.imgur.com/4O5zroo.png" alt="drawing" width="800"/>
+
++ Ocassionally we want to provide students with the option to reveal code if it is particularly challenging. For example:
+
+  ![](https://i.imgur.com/3i2YoXJ.gif)
+
+  To do this, create the code cell, click into it, and then select "View -> Show/hide code":
+
+  ![](https://i.imgur.com/Rk9MaTc.gif)
 
 #### Data
 
