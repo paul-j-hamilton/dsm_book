@@ -22,7 +22,7 @@ options(readr.num_columns = 0)
 churn <- read_csv("../_build/data/churn_train.csv")
 ```
 
-# k-Nearest Neighbors (kNN)
+# (&sect;) k-Nearest Neighbors (kNN)
 
 For many businesses, **customer churn** is an important metric for measuring customer retention. Banks, social media platforms, telecommunication companies, etc. all need to monitor customer turnover to help understand why customers leave their platform, and whether there are intervention strategies that can help prevent customer churn. 
 

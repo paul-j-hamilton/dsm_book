@@ -101,7 +101,7 @@ A rough rule of thumb when looking at regression models is to look at $s_e$ then
 $R^2$ does not inform about a linear regression model's predictive ability, so one must also report $s_e$.
 ```
 
-## Basic Diagnostic Plots
+## (&sect;) Basic Diagnostic Plots
 
 When doing regression analysis, we assume a linear relationship between the $X$ and $Y$ variable. We also assume the noise in the model follows a normal distribution. Both of these assumptions may be checked with separate **diagnostic plots**.
 

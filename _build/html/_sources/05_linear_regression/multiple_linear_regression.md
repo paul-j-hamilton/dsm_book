@@ -70,7 +70,7 @@ We interpret the regression coefficients as follows:
 
 If we look at the last line of the regression output above we see something called the **F-statistic**. This is an overall goodness of fit test that is used in multiple regression. This statistic is testing the null hypothesis that no explanatory variables are needed in the model. If we reject this test by having a small p-value (traditionally less than 0.05) we may conclude that we need at least one explanatory variable in the model. However, we are not told which one we need. Although this seems like a silly test, it is one that is very robust to model misspecification so we will usually look at it first when doing model building to make sure there is some explanatory power in the model.
 
-## Basic Diagnostic Plots
+## (&sect;) Basic Diagnostic Plots
 
 As we did with simple linear regression, we can examine diagnostic plots to see if the regression assumptions hold. The residuals versus fitted plot below has essentially a random scatter, indicating that there is no need to look for nonlinear relationships between the $X$ variables and $Y$.
 

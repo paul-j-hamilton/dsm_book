@@ -1,3 +1,3 @@
-# XGBoost (&#9909;)
+# (&sect;) XGBoost
 
 [In Progress]

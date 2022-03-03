@@ -25,7 +25,7 @@ employees <- within(employees, Degree <- relevel(Degree, ref = "High School"))
 modelAge <- lm(Salary ~ Age, data=employees)
 ```
 
-# Transformations (&#9909;)
+# (&sect;) Transformations
 
 This section is optional, and will not be covered in the DSM course. Select "Click to show" to reveal. 
 

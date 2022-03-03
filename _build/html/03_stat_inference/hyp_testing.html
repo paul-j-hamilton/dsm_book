@@ -105,16 +105,6 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/roadmap.html">
-   Course Roadmap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/assignments.html">
-   Assignment Sheets
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../00_getting_started/access.html">
    Access to Materials
   </a>
@@ -275,33 +265,43 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/what_is_data.html">
+     1.1. What Is Data?
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/summary_stats.html">
-     1.1. Summary Statistics
+     1.2. Summary Statistics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/visualization.html">
-     1.2. Visualization
+     1.3. Visualization
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/eda_quiz.html">
-     1.3.
+     1.4.
      <strong>
       Quiz
      </strong>
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/outliers.html">
+     1.5. Outliers
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/ggplot.html">
-     1.4. Visualization with ggplot (⚵)
+     1.6. (§) Visualization with ggplot
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../02_tidy/eda_tidyverse.html">
-   2. Data Wrangling with the tidyverse
+   2. (§) Data Wrangling with the tidyverse
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -376,7 +376,7 @@
      <strong>
       Exercise:
      </strong>
-     One-Sample Hypothesis Testing (⚵)
+     One-Sample Hypothesis Testing
     </a>
    </li>
    <li class="toctree-l2">
@@ -472,21 +472,21 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/reg_exercise2.html">
-     5.7.
+     5.7. (§)
      <strong>
       Exercise:
      </strong>
-     Interactions (⚵)
+     Interactions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/transformations.html">
-     5.8. Transformations (⚵)
+     5.8. (§) Transformations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/interactions.html">
-     5.9. Interactions (⚵)
+     5.9. (§) Interactions
     </a>
    </li>
    <li class="toctree-l2">
@@ -541,7 +541,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../08_knn/knn.html">
-   8. k-Nearest Neighbors (kNN)
+   8. (§) k-Nearest Neighbors (kNN)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
@@ -595,29 +595,29 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../10_dt_rf/random_forest.html">
-     10.2. Random Forest
+     10.2. (§) Random Forest
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../10_dt_rf/xgboost.html">
-     10.3. XGBoost (⚵)
+     10.3. (§) XGBoost
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../11_neural_nets/neural_nets.html">
-   11. Neural Networks
+   11. (§) Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../12_unsupervised/unsupervised.html">
-   12. Unsupervised Learning
+   12. (§) Unsupervised Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../13_nlp/nlp.html">
-   13. Natural Language Processing
+   13. (§) Natural Language Processing
   </a>
  </li>
 </ul>
@@ -795,7 +795,7 @@
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#dependent-samples">
-       3.3.4.1.2. Dependent Samples
+       3.3.4.1.2. (§) Dependent Samples
       </a>
      </li>
     </ul>
@@ -809,7 +809,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#hypothesis-testing-with-more-than-two-samples">
-   3.3.5. Hypothesis Testing with More Than Two Samples
+   3.3.5. (§) Hypothesis Testing with More Than Two Samples
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -1175,7 +1175,7 @@ mean in group 1 mean in group 2
 <p>Note that we see a difference in the means of the two samples, 11.1 years for government employees versus 7.9 for private sector employees. In this case, the small p-value for this test, 0.0002462, indicates that there is strong evidence to reject the null hypothesis of equal means. We may conclude that in 2008, it is very likely that on average, government employees had stayed at their current jobs for a different length of time than private sector employees.</p>
 </div>
 <div class="section" id="dependent-samples">
-<h4><span class="section-number">3.3.4.1.2. </span>Dependent Samples<a class="headerlink" href="#dependent-samples" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">3.3.4.1.2. </span>(§) Dependent Samples<a class="headerlink" href="#dependent-samples" title="Permalink to this headline">¶</a></h4>
 <p>Often we have two groups of data that are not independent but rather paired. The simplest example of paired data is a before-after test, in which each subject is measured twice, resulting in pairs of observations of the same subject. For example, we have individuals who go through a 12-week strength training program and have the amount they can bench press before and after the training program. We can’t analyze these data as two independent samples because we have two measurements (pairs of data) on the same individual. We need to adjust our hypothesis test to account for the fact that the measurements are correlated.</p>
 <p>To see what can go wrong if paired data are not analyzed correctly, consider the following example. A company researcher wants to test a new formula for a sports drink that has been designed to improve running performance. Instead of the regular “carbohydrate-only” drink that the company currently produces, this new sports drink contains a “carbohydrate-protein” formula. The researcher would like to know whether this new carbohydrate-protein sports drink leads to a difference in running performance compared to the carbohydrate-only sports drink.</p>
 <p>To carry out the experiment, the researcher recruited 20 middle distance runners. All of these participants performed two trials in which they had to run as far as possible for 2 hours on a treadmill. In one of the trials, each of the 20 participants drank a bottle of the carbohydrate-only formula. In the other trial, each of the same 20 participants drank a bottle of the carbohydrate-protein formula. At the end of the two trials, the distance each participant ran (in km) was recorded. The data (which is stored in a data frame called <code class="docutils literal notranslate"><span class="pre">carbs</span></code>) is shown in the table below. Do the data present sufficient evidence to indicate that the new formula is better?</p>
@@ -1417,7 +1417,7 @@ sample estimates:
 </div>
 </div>
 <div class="section" id="hypothesis-testing-with-more-than-two-samples">
-<h2><span class="section-number">3.3.5. </span>Hypothesis Testing with More Than Two Samples<a class="headerlink" href="#hypothesis-testing-with-more-than-two-samples" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.3.5. </span>(§) Hypothesis Testing with More Than Two Samples<a class="headerlink" href="#hypothesis-testing-with-more-than-two-samples" title="Permalink to this headline">¶</a></h2>
 <p>This section is optional, and will not be covered in the DSM course. Select “Click to show” to reveal.</p>
 <div class="section" id="testing-means-anova">
 <h3><span class="section-number">3.3.5.1. </span>Testing Means (ANOVA)<a class="headerlink" href="#testing-means-anova" title="Permalink to this headline">¶</a></h3>

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1.1. Summary Statistics &#8212; Data Science for Managers</title>
+    <title>1.2. Summary Statistics &#8212; Data Science for Managers</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.2. Visualization" href="visualization.html" />
-    <link rel="prev" title="1. Exploring Data" href="eda.html" />
+    <link rel="next" title="1.3. Visualization" href="visualization.html" />
+    <link rel="prev" title="1.1. What Is Data?" href="what_is_data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -104,16 +104,6 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/roadmap.html">
-   Course Roadmap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/assignments.html">
-   Assignment Sheets
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../00_getting_started/access.html">
    Access to Materials
@@ -274,34 +264,44 @@
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="what_is_data.html">
+     1.1. What Is Data?
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     1.1. Summary Statistics
+     1.2. Summary Statistics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="visualization.html">
-     1.2. Visualization
+     1.3. Visualization
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="eda_quiz.html">
-     1.3.
+     1.4.
      <strong>
       Quiz
      </strong>
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="outliers.html">
+     1.5. Outliers
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="ggplot.html">
-     1.4. Visualization with ggplot (⚵)
+     1.6. (§) Visualization with ggplot
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../02_tidy/eda_tidyverse.html">
-   2. Data Wrangling with the tidyverse
+   2. (§) Data Wrangling with the tidyverse
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -376,7 +376,7 @@
      <strong>
       Exercise:
      </strong>
-     One-Sample Hypothesis Testing (⚵)
+     One-Sample Hypothesis Testing
     </a>
    </li>
    <li class="toctree-l2">
@@ -472,21 +472,21 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/reg_exercise2.html">
-     5.7.
+     5.7. (§)
      <strong>
       Exercise:
      </strong>
-     Interactions (⚵)
+     Interactions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/transformations.html">
-     5.8. Transformations (⚵)
+     5.8. (§) Transformations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/interactions.html">
-     5.9. Interactions (⚵)
+     5.9. (§) Interactions
     </a>
    </li>
    <li class="toctree-l2">
@@ -541,7 +541,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../08_knn/knn.html">
-   8. k-Nearest Neighbors (kNN)
+   8. (§) k-Nearest Neighbors (kNN)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
@@ -595,29 +595,29 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../10_dt_rf/random_forest.html">
-     10.2. Random Forest
+     10.2. (§) Random Forest
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../10_dt_rf/xgboost.html">
-     10.3. XGBoost (⚵)
+     10.3. (§) XGBoost
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../11_neural_nets/neural_nets.html">
-   11. Neural Networks
+   11. (§) Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../12_unsupervised/unsupervised.html">
-   12. Unsupervised Learning
+   12. (§) Unsupervised Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../13_nlp/nlp.html">
-   13. Natural Language Processing
+   13. (§) Natural Language Processing
   </a>
  </li>
 </ul>
@@ -729,12 +729,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#quantitative-variables">
-   1.1.1. Quantitative Variables
+   1.2.1. Quantitative Variables
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#categorical-variables">
-   1.1.2. Categorical Variables
+   1.2.2. Categorical Variables
   </a>
  </li>
 </ul>
@@ -749,10 +749,10 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="summary-statistics">
-<h1><span class="section-number">1.1. </span>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">1.2. </span>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this headline">¶</a></h1>
 <p>The concept of summary statistics should be familiar to most readers. These are the summary measures that all organizations use to track key business outcomes. While visualizations can provide a visual indication of typical values, outliers, variations, trends, and associations in a data set, summary statistics provide unambiguous, numerical measures.</p>
 <div class="section" id="quantitative-variables">
-<h2><span class="section-number">1.1.1. </span>Quantitative Variables<a class="headerlink" href="#quantitative-variables" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.1. </span>Quantitative Variables<a class="headerlink" href="#quantitative-variables" title="Permalink to this headline">¶</a></h2>
 <p>As we explore a data set, it is often useful to calculate summary statistics that provide a preliminary overview of the variables we are working with. There are two main types of quantitative variables, continuous and discrete. A <strong>continuous</strong> variable is one that can take on any value within a certain numerical range. For example, in the <code class="docutils literal notranslate"><span class="pre">employees</span></code> data set <code class="docutils literal notranslate"><span class="pre">Salary</span></code> is continuous because it can take on any value above $0. A <strong>discrete</strong> variable can take on only a discrete set of values (<em>e.g.</em>, 2,4,6,8).
 The most basic summary statistics for quantitative variables are measures of <strong>central tendency</strong>, such as:</p>
 <ul class="simple">
@@ -905,7 +905,7 @@ The most basic summary statistics for quantitative variables are measures of <st
 </div>
 </div>
 <div class="section" id="categorical-variables">
-<h2><span class="section-number">1.1.2. </span>Categorical Variables<a class="headerlink" href="#categorical-variables" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.2. </span>Categorical Variables<a class="headerlink" href="#categorical-variables" title="Permalink to this headline">¶</a></h2>
 <p>Categorical variables take on values corresponding to a category. For example, <code class="docutils literal notranslate"><span class="pre">Degree</span></code> in <code class="docutils literal notranslate"><span class="pre">employees</span></code> can only take on the values <code class="docutils literal notranslate"><span class="pre">High</span> <span class="pre">School</span></code>, <code class="docutils literal notranslate"><span class="pre">Associate's</span></code>, <code class="docutils literal notranslate"><span class="pre">Bachelor's</span></code>, <code class="docutils literal notranslate"><span class="pre">Master's</span></code>, and <code class="docutils literal notranslate"><span class="pre">Ph.D</span></code>. Categorical variables cannot be summarized by the mean, median, or standard deviation. Instead, these variables are often summarized using tables and bar plots. For categorical variables, the <code class="docutils literal notranslate"><span class="pre">table()</span></code> and <code class="docutils literal notranslate"><span class="pre">prop.table()</span></code> commands show the number and percentage (<strong>prop</strong>ortion) of observations in each category, respectively. Note that to use <code class="docutils literal notranslate"><span class="pre">prop.table()</span></code>, we need to apply <code class="docutils literal notranslate"><span class="pre">table()</span></code> first.</p>
 <div class="admonition-syntax admonition">
 <p class="admonition-title">Syntax</p>
@@ -1056,17 +1056,17 @@ The most basic summary statistics for quantitative variables are measures of <st
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="eda.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="what_is_data.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>Exploring Data</p>
+            <p class="prev-next-title"><span class="section-number">1.1. </span>What Is Data?</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="visualization.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.2. </span>Visualization</p>
+        <p class="prev-next-title"><span class="section-number">1.3. </span>Visualization</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

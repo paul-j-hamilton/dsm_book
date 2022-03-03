@@ -269,7 +269,7 @@ t.test(gss$CUREMPYR ~ gss$WRKGOVT)
 
 Note that we see a difference in the means of the two samples, 11.1 years for government employees versus 7.9 for private sector employees. In this case, the small p-value for this test, 0.0002462, indicates that there is strong evidence to reject the null hypothesis of equal means. We may conclude that in 2008, it is very likely that on average, government employees had stayed at their current jobs for a different length of time than private sector employees.
 
-#### Dependent Samples
+#### (&sect;) Dependent Samples
 
 Often we have two groups of data that are not independent but rather paired. The simplest example of paired data is a before-after test, in which each subject is measured twice, resulting in pairs of observations of the same subject. For example, we have individuals who go through a 12-week strength training program and have the amount they can bench press before and after the training program. We can't analyze these data as two independent samples because we have two measurements (pairs of data) on the same individual. We need to adjust our hypothesis test to account for the fact that the measurements are correlated. 
 
@@ -455,7 +455,7 @@ prop.test(x = c(45, 48), n = c(75, 90))
 
 Since the p-value is greater than 0.05, we fail to reject the null hypothesis and cannot conclude there is a difference between the proportion of satisfied students in the two classes.
 
-## Hypothesis Testing with More Than Two Samples
+## (&sect;) Hypothesis Testing with More Than Two Samples
 
 This section is optional, and will not be covered in the DSM course. Select "Click to show" to reveal. 
 

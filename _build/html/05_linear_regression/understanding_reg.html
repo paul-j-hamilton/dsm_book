@@ -105,16 +105,6 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/roadmap.html">
-   Course Roadmap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/assignments.html">
-   Assignment Sheets
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../00_getting_started/access.html">
    Access to Materials
   </a>
@@ -275,33 +265,43 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/what_is_data.html">
+     1.1. What Is Data?
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/summary_stats.html">
-     1.1. Summary Statistics
+     1.2. Summary Statistics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/visualization.html">
-     1.2. Visualization
+     1.3. Visualization
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/eda_quiz.html">
-     1.3.
+     1.4.
      <strong>
       Quiz
      </strong>
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/outliers.html">
+     1.5. Outliers
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/ggplot.html">
-     1.4. Visualization with ggplot (⚵)
+     1.6. (§) Visualization with ggplot
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../02_tidy/eda_tidyverse.html">
-   2. Data Wrangling with the tidyverse
+   2. (§) Data Wrangling with the tidyverse
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -376,7 +376,7 @@
      <strong>
       Exercise:
      </strong>
-     One-Sample Hypothesis Testing (⚵)
+     One-Sample Hypothesis Testing
     </a>
    </li>
    <li class="toctree-l2">
@@ -472,21 +472,21 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="reg_exercise2.html">
-     5.7.
+     5.7. (§)
      <strong>
       Exercise:
      </strong>
-     Interactions (⚵)
+     Interactions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="transformations.html">
-     5.8. Transformations (⚵)
+     5.8. (§) Transformations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="interactions.html">
-     5.9. Interactions (⚵)
+     5.9. (§) Interactions
     </a>
    </li>
    <li class="toctree-l2">
@@ -541,7 +541,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../08_knn/knn.html">
-   8. k-Nearest Neighbors (kNN)
+   8. (§) k-Nearest Neighbors (kNN)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
@@ -595,29 +595,29 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../10_dt_rf/random_forest.html">
-     10.2. Random Forest
+     10.2. (§) Random Forest
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../10_dt_rf/xgboost.html">
-     10.3. XGBoost (⚵)
+     10.3. (§) XGBoost
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../11_neural_nets/neural_nets.html">
-   11. Neural Networks
+   11. (§) Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../12_unsupervised/unsupervised.html">
-   12. Unsupervised Learning
+   12. (§) Unsupervised Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../13_nlp/nlp.html">
-   13. Natural Language Processing
+   13. (§) Natural Language Processing
   </a>
  </li>
 </ul>
@@ -743,7 +743,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-diagnostic-plots">
-   5.3.3. Basic Diagnostic Plots
+   5.3.3. (§) Basic Diagnostic Plots
   </a>
  </li>
 </ul>
@@ -872,7 +872,7 @@ F-statistic: 427.1 on 1 and 918 DF,  p-value: &lt; 2.2e-16
 </div>
 </div>
 <div class="section" id="basic-diagnostic-plots">
-<h2><span class="section-number">5.3.3. </span>Basic Diagnostic Plots<a class="headerlink" href="#basic-diagnostic-plots" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.3.3. </span>(§) Basic Diagnostic Plots<a class="headerlink" href="#basic-diagnostic-plots" title="Permalink to this headline">¶</a></h2>
 <p>When doing regression analysis, we assume a linear relationship between the <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> variable. We also assume the noise in the model follows a normal distribution. Both of these assumptions may be checked with separate <strong>diagnostic plots</strong>.</p>
 <p>The residuals <span class="math notranslate nohighlight">\(e_i\)</span>, also called the <strong>errors</strong>, are the observed (<span class="math notranslate nohighlight">\(y_i\)</span>) minus the predicted (<span class="math notranslate nohighlight">\(\hat{y_i}\)</span>) values for each row in our data set. The most basic plot is a residual versus fitted (predicted) value plot. This plot is easily created in R as shown below, and if the modeling assumptions are correct should show a random scatter of points. Note that we pass our regression model into the same <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function we have seen before, but set the <code class="docutils literal notranslate"><span class="pre">which</span></code> argument to <code class="docutils literal notranslate"><span class="pre">1</span></code> in order to get a residual vs. fitted plot.</p>
 <div class="cell docutils container">

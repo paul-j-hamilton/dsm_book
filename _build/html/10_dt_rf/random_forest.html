@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>10.2. Random Forest &#8212; Data Science for Managers</title>
+    <title>10.2. (§) Random Forest &#8212; Data Science for Managers</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,7 +53,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10.3. XGBoost (⚵)" href="xgboost.html" />
+    <link rel="next" title="10.3. (§) XGBoost" href="xgboost.html" />
     <link rel="prev" title="10.1. Decision Trees" href="decision_trees.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -104,16 +104,6 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/roadmap.html">
-   Course Roadmap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/assignments.html">
-   Assignment Sheets
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../00_getting_started/access.html">
    Access to Materials
@@ -275,33 +265,43 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/what_is_data.html">
+     1.1. What Is Data?
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/summary_stats.html">
-     1.1. Summary Statistics
+     1.2. Summary Statistics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/visualization.html">
-     1.2. Visualization
+     1.3. Visualization
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/eda_quiz.html">
-     1.3.
+     1.4.
      <strong>
       Quiz
      </strong>
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/outliers.html">
+     1.5. Outliers
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/ggplot.html">
-     1.4. Visualization with ggplot (⚵)
+     1.6. (§) Visualization with ggplot
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../02_tidy/eda_tidyverse.html">
-   2. Data Wrangling with the tidyverse
+   2. (§) Data Wrangling with the tidyverse
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -376,7 +376,7 @@
      <strong>
       Exercise:
      </strong>
-     One-Sample Hypothesis Testing (⚵)
+     One-Sample Hypothesis Testing
     </a>
    </li>
    <li class="toctree-l2">
@@ -472,21 +472,21 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/reg_exercise2.html">
-     5.7.
+     5.7. (§)
      <strong>
       Exercise:
      </strong>
-     Interactions (⚵)
+     Interactions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/transformations.html">
-     5.8. Transformations (⚵)
+     5.8. (§) Transformations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/interactions.html">
-     5.9. Interactions (⚵)
+     5.9. (§) Interactions
     </a>
    </li>
    <li class="toctree-l2">
@@ -541,7 +541,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../08_knn/knn.html">
-   8. k-Nearest Neighbors (kNN)
+   8. (§) k-Nearest Neighbors (kNN)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
@@ -595,29 +595,29 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     10.2. Random Forest
+     10.2. (§) Random Forest
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="xgboost.html">
-     10.3. XGBoost (⚵)
+     10.3. (§) XGBoost
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../11_neural_nets/neural_nets.html">
-   11. Neural Networks
+   11. (§) Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../12_unsupervised/unsupervised.html">
-   12. Unsupervised Learning
+   12. (§) Unsupervised Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../13_nlp/nlp.html">
-   13. Natural Language Processing
+   13. (§) Natural Language Processing
   </a>
  </li>
 </ul>
@@ -749,7 +749,7 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="random-forest">
-<h1><span class="section-number">10.2. </span>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">10.2. </span>(§) Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h1>
 <p>One shortcoming of the CART model discussed in the previous section is that it typically exhibits high variance. This means that the model might change significantly if it were built on a different sample of data. In general we hope that our models are robust, and not highly dependent on the particular observations in the training set. Instead we prefer models that exhibit low variance, meaning the model parameters would not change drastically if we built the model on a different random sample of data.</p>
 <p>Statistical theory tells us that even if the variance of an individual model is high, the variance of many such models averaged together will be significantly lower. Of course, we usually only have one training set, so we do not have the luxury of building many different CART models on separate data sets and averaging them together. However, thanks to a technique known as bootstrapping, there is a way to build many different trees on a single data set. This model, known as the <strong>random forest</strong>, works according to the following steps:</p>
 <ol class="simple">
@@ -840,18 +840,18 @@
 <div class="output text_html"><table>
 <thead><tr><th></th><th scope=col>MeanDecreaseAccuracy</th></tr></thead>
 <tbody>
-	<tr><th scope=row>account_length</th><td> -0.4152426</td></tr>
-	<tr><th scope=row>international_plan</th><td> 88.9005002</td></tr>
-	<tr><th scope=row>voice_mail_plan</th><td> 19.9307846</td></tr>
-	<tr><th scope=row>number_vmail_messages</th><td> 17.1014667</td></tr>
-	<tr><th scope=row>total_day_minutes</th><td>111.8646143</td></tr>
-	<tr><th scope=row>total_day_calls</th><td>  0.9041991</td></tr>
-	<tr><th scope=row>total_night_minutes</th><td> 10.0572541</td></tr>
-	<tr><th scope=row>total_night_calls</th><td>  0.6649168</td></tr>
-	<tr><th scope=row>total_intl_minutes</th><td> 32.1876656</td></tr>
-	<tr><th scope=row>total_intl_calls</th><td> 48.0005296</td></tr>
-	<tr><th scope=row>total_intl_charge</th><td> 32.4195349</td></tr>
-	<tr><th scope=row>number_customer_service_calls</th><td> 80.5552221</td></tr>
+	<tr><th scope=row>account_length</th><td> -1.200895</td></tr>
+	<tr><th scope=row>international_plan</th><td> 90.251232</td></tr>
+	<tr><th scope=row>voice_mail_plan</th><td> 19.898561</td></tr>
+	<tr><th scope=row>number_vmail_messages</th><td> 17.504517</td></tr>
+	<tr><th scope=row>total_day_minutes</th><td>109.459759</td></tr>
+	<tr><th scope=row>total_day_calls</th><td>  0.180526</td></tr>
+	<tr><th scope=row>total_night_minutes</th><td> 10.543182</td></tr>
+	<tr><th scope=row>total_night_calls</th><td>  1.303681</td></tr>
+	<tr><th scope=row>total_intl_minutes</th><td> 33.019171</td></tr>
+	<tr><th scope=row>total_intl_calls</th><td> 48.078297</td></tr>
+	<tr><th scope=row>total_intl_charge</th><td> 31.192976</td></tr>
+	<tr><th scope=row>number_customer_service_calls</th><td> 75.709519</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -934,7 +934,7 @@ The final value used for the model was mtry = 7.
     <a class='right-next' id="next-link" href="xgboost.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">10.3. </span>XGBoost (⚵)</p>
+        <p class="prev-next-title"><span class="section-number">10.3. </span>(§) XGBoost</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

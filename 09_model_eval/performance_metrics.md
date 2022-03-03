@@ -187,6 +187,10 @@ ggplot(points, aes(x=fp, y=tp)) + geom_point(size=2)  + geom_line(, size=1.25) +
 
 In general, the better our model, the closer the ROC curve will be to the blue line, and the further away it will be from the red line. 
 
+Access the web application below to further explore the relationship between confusion matrices, ROC curves, and the model threshold.
+
+<a href="https://hbs-data-science.shinyapps.io/churn_roc/" class="btn btn-primary" style="color:white;" target="_blank">Launch Application!</a>
+
 We can plot the ROC curve for our model in R using the `prediction()` and `performance()` functions from the `ROCR` package. These functions use the following syntax:
 
 ```{admonition} Syntax

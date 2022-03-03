@@ -1,4 +1,4 @@
-# **Exercise:** Interactions (&#9909;)
+# (&sect;) **Exercise:** Interactions
 
 Using what you have learned so far in this chapter, work through the exercise by launching the code notebook below. 
 

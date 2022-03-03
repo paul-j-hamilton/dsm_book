@@ -22,6 +22,6 @@ degreeLevels <- c("High School", "Associate's", "Bachelor's", "Master's", "Ph.D"
 employees$Degree <- parse_factor(employees$Degree, levels = degreeLevels, ordered = TRUE)
 ```
 
-# Visualization with ggplot (&#9909;)
+# (&sect;) Visualization with ggplot
 
 [In Progress]

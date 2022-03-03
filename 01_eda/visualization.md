@@ -81,7 +81,7 @@ Boxplot
 We can create a boxplot in R with the `boxplot()` function. 
 
 ```{admonition} Syntax
-boxplot(x)
+`boxplot(x)`
 + *Required arguments*
   - `x`: The atomic vector of values.
 ```
@@ -103,7 +103,7 @@ boxplot(employees$Salary ~ employees$Degree)
 **Scatter plots** can be used to get a quick feel for how two quantitative variables are related. The `plot()` function takes two variables as inputs; the first variable is plotted on the x-axis, and the second variable is plotted on the y-axis.
 
 ```{admonition} Syntax
-plot(x, y)
+`plot(x, y)`
 + *Required arguments*
   - `x` & `y`: The atomic vectors of values.
 ```

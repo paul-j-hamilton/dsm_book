@@ -137,3 +137,7 @@ To interpret the coefficients on the dummy variables for degree, we must first a
 + On average, employees with a Bachelor's degree are paid \$33,065.81 more than employees with a high school diploma, assuming all other variables in the model are kept constant.
 + On average, employees with an Master's degree are paid \$40,688.57 more than employees with a high school diploma, assuming all other variables in the model are kept constant.
 + On average, employees with a Ph.D are paid \$53,730.61 more than employees with a high school diploma, assuming all other variables in the model are kept constant.
+
+Access the web application below to further explore the use of dummy variables in linear regression models.
+
+<a href="https://hbs-data-science.shinyapps.io/shimmer_dummy_variables/" class="btn btn-primary" style="color:white;" target="_blank">Launch Application!</a>

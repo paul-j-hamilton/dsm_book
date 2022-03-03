@@ -26,7 +26,7 @@ churn <- read_csv("../_build/data/churn_train.csv") %>% mutate_if(is.character, 
 cvConditions <- trainControl(method = "cv", number = 5)
 ```
 
-# Random Forest
+# (&sect;) Random Forest
 
 One shortcoming of the CART model discussed in the previous section is that it typically exhibits high variance. This means that the model might change significantly if it were built on a different sample of data. In general we hope that our models are robust, and not highly dependent on the particular observations in the training set. Instead we prefer models that exhibit low variance, meaning the model parameters would not change drastically if we built the model on a different random sample of data.
 

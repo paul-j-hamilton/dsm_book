@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Data Wrangling with the tidyverse &#8212; Data Science for Managers</title>
+    <title>2. (§) Data Wrangling with the tidyverse &#8212; Data Science for Managers</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2.1. The Pipe Operator" href="pipe_operator.html" />
-    <link rel="prev" title="1.4. Visualization with ggplot (⚵)" href="../01_eda/ggplot.html" />
+    <link rel="prev" title="1.6. (§) Visualization with ggplot" href="../01_eda/ggplot.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -102,16 +102,6 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/roadmap.html">
-   Course Roadmap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_getting_started/assignments.html">
-   Assignment Sheets
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../00_getting_started/access.html">
    Access to Materials
@@ -273,33 +263,43 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/what_is_data.html">
+     1.1. What Is Data?
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/summary_stats.html">
-     1.1. Summary Statistics
+     1.2. Summary Statistics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/visualization.html">
-     1.2. Visualization
+     1.3. Visualization
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/eda_quiz.html">
-     1.3.
+     1.4.
      <strong>
       Quiz
      </strong>
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../01_eda/outliers.html">
+     1.5. Outliers
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../01_eda/ggplot.html">
-     1.4. Visualization with ggplot (⚵)
+     1.6. (§) Visualization with ggplot
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   2. Data Wrangling with the tidyverse
+   2. (§) Data Wrangling with the tidyverse
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -374,7 +374,7 @@
      <strong>
       Exercise:
      </strong>
-     One-Sample Hypothesis Testing (⚵)
+     One-Sample Hypothesis Testing
     </a>
    </li>
    <li class="toctree-l2">
@@ -470,21 +470,21 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/reg_exercise2.html">
-     5.7.
+     5.7. (§)
      <strong>
       Exercise:
      </strong>
-     Interactions (⚵)
+     Interactions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/transformations.html">
-     5.8. Transformations (⚵)
+     5.8. (§) Transformations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../05_linear_regression/interactions.html">
-     5.9. Interactions (⚵)
+     5.9. (§) Interactions
     </a>
    </li>
    <li class="toctree-l2">
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../08_knn/knn.html">
-   8. k-Nearest Neighbors (kNN)
+   8. (§) k-Nearest Neighbors (kNN)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
@@ -593,29 +593,29 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../10_dt_rf/random_forest.html">
-     10.2. Random Forest
+     10.2. (§) Random Forest
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../10_dt_rf/xgboost.html">
-     10.3. XGBoost (⚵)
+     10.3. (§) XGBoost
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../11_neural_nets/neural_nets.html">
-   11. Neural Networks
+   11. (§) Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../12_unsupervised/unsupervised.html">
-   12. Unsupervised Learning
+   12. (§) Unsupervised Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../13_nlp/nlp.html">
-   13. Natural Language Processing
+   13. (§) Natural Language Processing
   </a>
  </li>
 </ul>
@@ -709,7 +709,7 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="data-wrangling-with-the-tidyverse">
-<h1><span class="section-number">2. </span>Data Wrangling with the tidyverse<a class="headerlink" href="#data-wrangling-with-the-tidyverse" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2. </span>(§) Data Wrangling with the tidyverse<a class="headerlink" href="#data-wrangling-with-the-tidyverse" title="Permalink to this headline">¶</a></h1>
 <p>In this section, we will see some of the advanced functionality for data wrangling offered by the tidyverse.</p>
 <div class="toctree-wrapper compound">
 </div>
@@ -744,7 +744,7 @@
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1.4. </span>Visualization with ggplot (⚵)</p>
+            <p class="prev-next-title"><span class="section-number">1.6. </span>(§) Visualization with ggplot</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="pipe_operator.html" title="next page">

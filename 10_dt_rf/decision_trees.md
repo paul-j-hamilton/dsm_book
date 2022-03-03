@@ -217,6 +217,6 @@ Based on these results the optimal value of `maxdepth` is four, so our final tre
 rpart.plot(rpartCV$finalModel)
 ```
 
-## Regression Trees
+## (&sect;) Regression Trees
 
 [In Progress]

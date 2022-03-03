@@ -1,4 +1,4 @@
-# **Exercise:** One-Sample Hypothesis Testing (&#9909;)
+# **Exercise:** One-Sample Hypothesis Testing
 
 Using what you have learned so far in this chapter, work through the exercise by launching the code notebook below. 
 

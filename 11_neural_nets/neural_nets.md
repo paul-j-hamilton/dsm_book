@@ -13,6 +13,6 @@ kernelspec:
   name: ir
 ---
 
-# Neural Networks
+# (&sect;) Neural Networks
 
 [In Progress]

@@ -6,8 +6,6 @@ root: intro
 parts:
   - caption: Getting Started
     chapters:
-    - file: 00_getting_started/roadmap
-    - file: 00_getting_started/assignments
     - file: 00_getting_started/access
     - file: 00_getting_started/platforms
   - caption: R Bootcamp
@@ -39,15 +37,16 @@ parts:
     chapters:
       - file: 01_eda/eda
         sections:
+        - file: 01_eda/what_is_data
         - file: 01_eda/summary_stats
         - file: 01_eda/visualization
         - file: 01_eda/eda_quiz
+        - file: 01_eda/outliers
         - file: 01_eda/ggplot
       - file: 02_tidy/eda_tidyverse
         sections:
           - file: 02_tidy/pipe_operator
           - file: 02_tidy/summarise
-          - file: 02_tidy/dds
   - caption: Inference
     numbered: True
     chapters:
