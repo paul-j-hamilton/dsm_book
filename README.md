@@ -1,6 +1,6 @@
 # Data Science for Managers
 
-<a href="https://dsmcourse.business/" target="_blank">dsmcourse.business</a>
+<a href="https://dsm.business/" target="_blank">dsm.business</a>
 
 <img src="https://dsmcourse.business/_static/logo.png" alt="drawing" width="200"/>
 
